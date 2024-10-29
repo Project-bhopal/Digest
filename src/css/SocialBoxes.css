@@ -1,0 +1,22 @@
+/* Default state for all social boxes */
+.social-box {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1; /* Full opacity by default */
+  }
+  
+  /* This ensures the hovered box stays fully visible and moves up */
+  .social-box:hover {
+    transform: translateY(-6px); /* Moves the hovered box up */
+    opacity: 1; /* Keeps the hovered box at full opacity */
+  }
+  
+  /* When hovering on the container, reduce opacity of all boxes */
+  .container:hover .social-box {
+    opacity: 0.5; /* Reduce opacity for all boxes */
+  }
+  
+  /* Ensure that the hovered box remains at full opacity */
+  .container:hover .social-box:hover {
+    opacity: 1; /* Keep the hovered box at full opacity */
+  }
+   

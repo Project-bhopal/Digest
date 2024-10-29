@@ -1,0 +1,22 @@
+.p {
+    position: relative; /* Enable positioning for the pseudo-element */
+    display: inline-block; /* Allow the width to fit the text */
+    overflow: hidden; /* Hide the overflow for the pseudo-element */
+}
+
+.p::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute; /* Position it relative to the parent */
+    left: 0;
+    bottom: 0; /* Align it to the bottom of the text */
+    width: 100%; /* Full width of the text */
+    height: 100%; /* Full height of the text */
+    background-color: #C2FF74; /* Background color */
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: transform 0.4s ease; /* Animation for the hover effect */
+    z-index: -1; /* Place it behind the text */
+}
+
+.p:hover::after {
+    transform: translateX(0); /* Move it into view on hover */
+}
