@@ -10,9 +10,20 @@ import { FaSearch } from "react-icons/fa";
 // import Tooltip from '@mui/material/Tooltip';
 import Image from "next/image";
 import { FormControlLabel, FormGroup, styled, Switch } from "@mui/material";
+import useTheme from "../context/theme.js";
 
 function Navbar() {
   const pathname = usePathname();
+  const {themeMode, darkTheme, lightTheme} = useTheme();
+
+  const handleChange = (e) =>{
+    const isChecked = e.target.checked;
+    if(isChecked){
+      darkTheme()
+    } else {
+      lightTheme()
+    }
+  }
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 50,
@@ -21,18 +32,20 @@ function Navbar() {
     "& .MuiSwitch-switchBase": {
       margin: 1,
       padding: 0,
-      transform: "translateX(6px)",
+      transform: "translateX(5px)",
+      duration: 2,
       "&.Mui-checked": {
         color: "#fff",
-        transform: "translateX(22px)",
+        transform: "translateX(21px)",
+        duration: 2,
         "& .MuiSwitch-thumb:before": {
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            "#fff"
-          )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="16" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent("transparent")}" rx="10" ry="10" /><path fill="${encodeURIComponent("#fff")}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+          borderRadius: '50%',
+          backgroundColor : "#6DBA16",
         },
         "& + .MuiSwitch-track": {
           opacity: 1,
-          backgroundColor: "#EDEDED",
+          backgroundColor: "#222222",
           ...theme.applyStyles("dark", {
             backgroundColor: "#8796A5",
           }),
@@ -40,7 +53,7 @@ function Navbar() {
       },
     },
     "& .MuiSwitch-thumb": {
-      backgroundColor: "#001e3c",
+      backgroundColor: "",
       width: 23,
       height: 23,
       "&::before": {
@@ -52,8 +65,8 @@ function Navbar() {
         top: 0,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          "#fff"
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent("white")}" rx="10" ry="10" /><path fill="${encodeURIComponent(
+          "black"
         )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
       },
       ...theme.applyStyles("dark", {
@@ -70,12 +83,14 @@ function Navbar() {
     },
   }));
 
+
+
   return (
     <>
-      <nav className="h-32 border-t-8 border-lime px-[7%] flex gap-3">
+      <nav className="h-32 border-t-8 border-lime px-[7%] flex gap-3  text-black dark:text-white duration-100">
         <Image src={logo} alt="logo" className="h-18 w-32" />
         <div className="w-full">
-          <div className="h-[60%] w-full flex justify-between p-3 border-b-[3px] border-black">
+          <div className="h-[60%] w-full flex justify-between p-3 border-b-[3px] border-black dark:border-white">
             <div className="flex justify-center items-center">
               <h6 className="text-xs">Wednesday, Oct 9, 2024</h6>
             </div>
@@ -173,20 +188,20 @@ function Navbar() {
 
               <FormGroup>
                 <FormControlLabel
-                  control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+                  control={<MaterialUISwitch sx={{ m: 1 }} onChange={handleChange} checked={themeMode === "dark"}/>}
                   
                 />
               </FormGroup>
             </div>
             <div className="w-[270px] flex items-center justify-between">
-              <FaFacebookF className="text-black text-[16px] hover:text-[21px] duration-200" />
-              <FaXTwitter className="text-black text-[16px] hover:text-[21px] duration-200" />
-              <FaYoutube className="text-black text-[16px] hover:text-[21px] duration-200" />
-              <FaTiktok className="text-black text-[16px] hover:text-[21px] duration-200" />
-              <button className="bg-lime hover:bg-[black] hover:text-[white] duration-300 px-4 py-1 font-medium text-sm">
+              <FaFacebookF className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
+              <FaXTwitter className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
+              <FaYoutube className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
+              <FaTiktok className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
+              <button className="bg-lime hover:bg-[black] hover:text-[white]  text-black duration-300 px-4 py-1 font-medium text-sm">
                 Newsletter
               </button>
-              <FaSearch className="text-black text-lg " />
+              <FaSearch className="text-black dark:text-white text-lg " />
             </div>
           </div>
         </div>
