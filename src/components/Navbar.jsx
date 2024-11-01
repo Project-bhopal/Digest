@@ -6,11 +6,12 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 // import Tooltip from '@mui/material/Tooltip';
 import Image from "next/image";
 import { FormControlLabel, FormGroup, styled, Switch } from "@mui/material";
 import useTheme from "../context/theme.js";
+import SearchComponent from "./SearchComponent";
 
 function Navbar() {
   const pathname = usePathname();
@@ -125,18 +126,19 @@ function Navbar() {
               </Link>
               <span>|</span>
               <Link
-                href={"/category/market-trends"}
-                className={`font-bold text-[10px] hover:text-lime ease-in-out duration-300 hover:underline`}
-              >
-                Market Trends
-              </Link>
-              <span>|</span>
-              <Link
                 href={"/category/startups"}
                 className={`font-bold text-[10px] hover:text-lime ease-in-out duration-300 hover:underline`}
               >
                 Startups
               </Link>
+              <span>|</span>
+              <Link
+                href={"/category/market-trends"}
+                className={`font-bold text-[10px] hover:text-lime ease-in-out duration-300 hover:underline`}
+              >
+                Market Trends
+              </Link>
+              
             </div>
           </div>
           <div className="h-[40%] w-full p-3 flex justify-between">
@@ -201,7 +203,8 @@ function Navbar() {
               <button className="bg-lime hover:bg-[black] hover:text-[white]  text-black duration-300 px-4 py-1 font-medium text-sm">
                 Newsletter
               </button>
-              <FaSearch className="text-black dark:text-white text-lg " />
+              {/* <FaSearch className="text-black dark:text-white text-lg " /> */}
+              <SearchComponent/>
             </div>
           </div>
         </div>

@@ -11,7 +11,7 @@ const Card = ({ image, category, title, date }) => {
       {/* Content Section */}
       <div className="p-5  relative">
         {/* Category Tag */}
-        <span className="absolute top-[-15px] inline-block bg-[#C2FF74] text-[#010328] text-[9px] tracking-[1px] font-bold px-2 uppercase">
+        <span className="absolute top-[-14px] inline-block bg-[#C2FF74] text-[#010328] text-[9px] tracking-[1px] font-bold px-2 uppercase">
           {category}
         </span>
 

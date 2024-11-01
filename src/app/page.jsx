@@ -22,6 +22,7 @@ import "../css/swiperbg.css";
 import Recommendation from "@/components/Recommendation";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { GrFlag } from "react-icons/gr";
+import Advertisement from "@/components/Advertisement";
 
 export default function Home() {
   const recommendeddata = [
@@ -158,7 +159,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="px-[7%] text-black dark:text-white duration-100">
+      <div className=" text-black dark:text-white duration-100">
         <div className="h-[110vh] w-full flex mb-3">
           <div className="bg-[#04031D] h-[94%] w-[55%]">
             <Image src={homeimage} className="h-[50%] object-cover" />
@@ -223,7 +224,7 @@ export default function Home() {
           heading={"Our Recommended Posts are a curated exploration of the most significant trends, innovations, and insights that are making waves in Technology, from cutting-edge technologies to revolutionary market strategies."}
           cardsData={recommendeddata}
         />
-        <div className="h-[110vh] w-full flex mb-3 mt-16">
+        <div className="h-[110vh] w-full flex mt-16">
           <SectionsCard
             Items={spotlightItems}
             section = "Spotlight"
@@ -231,7 +232,7 @@ export default function Home() {
             withImage = {true}
             imageFirst = {true}
             />
-          <div className="bg-[#DEFFB5] dark:bg-[#04031D] h-[94%] w-[55%]">
+          <div className="bg-[#DEFFB5] dark:bg-[#04031D] h-[95.5%] w-[55%]">
             <Image src={sportlightimage} className="h-[50%] object-cover" />
             <div className="text-black dark:text-white ps-[5%] relative">
             <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">TECH MOVES</span>
@@ -251,6 +252,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <Advertisement/>
         <div className="h-[90vh] w-full flex mb-3 mt-16">
           <div className="bg-[#D9F3FF] dark:bg-[#477286] h-[94%] w-[50%] flex items-center justify-center">
             <div className="text-black ps-[5%]">
@@ -281,6 +283,7 @@ export default function Home() {
           heading={""}
           cardsData={mustReaddata}
         />
+        <Advertisement/>
       </div>
     </>
   );
