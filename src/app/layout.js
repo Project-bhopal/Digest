@@ -28,11 +28,13 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className='bg-white dark:bg-black'>
+      <body className='bg-white dark:bg-black '>
         <AppRouterCacheProvider>
         <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
           <Navbar/>
-          {children}
+          <div className='px-[7%]'>
+            {children}
+          </div>
           <Footer/>
         </ThemeProvider>  
         </AppRouterCacheProvider>

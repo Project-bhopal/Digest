@@ -6,10 +6,10 @@ function Recommendation({label, icon, heading, cardsData}) {
   
   return (
     <>
-      <div>
+      <div className="mb-10">
         <div className="space-y-3 py-7">
 
-        <h1 className="text-6xl font-bold flex items-center gap-5">{label}  {icon}</h1>
+        <h1 className="text-6xl text-black dark:text-white font-bold flex items-center gap-5">{label}  {icon}</h1>
         <h2 className="text-xl italic font-[350]">
             {heading}
         </h2>
