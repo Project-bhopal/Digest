@@ -1,3 +1,4 @@
+"use client";
 import Recommendation from "@/components/Recommendation"
 import card1 from '@/assets/card1.webp'
 import card2 from "@/assets/card2.jpg";

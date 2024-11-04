@@ -1,3 +1,4 @@
+"use client";
 import Category from "@/components/Category"
 import card1 from '../../../assets/card1.webp'
 import card2 from "../../../assets/card2.jpg";

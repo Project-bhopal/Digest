@@ -13,17 +13,25 @@ import { useEffect, useState } from 'react';
 export default function RootLayout({ children }) {
   const [themeMode, setThemeMode] = useState("light")
 
+
   const darkTheme = () =>{
     setThemeMode("dark")
+    localStorage.setItem("themeMode", "dark")
   }
 
   const lightTheme = () =>{
     setThemeMode("light")
+    localStorage.setItem("themeMode", "light")
   }
 
   useEffect(()=>{
-    document.querySelector("html").classList.remove( "dark","light")
-    document.querySelector("html").classList.add( themeMode)
+    const theme = localStorage.getItem("themeMode") || "light";
+
+      console.log(theme)
+      setThemeMode(theme)
+    document.querySelector("html").classList.remove("light", "dark");
+    document.querySelector("html").classList.add(theme);
+ 
   },[themeMode])
 
   return (

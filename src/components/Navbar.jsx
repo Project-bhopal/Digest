@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 import logo from "../assets/logo2.jpg";
 import { usePathname } from "next/navigation";
@@ -10,21 +11,42 @@ import { FaTiktok } from "react-icons/fa";
 // import Tooltip from '@mui/material/Tooltip';
 import Image from "next/image";
 import { FormControlLabel, FormGroup, styled, Switch } from "@mui/material";
+import { MdExpandMore } from "react-icons/md";
 import useTheme from "../context/theme.js";
 import SearchComponent from "./SearchComponent";
+import card1 from "@/assets/card1.webp";
+import HoverPanel from "./HoverPanel";
 
 function Navbar() {
-  const pathname = usePathname();
-  const {themeMode, darkTheme, lightTheme} = useTheme();
+  const [openMarketing, setOpenMarketing] = useState(false);
+  const [openStartups, setOpenStartups] = useState(false);
+  const [openPages, setOpenPages] = useState(false);
 
-  const handleChange = (e) =>{
+  const pathname = usePathname();
+  const { themeMode, darkTheme, lightTheme } = useTheme();
+
+  const handleChange = (e) => {
     const isChecked = e.target.checked;
-    if(isChecked){
-      darkTheme()
+    if (isChecked) {
+      darkTheme();
     } else {
-      lightTheme()
+      console.log("called");
+      lightTheme();
     }
-  }
+  };
+
+  const handleNewsletterSectionClick = () => {
+    const section = document.getElementById("newsLetter");
+    if (section) {
+      const topPosition = section.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: topPosition,
+        behavior: "smooth",
+      });
+    } else {
+      console.error("Section with ID 'newsletter' not found.");
+    }
+  };
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 50,
@@ -40,9 +62,13 @@ function Navbar() {
         transform: "translateX(21px)",
         duration: 2,
         "& .MuiSwitch-thumb:before": {
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="16" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent("transparent")}" rx="10" ry="10" /><path fill="${encodeURIComponent("#fff")}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-          borderRadius: '50%',
-          backgroundColor : "#6DBA16",
+          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="16" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent(
+            "transparent"
+          )}" rx="10" ry="10" /><path fill="${encodeURIComponent(
+            "#fff"
+          )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
+          borderRadius: "50%",
+          backgroundColor: "#6DBA16",
         },
         "& + .MuiSwitch-track": {
           opacity: 1,
@@ -66,7 +92,9 @@ function Navbar() {
         top: 0,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent("white")}" rx="10" ry="10" /><path fill="${encodeURIComponent(
+        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 20 20"><rect width="20" height="20" fill="${encodeURIComponent(
+          "white"
+        )}" rx="10" ry="10" /><path fill="${encodeURIComponent(
           "black"
         )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
       },
@@ -84,7 +112,68 @@ function Navbar() {
     },
   }));
 
-
+  const openData = {
+    category: "Marketing",
+    route: "/category/marketing",
+    cards: [
+      {
+        image: card1,
+        text: "Strategies to Elevate Brand Stories and Capture Audience Attention",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Tracking the Rapid Advances in Technology and Their Impact",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "A Chronicle of Innovative Minds Shaping the Future with Creative Ingenuity",
+        date: "February 1, 2024",
+      },
+    ],
+  };
+  const openStartupData = {
+    category: "Startups",
+    route: "/category/startups",
+    cards: [
+      {
+        image: card1,
+        text: "Strategies to Elevate Brand Stories and Capture Audience Attention",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Tracking the Rapid Advances in Technology and Their Impact",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
+        date: "February 1, 2024",
+      },
+      {
+        image: card1,
+        text: "A Chronicle of Innovative Minds Shaping the Future with Creative Ingenuity",
+        date: "February 1, 2024",
+      },
+    ],
+  };
 
   return (
     <>
@@ -138,11 +227,10 @@ function Navbar() {
               >
                 Market Trends
               </Link>
-              
             </div>
           </div>
-          <div className="h-[40%] w-full p-3 flex justify-between">
-            <div className="flex justify-center items-center gap-8">
+          <div className="h-[40%] w-full p-3 flex justify-between relative">
+            <div className="flex justify-center items-center gap-6">
               <Link
                 href={"/"}
                 className={`${
@@ -157,27 +245,67 @@ function Navbar() {
                   pathname === "/category/marketing"
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
-                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16]`}
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                onMouseEnter={() => {
+                  setOpenMarketing(true);
+                  setOpenStartups(false);
+                  setOpenPages(false);
+                }}
+                onMouseLeave={() => setOpenMarketing(false)}
               >
-                Marketing
+                Marketing{" "}
+                {
+                  <MdExpandMore
+                    className={`${
+                      openMarketing ? "-rotate-180 " : ""
+                    } duration-200 text-lg font-bold`}
+                  />
+                }
               </Link>
+
               <Link
                 href={"/category/startups"}
                 className={`${
                   pathname === "/category/startups"
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] `}
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                onMouseEnter={() => {
+                  setOpenStartups(true);
+                  setOpenMarketing(false);
+                  setOpenPages(false);
+                }}
+                onMouseLeave={() => setOpenStartups(false)}
               >
-                Startups
+                Startups{" "}
+                {
+                  <MdExpandMore
+                    className={`${
+                      openStartups ? "-rotate-180 " : ""
+                    } duration-200 text-lg font-bold`}
+                  />
+                }
               </Link>
               <Link
                 href={"/pagess"}
                 className={`${
                   pathname === "/pagess" ? "border-b-2 border-[#6DBA16]" : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] `}
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                onMouseEnter={() => {
+                  setOpenPages(true);
+                  setOpenMarketing(false);
+                  setOpenStartups(false);
+                }}
+                onMouseLeave={() => setOpenPages(false)}
               >
-                Pages
+                Pages{" "}
+                {
+                  <MdExpandMore
+                    className={`${
+                      openPages ? "-rotate-180 " : ""
+                    } duration-200 text-lg font-bold`}
+                  />
+                }
               </Link>
               <Link
                 href={"/blog"}
@@ -190,8 +318,13 @@ function Navbar() {
 
               <FormGroup>
                 <FormControlLabel
-                  control={<MaterialUISwitch sx={{ m: 1 }} onChange={handleChange} checked={themeMode === "dark"}/>}
-                  
+                  control={
+                    <MaterialUISwitch
+                      sx={{ m: 1 }}
+                      onChange={handleChange}
+                      checked={themeMode === "dark"}
+                    />
+                  }
                 />
               </FormGroup>
             </div>
@@ -200,12 +333,35 @@ function Navbar() {
               <FaXTwitter className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
               <FaYoutube className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
               <FaTiktok className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
-              <button className="bg-lime hover:bg-[black] hover:text-[white]  text-black duration-300 px-4 py-1 font-medium text-sm">
+              <button
+                className="bg-lime hover:bg-[black] hover:text-[white]  text-black duration-300 px-4 py-1 font-medium text-sm"
+                onClick={handleNewsletterSectionClick}
+              >
                 Newsletter
               </button>
               {/* <FaSearch className="text-black dark:text-white text-lg " /> */}
-              <SearchComponent/>
+              <SearchComponent />
             </div>
+            {openMarketing && (
+              <HoverPanel openData={openData} set={setOpenMarketing} />
+            )}
+            {openStartups && (
+              <HoverPanel openData={openStartupData} set={setOpenStartups} />
+            )}
+            {openPages && (
+              <div
+                className="p-5 absolute top-[28.2px] left-[260px]"
+                onMouseEnter={() => setOpenPages(true)}
+                onMouseLeave={() => setOpenPages(false)}
+              >
+                <div className="bg-white dark:bg-[#191C20] h-[150px] w-[200px] flex flex-col p-5 text-[13.2px] space-y-3">
+                  <Link href={"/blog"} className="hover:text-[#89c742] duration-200">Blog Index</Link>
+                  <Link href={""} className="hover:text-[#89c742] duration-200">Contact Us</Link>
+                  <Link href={""} className="hover:text-[#89c742] duration-200">Search Page</Link>
+                  <Link href={""} className="hover:text-[#89c742] duration-200">404 Page</Link>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </nav>
