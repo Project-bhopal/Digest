@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
