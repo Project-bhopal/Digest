@@ -6,7 +6,7 @@ import Image from "next/image";
 
 
 
-const SectionsCard = ({Items, section, icon, withImage, imageFirst}) => {
+const SectionsCard = ({Items, section, icon, withImage, imageFirst  }) => {
 
   
   return (
@@ -17,11 +17,11 @@ const SectionsCard = ({Items, section, icon, withImage, imageFirst}) => {
         </h2>
         <ul className="space-y-4">
           {Items.map((item, index) => (
-            <li key={index} className={`border-b border-gray-300 pb-4 flex gap-3 ${imageFirst ? 'flex-row' : 'flex-row-reverse'}`}>
+            <li key={index} className={`border-b border-gray-300 pb-4 flex gap-3 list-inside ${imageFirst ? 'flex-row' : 'flex-row-reverse'}`}>
               {withImage&&<Image src={item.image} className="h-[135px] w-[180px]"/>}
               <div>
-              <div className="flex items-center ">
-                {!withImage&&<span className="text-3xl mr-2"><AiFillThunderbolt /></span>}
+              <div className="flex items-center">
+                {!withImage&&<span className="text-2xl mr-2 -rotate-[13deg]"><AiFillThunderbolt /></span>}
               <p className="p hover:text-wite dark:hover:text-black duration-200 text-3xl font-[600] cursor-pointer">
                 <span>{item.title}</span>
               </p>

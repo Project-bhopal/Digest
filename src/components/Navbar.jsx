@@ -236,6 +236,7 @@ function Navbar() {
                 className={`${
                   pathname === "/" ? "border-b-2 border-[#6DBA16]" : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] duration-200`}
+                prefetch={true}
               >
                 Home
               </Link>
@@ -252,6 +253,7 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenMarketing(false)}
+                prefetch={true}
               >
                 Marketing{" "}
                 {
@@ -276,6 +278,7 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenStartups(false)}
+                prefetch={true}
               >
                 Startups{" "}
                 {
@@ -297,6 +300,7 @@ function Navbar() {
                   setOpenStartups(false);
                 }}
                 onMouseLeave={() => setOpenPages(false)}
+                prefetch={true}
               >
                 Pages{" "}
                 {
@@ -312,6 +316,7 @@ function Navbar() {
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16]`}
+                prefetch={true}
               >
                 Blog
               </Link>
@@ -355,10 +360,10 @@ function Navbar() {
                 onMouseLeave={() => setOpenPages(false)}
               >
                 <div className="bg-white dark:bg-[#191C20] h-[150px] w-[200px] flex flex-col p-5 text-[13.2px] space-y-3">
-                  <Link href={"/blog"} className="hover:text-[#89c742] duration-200">Blog Index</Link>
-                  <Link href={""} className="hover:text-[#89c742] duration-200">Contact Us</Link>
-                  <Link href={""} className="hover:text-[#89c742] duration-200">Search Page</Link>
-                  <Link href={""} className="hover:text-[#89c742] duration-200">404 Page</Link>
+                  <Link href={"/blog"} className="hover:text-[#89c742] duration-200" prefetch={true}>Blog Index</Link>
+                  <Link href={"/contactUs"} className="hover:text-[#89c742] duration-200" prefetch={true}>Contact Us</Link>
+                  <Link href={""} className="hover:text-[#89c742] duration-200" prefetch={true}>Search Page</Link>
+                  <Link href={""} className="hover:text-[#89c742] duration-200" prefetch={true}>404 Page</Link>
                 </div>
               </div>
             )}

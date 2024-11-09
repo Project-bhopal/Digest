@@ -7,15 +7,15 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { PiArrowBendRightDownBold } from "react-icons/pi";
 import { IoStarSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
-import spotlight1 from "../assets/spotlight1.webp";
-import spotlight2 from "../assets/spotlight2.webp";
-import spotlight3 from "../assets/spotlight3.webp";
-import spotlight4 from "../assets/spotlight4.webp";
+import spotlight1 from "@/assets/spotlight1.webp";
+import spotlight2 from "@/assets/spotlight2.webp";
+import spotlight3 from "@/assets/spotlight3.webp";
+import spotlight4 from "@/assets/spotlight4.webp";
 
-import card1 from "../assets/card1.webp";
-import card2 from "../assets/card2.jpg";
-import card3 from "../assets/card3.jpg";
-import card4 from "../assets/card4.webp";
+import card1 from "@/assets/card1.webp";
+import card2 from "@/assets/card2.jpg";
+import card3 from "@/assets/card3.jpg";
+import card4 from "@/assets/card4.webp";
 
 import "../css/swiperbg.css";
 
@@ -23,8 +23,9 @@ import Recommendation from "@/components/Recommendation";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { GrFlag } from "react-icons/gr";
 import Advertisement from "@/components/Advertisement";
+import HomebottomSection from "@/components/HomebottomSection";
 
-export default function Home() {
+export default function Home() {  
   const recommendeddata = [
     {
       image: card1,
@@ -108,6 +109,7 @@ export default function Home() {
       date: "January 31, 2024",
     },
   ];
+ 
   const spotlightItems = [
     {
       title: "White House Reminds Lawmakers not to Travel to Afghanistan",
@@ -301,6 +303,7 @@ export default function Home() {
           cardsData={mustReaddata}
         />
         <Advertisement />
+        <HomebottomSection/>
       </div>
     </>
   );

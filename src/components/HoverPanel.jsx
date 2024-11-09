@@ -19,7 +19,8 @@ function HoverPanel({ openData, set }) {
             </h1>
             <Link
               href={openData.route}
-              className="flex items-center text-xs font-semibold text-black dark:text-white hover:text-lime duration-200 gap-1"
+              className="flex items-center text-xs font-semibold text-black dark:text-white hover:text-lime
+              dark:hover:text-lime duration-200 gap-1"
             >
               Show More <FaRegArrowAltCircleRight className="text-xs" />
             </Link>
