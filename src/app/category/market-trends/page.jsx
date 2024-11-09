@@ -1,9 +1,9 @@
 "use client";
 import Category from "@/components/Category";
-import card1 from '../../../assets/card1.webp'
-import card2 from "../../../assets/card2.jpg";
-import card3 from "../../../assets/card3.jpg";
-import card4 from "../../../assets/card4.webp";
+import card1 from '@/assets/card1.webp'
+import card2 from "@/assets/card2.jpg";
+import card3 from "@/assets/card3.jpg";
+import card4 from "@/assets/card4.webp";
 
 
 function page() {
