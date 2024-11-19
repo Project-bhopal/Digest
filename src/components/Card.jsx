@@ -4,7 +4,7 @@ import '../css/swiperbg.css'
 
 const Card = ({ image, category, title, date }) => {
   return (
-    <div className="bg-[#04031D] text-white overflow-hidden shadow-md w-full cursor-pointer">
+    <div className="bg-[#04031D] text-white overflow-hidden shadow-md h-full w-full cursor-pointer">
       {/* Image Section */}
       <Image src={image} alt={title} className="w-full h-[320px] object-cover" />
 

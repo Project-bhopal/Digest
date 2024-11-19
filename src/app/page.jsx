@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import homeimage from "../assets/homeimage.webp";
-import sportlightimage from "../assets/spotlightimage.webp";
+import spotlightimage from "../assets/spotlightimage.jpg";
 import SectionsCard from "@/components/SectionsCard";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { PiArrowBendRightDownBold } from "react-icons/pi";
@@ -24,6 +24,7 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import { GrFlag } from "react-icons/gr";
 import Advertisement from "@/components/Advertisement";
 import HomebottomSection from "@/components/HomebottomSection";
+import Link from "next/link";
 
 export default function Home() {  
   const recommendeddata = [
@@ -160,18 +161,19 @@ export default function Home() {
   return (
     <>
       <div className=" text-black dark:text-white duration-100">
-        <div className="h-[110vh] w-full flex mb-3">
-          <div className="bg-[#04031D] h-[94%] w-[55%]">
-            <Image src={homeimage} className="h-[50%] object-cover" />
-            <div className="text-white ps-[5%] relative">
+        <div className="lg:min-h-[110vh] w-full flex lg:flex-row flex-col mb-3">
+          <div className="bg-[#04031D] min-h-[94%] lg:w-[55%] w-full lg:pb-0 pb-7">
+          <Link href={`/blog/${1}`} className="w-full">
+            <Image src={homeimage} className="lg:h-[50%] h-[100vh] lg:w-full w-full object-cover" />
+            <div className="text-white lg:ps-[5%] ps-[2%] relative">
               <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
                 TECH MOVES
               </span>
-              <div className="space-y-5 pt-3">
-                <p className="p cursor-pointer text-[52px] font-bold leading-[65px] hover:text-black duration-200">
+              <div className="lg:space-y-5 space-y-3 pt-3">
+                <p className="p w-full cursor-pointer lg:text-[52px] md:text-[40px] text-[30px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px] hover:text-black duration-200">
                   The Tech Trends Driving Major Transformations in Business
                 </p>
-                <h2 className="text-xl text-gray-300">
+                <h2 className="lg:text-xl md:text-base text-[14px] text-gray-300">
                   By recognizing and leveraging these advantages, businesses can
                   position themselves as trailblazers in their industries,
                   driving success
@@ -183,24 +185,26 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </Link>
           </div>
           <SectionsCard
             Items={trendingItems}
             section="Trending"
-            icon={<HiArrowLongRight />}
+            icon={<HiArrowLongRight className="text-5xl"/>}
             withImage={false}
             imageFirst={false}
+            drawer={false}
           />
         </div>
         {/* our news letter section */}
-        <section id="newsLetter">
-          <div className="bg-[#DEFFB5] dark:bg-[#04031D] h-[480px] border-t-[6px] border-black dark:border-lime flex justify-center items-center">
-            <div className="h-full py-9 px-[62px] flex flex-col justify-between">
-              <h1 className="text-[75px] font-bold flex items-center">
+        <section id="newsLetter" className="lg:mx-0 mx-5">
+          <div className="bg-[#DEFFB5] dark:bg-[#04031D] md:h-[470px] h-[340px] border-t-[6px] border-black dark:border-lime flex justify-center items-center ">
+            <div className="h-full lg:py-9 md:py-7 py-4 lg:px-[62px] md:px-[45px] px-[28px] flex flex-col justify-between">
+              <h1 className="lg:text-[75px] md:text-[60px] text-[30px] font-bold flex items-center">
                 Our Newsletter <PiArrowBendRightDownBold className="h-14" />
               </h1>
-              <h3 className="text-[28px] font-[400]">
-                Subscribe now for a front-row seat to the latest in technology,
+              <h3 className="lg:text-[28px] md:text-[22px] text-[15px] font-[400]">
+                Subscribe now for a front-row seat to the latest in technology, 
                 marketing strategies, and market trends - Your Gateway to
                 Innovation
               </h3>
@@ -208,14 +212,14 @@ export default function Home() {
                 type="email"
                 name="email"
                 placeholder="Your email address"
-                className=" placeholder:text-xl placeholder:text-gray-600 h-[78px] p-4 border border-black"
+                className=" md:placeholder:text-xl placeholder:text-lg placeholder:text-gray-600 md:h-[78px] h-[72px] p-4 border border-black"
               />
-              <button className="w-[255px] py-4 mt-2 text-xl font-bold text-white dark:text-black hover:text-black bg-black dark:bg-lime hover:bg-[#C2FF74] dark:hover:bg-white duration-200">
+              <button className="md:w-[255px] w-[190px] md:py-4 py-3 mt-2 md:text-xl text-lg font-bold text-white dark:text-black hover:text-black bg-black dark:bg-lime hover:bg-[#C2FF74] dark:hover:bg-white duration-200">
                 Sign Up Now
               </button>
               <div className="space-x-2">
                 <input type="checkbox" name="checkbox" />
-                <label htmlFor="checkbox" className="text-[14px]">
+                <label htmlFor="checkbox" className="md:text-[14px] text-[12px]">
                   I have read and agree to the terms & conditions
                 </label>
               </div>
@@ -230,7 +234,7 @@ export default function Home() {
           }
           cardsData={recommendeddata}
         />
-        <div className="h-[110vh] w-full flex mt-16">
+        <div className="lg:min-h-[110vh]  flex lg:flex-row flex-col-reverse mt-16 lg:mx-0 mx-5">
           <SectionsCard
             Items={spotlightItems}
             section="Spotlight"
@@ -238,18 +242,17 @@ export default function Home() {
             withImage={true}
             imageFirst={true}
           />
-          <div className="bg-[#DEFFB5] dark:bg-[#04031D] h-[95.5%] w-[55%]">
-            <Image src={sportlightimage} className="h-[50%] object-cover" />
-            <div className="text-black dark:text-white ps-[5%] relative">
+          <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:h-[95.5%] h-[70%x] lg:w-[55%] w-full">
+            <Link href={`/blog/${"section2"}`}>
+            <Image src={spotlightimage} className="lg:h-[50%] w-full object-contain" />
+            <div className="text-black dark:text-white lg:ps-[5%] ps-[2%] relative">
               <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
                 TECH MOVES
               </span>
-              <div className="space-y-5 pt-3">
-                <p className="p cursor-pointer text-[52px] font-bold leading-[65px] hover:text-black duration-200">
-                  Unveiling Emerging Tech Trends: What to Expect in the Next
-                  Decade
+              <div className="lg:space-y-5 space-y-3 py-4">
+                <p className="p cursor-pointer lg:text-[52px] md:text-[45px] text-[30px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px] hover:text-black duration-200">Unveiling Emerging Tech Trends: What to Expect in the Next Decade
                 </p>
-                <h2 className="text-xl text-gray-700 dark:text-white">
+                <h2 className="lg:text-xl md:text-base text-[13px] text-gray-700 dark:text-white">
                   Politics is the art of looking for trouble, finding it
                   everywhere, diagnosing it incorrectly and applying the wrong
                   remedies
@@ -261,24 +264,25 @@ export default function Home() {
                 </div>
               </div>
             </div>
+            </Link>
           </div>
         </div>
         <Advertisement />
-        <div className="h-[90vh] w-full flex mb-3 mt-16">
-          <div className="bg-[#D9F3FF] dark:bg-[#477286] h-[94%] w-[50%] flex items-center justify-center">
-            <div className="text-black ps-[5%]">
-              <div className="space-y-6 pt-3 px-10 text-black dark:text-white">
-                <p className="cursor-pointer text-[52px] font-bold leading-[65px] ">
+        <div className="lg:h-[90vh] w-full flex lg:flex-row flex-col mb-3 mt-16">
+          <div className="bg-[#D9F3FF] dark:bg-[#477286] h-[94%] lg:w-[50%] flex items-center justify-center">
+            <div className="text-black lg:ps-[5%] ps-[2%]">
+              <div className="space-y-6 lg:pt-3 md:pt-10  md:px-10 lg:py-0 md:py-16 py-5 text-black dark:text-white">
+                <p className="cursor-pointer lg:text-[52px] md:text-[45px] text-[35px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px]">
                   We're committed to Elevating Your Tech Experience
                 </p>
-                <h2 className="text-xl text-gray-700 dark:text-white italic">
+                <h2 className="lg:text-xl md:text-base text-sm text-gray-700 dark:text-white italic">
                   Our dedication extends to your technology needs. Stay informed
                   and inspired as we provide timely updates on phones, green
                   energy, industry developments, laptop tech, and the
                   fascinating world of science.
                 </h2>
                 <div>
-                  <h1 className="w-fit py-3 px-12 hover:bg-lime bg-black text-white hover:text-black duration-200 font-bold flex items-center gap-3">
+                  <h1 className="w-fit md:py-3 py-2 md:px-12 px-7 hover:bg-lime bg-black text-white hover:text-black duration-200 font-bold flex items-center gap-3">
                     <span>
                       <FaHeart />
                     </span>

@@ -6,30 +6,30 @@ import { PiArrowBendRightDownBold } from "react-icons/pi";
 import spotlight1 from "@/assets/spotlight1.webp";
 import spotlight2 from "@/assets/spotlight2.webp";
 import spotlight3 from "@/assets/spotlight3.webp";
-import spotlight4 from "@/assets/spotlight4.webp";
 
 import card1 from "@/assets/card1.webp";
 import card2 from "@/assets/card2.jpg";
 import card3 from "@/assets/card3.jpg";
 import card4 from "@/assets/card4.webp";
+import Link from "next/link";
 
-function TodaySection({ label, title, date, image }) {
+function TodayandTrendingSection({ label, title, date, image }) {
   return (
     <>
-      <div className={`px-6 py-4 dark:border-white`}>
-        <section>
+      <div className={` lg:py-4 py-1 dark:border-white mx-5`}>
+        <section className="space-y-5">
           {image ? (
-            <Image src={image} />
+            <Image src={image} className="md:h-auto h-[440px] w-full" />
           ) : (
-            <span className=" py-[3px] px-2 bg-[#C2FF74] text-black font-semibold text-[10px]">
+            <span className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] text-black font-semibold text-[10px]">
               {label}
             </span>
           )}
-          <ul className="space-y-1 flex">
-            <li className={`border-b border-gray-300 pb-4 flex gap-3`}>
+          <ul className="lg:space-y-2 space-y-0.5 flex">
+            <li className={`border-b border-gray-300 lg:pb-4 pb-2 flex gap-3`}>
               <div>
                 <div className="flex items-center">
-                  <p className="p hover:text-wite dark:hover:text-black duration-200 text-[26px] font-[600] cursor-pointer leading-8">
+                  <p className="p hover:text-white dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8">
                     <span>{title}</span>
                   </p>
                 </div>
@@ -47,20 +47,57 @@ function TodaySection({ label, title, date, image }) {
   );
 }
 
-function SponsoredSection({category, text, image, by}) {
+function StartupSection({ label, title, date, image }) {
   return (
     <>
-      <div className="bg-[#04031D] min-h-[550px]">
-        <Image src={image} className="h-[350px] w-full object-cover" />
-        <div className="text-white ps-[5%] relative">
+      <div className={`  h-[350px]  lg:py-4 py-1 dark:border-white mx-5 relative `}>
+        <section className="space-y-5 h-full">
+          {image ? (
+            <Image src={image} className="absolute h-full w-full -z-10" />
+          ) : (
+            <span className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] text-black font-semibold text-[10px]">
+              {label}
+            </span>
+          )}
+          <ul className="lg:space-y-2 space-y-0.5 h-full ">
+            <li className={`h-full`}>
+              <div className="h-full flex flex-col justify-end">
+                <div className="flex items-center">
+                  <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8 ">
+                    <span>{title}</span>
+                  </p>
+                </div>
+                <div
+                  className={`text-white text-xs flex gap-2 mt-3 ms-2`}
+                >
+                  <h6 className="font-medium">{date}</h6>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </>
+  );
+}
+
+function SponsoredSection({ category, text, image, by }) {
+  return (
+    <>
+      <div className="bg-[#04031D] lg:min-h-[580px]">
+        <Image
+          src={image}
+          className="lg:h-[360px] h-[500px] w-full object-cover"
+        />
+        <div className="text-white lg:ps-[5%] ps-[2%] relative">
           <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
             {category}
           </span>
-          <div className="space-y-5 pt-3">
+          <div className="space-y-6 pt-6 px-4">
             <p className="p cursor-pointer text-[38px] font-bold leading-[50px] hover:text-black duration-200">
               {text}
             </p>
-            <div className=" text-xs flex">
+            <div className=" text-xs flex ps-2 pb-5">
               <span className="">Sponsored by</span>
             </div>
           </div>
@@ -146,12 +183,6 @@ function HomebottomSection() {
       author: "TechInsider",
       date: "February 1, 2024",
     },
-    {
-      label: "Tech Moves",
-      title: "Creating Valuable and Persuasive for Targeted Audiences",
-      author: "TechInsider",
-      date: "January 31, 2024",
-    },
   ];
 
   const techMoves = [
@@ -173,35 +204,26 @@ function HomebottomSection() {
       date: "February 1, 2024",
       image: spotlight3,
     },
+  ];
+
+  const stratups = [
     {
-      title: "Inspiring Stories at the Intersection of Art and Innovation",
+      title: "White House Reminds Lawmakers not to Travel to Afghanistan",
       author: "TechInsider",
       date: "February 1, 2024",
-      image: spotlight4,
+      image: card1,
+    },
+    {
+      title: "New Cybersecurity Threats Emerge in the Digital Landscape",
+      author: "TechInsider",
+      date: "February 1, 2024",
+      image: card2,
     },
     {
       title: "Dive into Vibrant Festivals and Events for a Rich Experience",
       author: "TechInsider",
       date: "February 1, 2024",
-      image: spotlight3,
-    },
-    {
-      title: "Inspiring Stories at the Intersection of Art and Innovation",
-      author: "TechInsider",
-      date: "February 1, 2024",
-      image: spotlight4,
-    },
-    {
-      title: "Dive into Vibrant Festivals and Events for a Rich Experience",
-      author: "TechInsider",
-      date: "February 1, 2024",
-      image: spotlight3,
-    },
-    {
-      title: "Inspiring Stories at the Intersection of Art and Innovation",
-      author: "TechInsider",
-      date: "February 1, 2024",
-      image: spotlight4,
+      image: card3,
     },
   ];
   const Sponsored = [
@@ -214,8 +236,7 @@ function HomebottomSection() {
     {
       image: card2,
       category: "Marketing",
-      text:
-        "Innovators Redefining Modern Industries Through Revolutionary Ideas",
+      text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
       date: "January 31, 2024",
     },
     {
@@ -234,53 +255,83 @@ function HomebottomSection() {
 
   return (
     <>
-      <div className="flex w-full">
-        <div className="w-[45%]">
-          <h2 className="text-3xl font-bold ms-6 flex items-center">
-            <HiArrowLongRight /> &nbsp;
-            <span className="text-3xl"> Today</span>
+      <div className="flex lg:flex-row flex-col gap-5 w-full">
+        <div className="lg:w-[50%] w-full space-x-3">
+          <h2 className="text-3xl font-bold flex items-center lg:ms-0 ms-6 lg:mb-0 mb-5">
+            <HiArrowLongRight className="text-5xl" /> &nbsp;
+            <span className="lg:text-3xl text-5xl"> Today</span>
           </h2>
-          {todayItems.map((item) => (
+          {todayItems.map((item, index) => (
             <div className="">
-              <TodaySection
+              <Link href={`/blog/${index}`} className="w-full">
+              <TodayandTrendingSection
                 label={item.label}
                 title={item.title}
                 date={item.date}
               />
+              </Link>
             </div>
           ))}
         </div>
-        <div>
+        <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
           <h2 className="text-3xl font-bold flex items-center mb-4">
-            <span className="text-3xl">🔔 Sponsored</span>
+            <span className="lg:text-3xl text-5xl ">🔔 Sponsored</span>
           </h2>
-          {Sponsored.map(item=>(
-          <SponsoredSection 
-            label={item.label}
-            text={item.text}
-            image={item.image}
-            by={item.by}
-            
-            category={item.category}
-          />
+          {Sponsored.map((item, index) => (
+            <Link href={`blog/${index}`}>
+            <SponsoredSection
+              label={item.label}
+              text={item.text}
+              image={item.image}
+              by={item.by}
+              category={item.category}
+            />
+           </Link>
           ))}
         </div>
-        <div className="w-[45%]">
-          <h2 className="text-3xl font-bold ms-6 flex items-center">
-            <span className="text-3xl"> Tech Moves</span>
-            &nbsp;
-            <PiArrowBendRightDownBold className="text-xl mt-3"/> 
-          </h2>
-          {techMoves.map((item) => (
-            <div className="">
-              <TodaySection
-                label={item.label}
-                title={item.title}
-                date={item.date}
-                image={item.image}
-              />
+        <div className="lg:w-[50%] w-full lg:mt-0 mt-10">
+          <div>
+            <h2 className="text-3xl font-bold flex items-center ms-6 lg:mb-0 mb-5">
+              <span className="lg:text-3xl text-5xl"> Tech Moves</span>
+              &nbsp;
+              <PiArrowBendRightDownBold className="lg:text-xl text-3xl mt-3" />
+            </h2>
+            <div className="grid lg:grid-cols-1 md:grid-cols-3 grid-cols-1 ">
+              {techMoves.map((item, index) => (
+                <div className="">
+                  <Link href={`blog/${index}`}>
+                  <TodayandTrendingSection
+                    label={item.label}
+                    title={item.title}
+                    date={item.date}
+                    image={item.image}
+                  />
+                  </Link>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="lg:w-auto h-auto w-full">
+            <h2 className="text-3xl font-bold ms-6 flex items-center lg:mb-0 mb-5 lg:mt-8 mt-10">
+              <span className="lg:text-3xl text-5xl">Startups</span>
+              &nbsp;
+              <PiArrowBendRightDownBold className="lg:text-xl text-3xl mt-3" />
+            </h2>
+            <div className="flex lg:flex-col md:flex-row flex-col gap-1">
+              {stratups.map((item, index) => (
+                <div className="">
+                  <Link href={`blog/${index}`}>
+                  <StartupSection
+                    label={item.label}
+                    title={item.title}
+                    date={item.date}
+                    image={item.image}
+                  />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>

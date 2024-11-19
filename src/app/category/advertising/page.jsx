@@ -6,7 +6,7 @@ import card3 from "../../../assets/card3.jpg";
 import card4 from "../../../assets/card4.webp";
 
 
-function page() {
+function Advertising() {
   const recommendeddata = {
     image: card1,
     category: "Analysis",
@@ -94,4 +94,4 @@ function page() {
   )
 }
 
-export default page
+export default Advertising

@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import logo from "../assets/logo2.jpg";
+import logo2 from "../assets/logo2.jpg";
+import logo1 from "../assets/Startup-1.png";
 import { usePathname } from "next/navigation";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -16,6 +17,7 @@ import useTheme from "../context/theme.js";
 import SearchComponent from "./SearchComponent";
 import card1 from "@/assets/card1.webp";
 import HoverPanel from "./HoverPanel";
+import MenuDrawer from "./Drawer.jsx";
 
 function Navbar() {
   const [openMarketing, setOpenMarketing] = useState(false);
@@ -112,7 +114,7 @@ function Navbar() {
     },
   }));
 
-  const openData = {
+  const openMarketingData = {
     category: "Marketing",
     route: "/category/marketing",
     cards: [
@@ -177,10 +179,38 @@ function Navbar() {
 
   return (
     <>
-      <nav className="h-32 border-t-8 border-lime px-[7%] flex gap-3  text-black dark:text-white duration-100">
-        <Image src={logo} alt="logo" className="h-18 w-32" />
+      <nav className="lg:h-32 h-[86px] lg:border-t-8 border-lime xl:px-[7%] lg:px-[5%] flex lg:flex-row flex-col gap-3 lg:bg-white bg-black dark:bg-black text-black dark:text-white duration-100 ">
+        <div className="flex justify-between">
+          <MenuDrawer />
+          <Link href={"/"}>
+            <Image
+              src={logo2}
+              alt="logo"
+              className="h-[120px] w-36 lg:block hidden"
+            />
+            <Image
+              src={logo1}
+              alt="logo"
+              className="sm:h-10 h-6 sm:w-[150px] w-[80px] lg:hidden block sm:ms-10"
+            />
+          </Link>
+          <div className="lg:hidden flex items-center gap-3">
+            <SearchComponent />
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <MaterialUISwitch
+                    sx={{ m: 1 }}
+                    onChange={handleChange}
+                    checked={themeMode === "dark"}
+                  />
+                }
+              />
+            </FormGroup>
+          </div>
+        </div>
         <div className="w-full">
-          <div className="h-[60%] w-full flex justify-between p-3 border-b-[3px] border-black dark:border-white">
+          <div className="h-[60%] w-full lg:flex hidden justify-between p-3 border-b-[3px] border-black dark:border-white">
             <div className="flex justify-center items-center">
               <h6 className="text-xs">Wednesday, Oct 9, 2024</h6>
             </div>
@@ -229,24 +259,31 @@ function Navbar() {
               </Link>
             </div>
           </div>
-          <div className="h-[40%] w-full p-3 flex justify-between relative">
-            <div className="flex justify-center items-center gap-6">
+          <div
+            className="h-[40%] w-full p-3 flex justify-between relative lg:overflow-visible overflow-x-scroll scrollbar-hide "
+            style={{
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}
+          >
+            <div className="flex justify-center items-center lg:gap-6 gap-10">
               <Link
                 href={"/"}
                 className={`${
                   pathname === "/" ? "border-b-2 border-[#6DBA16]" : ""
-                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] duration-200`}
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] duration-200 lg:text-black lg:dark:text-white text-white`}
                 prefetch={true}
               >
                 Home
               </Link>
+
               <Link
                 href={"/category/marketing"}
                 className={`${
                   pathname === "/category/marketing"
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
-                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:flex hidden items-center lg:text-black lg:dark:text-white text-white `}
                 onMouseEnter={() => {
                   setOpenMarketing(true);
                   setOpenStartups(false);
@@ -260,9 +297,20 @@ function Navbar() {
                   <MdExpandMore
                     className={`${
                       openMarketing ? "-rotate-180 " : ""
-                    } duration-200 text-lg font-bold`}
+                    } duration-200 text-lg font-bold lg:block hidden`}
                   />
                 }
+              </Link>
+              <Link
+                href={"/category/marketing"}
+                className={`${
+                  pathname === "/category/marketing"
+                    ? "border-b-2 border-[#6DBA16]"
+                    : ""
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white `}
+                prefetch={true}
+              >
+                Marketing{" "}
               </Link>
 
               <Link
@@ -271,7 +319,7 @@ function Navbar() {
                   pathname === "/category/startups"
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:flex hidden items-center lg:text-black lg:dark:text-white text-white`}
                 onMouseEnter={() => {
                   setOpenStartups(true);
                   setOpenMarketing(false);
@@ -285,15 +333,27 @@ function Navbar() {
                   <MdExpandMore
                     className={`${
                       openStartups ? "-rotate-180 " : ""
-                    } duration-200 text-lg font-bold`}
+                    } duration-200 text-lg font-bold lg:block hidden`}
                   />
                 }
               </Link>
               <Link
-                href={"/pagess"}
+                href={"/category/startups"}
+                className={`${
+                  pathname === "/category/startups"
+                    ? "border-b-2 border-[#6DBA16]"
+                    : ""
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white`}
+                
+                prefetch={true}
+              >
+                Startups{" "}
+              </Link>
+
+              <div
                 className={`${
                   pathname === "/pagess" ? "border-b-2 border-[#6DBA16]" : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] flex items-center`}
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:flex hidden items-center text-black dark:text-white`}
                 onMouseEnter={() => {
                   setOpenPages(true);
                   setOpenMarketing(false);
@@ -310,30 +370,71 @@ function Navbar() {
                     } duration-200 text-lg font-bold`}
                   />
                 }
+              </div>
+              <Link
+                href={"/blog"}
+                className={`${
+                  pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black lg:dark:text-white text-white lg:block hidden`}
+                prefetch={true}
+              >
+                Blog
+              </Link>
+              <div className="lg:block hidden">
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <MaterialUISwitch
+                        sx={{ m: 1 }}
+                        onChange={handleChange}
+                        checked={themeMode === "dark"}
+                      />
+                    }
+                  />
+                </FormGroup>
+              </div>
+
+              {/* FOR SMALL SCREENS */}
+              <Link
+                href={"/category/advertising"}
+                className={`${
+                  pathname === "/category/advertising"
+                    ? "border-b-2 border-[#6DBA16]"
+                    : ""
+                } font-semibold text-[15px]  ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white bg-black text-nowrap`}
+              >
+                Advertising
+              </Link>
+              <Link
+                href={"/category/market-trends"}
+                className={`${
+                  pathname === "/category/market-trends"
+                    ? "border-b-2 border-[#6DBA16]"
+                    : ""
+                } font-semibold text-[15px]  ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
+              >
+                Market Trends
               </Link>
               <Link
                 href={"/blog"}
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
-                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16]`}
+                } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
                 prefetch={true}
               >
-                Blog
+                Blog Index
               </Link>
-
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <MaterialUISwitch
-                      sx={{ m: 1 }}
-                      onChange={handleChange}
-                      checked={themeMode === "dark"}
-                    />
-                  }
-                />
-              </FormGroup>
+              <Link
+                href={"/contactUs"}
+                className={`${
+                  pathname === "/contactUs" ? "border-b-2 border-[#6DBA16]" : ""
+                } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
+                prefetch={true}
+              >
+                Contact Us
+              </Link>
             </div>
-            <div className="w-[270px] flex items-center justify-between">
+            <div className="w-[270px] lg:flex hidden items-center justify-between">
               <FaFacebookF className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
               <FaXTwitter className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
               <FaYoutube className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
@@ -348,22 +449,47 @@ function Navbar() {
               <SearchComponent />
             </div>
             {openMarketing && (
-              <HoverPanel openData={openData} set={setOpenMarketing} />
+              <HoverPanel openData={openMarketingData} set={setOpenMarketing} />
             )}
             {openStartups && (
               <HoverPanel openData={openStartupData} set={setOpenStartups} />
             )}
             {openPages && (
+            
               <div
-                className="p-5 absolute top-[28.2px] left-[260px]"
+                className="p-5 absolute top-[28.2px] left-[260px] z-10"
                 onMouseEnter={() => setOpenPages(true)}
                 onMouseLeave={() => setOpenPages(false)}
               >
-                <div className="bg-white dark:bg-[#191C20] h-[150px] w-[200px] flex flex-col p-5 text-[13.2px] space-y-3">
-                  <Link href={"/blog"} className="hover:text-[#89c742] duration-200" prefetch={true}>Blog Index</Link>
-                  <Link href={"/contactUs"} className="hover:text-[#89c742] duration-200" prefetch={true}>Contact Us</Link>
-                  <Link href={""} className="hover:text-[#89c742] duration-200" prefetch={true}>Search Page</Link>
-                  <Link href={""} className="hover:text-[#89c742] duration-200" prefetch={true}>404 Page</Link>
+                <div className="bg-white border dark:border-none  dark:bg-[#191C20] h-[150px] w-[200px] flex flex-col p-5 text-[13.2px] space-y-3">
+                  <Link
+                    href={"/blog"}
+                    className="hover:text-[#89c742] duration-200"
+                    prefetch={true}
+                  >
+                    Blog Index
+                  </Link>
+                  <Link
+                    href={"/contactUs"}
+                    className="hover:text-[#89c742] duration-200"
+                    prefetch={true}
+                  >
+                    Contact Us
+                  </Link>
+                  <Link
+                    href={"/search"}
+                    className="hover:text-[#89c742] duration-200"
+                    prefetch={true}
+                  >
+                    Search Page
+                  </Link>
+                  <Link
+                    href={"/404"}
+                    className="hover:text-[#89c742] duration-200"
+                    prefetch={true}
+                  >
+                    404 Page
+                  </Link>
                 </div>
               </div>
             )}

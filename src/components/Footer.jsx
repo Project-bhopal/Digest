@@ -9,78 +9,82 @@ import "../css/SocialBoxes.css";
 function Footer() {
   return (
     <>
-      <div className="mt-20 h-[392px] bg-black border-t-[6px] border-[#C2FF74] px-[7%] py-[1%] text-white">
-        <div className="space-y-2">
-          <div className="flex justify-between items-center">
-            <div className="space-y-3 w-[72%]">
-              <div className="text-[17px] font-[700] space-x-6">
+      <div className="mt-20 min-h-[392px] bg-black border-t-[6px] border-[#C2FF74] lg:px-[7%] px-[3%] py-[1%] text-white ">
+        <div className="space-y-2 w-full ">
+          <div className="flex justify-between  md:flex-row flex-col">
+            <div className="space-y-3 sm:w-[72%] w-full ">
+              <div className="w-fit text-[17px] font-[700] grid xs:grid-cols-4 grid-cols-3 space-x-6">
                 <Link
                   href={"/"}
-                  className="hover:text-lime ease-in-out duration-300"
+                  className="hover:text-lime ease-in-out duration-300 text-nowrap lg:text-[15px] text-[13px]"
                 >
                   Advertise with us
                 </Link>
                 <Link
                   href={"/"}
-                  className="hover:text-lime ease-in-out duration-300"
+                  className="hover:text-lime ease-in-out duration-300 lg:text-[15px] text-[13px]"
                 >
                   Newsletters
                 </Link>
                 <Link
                   href={"/"}
-                  className="hover:text-lime ease-in-out duration-300"
+                  className="hover:text-lime ease-in-out duration-300 lg:text-[15px] text-[13px]"
                 >
                   Complaint
                 </Link>
                 <Link
                   href={"/"}
-                  className="hover:text-lime ease-in-out duration-300"
+                  className="hover:text-lime ease-in-out duration-300 lg:text-[15px] text-[13px]"
                 >
                   Deal
                 </Link>
               </div>
-              <h1 className="italic font-medium text-[15px]">
+              <h1 className="italic font-medium lg:text-[15px] text-[13px]">
                 Stay tuned for a blend of captivating content that not only
                 informs but also inspires you to navigate the ever-evolving
                 landscape of technology, marketing, and market trends!
               </h1>
             </div>
-            <Image src={logo} className="h-18 w-32" />
+            <div className="md:w-auto w-full place-items-end">
+              <Image src={logo} className="md:h-18 h-15 md:w-32 w-28 " />
+            </div>
           </div>
-          <div className="border-t border-b border-lime py-2 w-full text-[18px] font-bold space-x-14">
-            <Link
-              href={"/"}
-              className="hover:text-lime ease-in-out duration-300"
-            >
-              MARKETING
-            </Link>
-            <Link
-              href={"/"}
-              className="hover:text-lime ease-in-out duration-300"
-            >
-              STARTUPS
-            </Link>
-            <Link
-              href={"/"}
-              className="hover:text-lime ease-in-out duration-300"
-            >
-              ADVERTISING
-            </Link>
-            <Link
-              href={"/"}
-              className="hover:text-lime ease-in-out duration-300"
-            >
-              MARKET TRENDS
-            </Link>
-            <Link
-              href={"/"}
-              className="hover:text-lime ease-in-out duration-300"
-            >
-              TECH MOVES
-            </Link>
+          <div className="border-t border-b border-lime py-2 h-auto w-full lg:text-[18px] text-[11px] font-bold ">
+            <div  className="w-fit sm:flex grid xs:grid-cols-4 grid-cols-2 xs:gap-0 gap-2 sm:space-x-10 xs:space-x-6">
+              <Link
+                href={"/"}
+                className="hover:text-lime ease-in-out duration-300"
+              >
+                MARKETING
+              </Link>
+              <Link
+                href={"/"}
+                className="hover:text-lime ease-in-out duration-300"
+              >
+                STARTUPS
+              </Link>
+              <Link
+                href={"/"}
+                className="hover:text-lime ease-in-out duration-300"
+              >
+                ADVERTISING
+              </Link>
+              <Link
+                href={"/"}
+                className="hover:text-lime ease-in-out duration-300 text-nowrap"
+              >
+                MARKET TRENDS
+              </Link>
+              <Link
+                href={"/"}
+                className="hover:text-lime ease-in-out duration-300"
+              >
+                TECH MOVES
+              </Link>
+            </div>
           </div>
-          <div className="container flex space-x-1 pt-5">
-            <div className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center p-3 space-x-2 w-64 hover:shadow-lg transition-transform duration-300">
+          <div className="lg:w-fit w-full container flex lg:flex-row flex-col lg:space-x-1 space-y-1 pt-5">
+            <div className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaFacebook className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">393.9k Followers</p>
@@ -88,7 +92,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="social-box bg-[#00151C] hover:bg-[#13B9EE] text-white flex items-center p-3 space-x-2 w-64 hover:shadow-lg transition-transform duration-300">
+            <div className="social-box bg-[#00151C] hover:bg-[#13B9EE] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaXTwitter className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">34.3k Followers</p>
@@ -96,7 +100,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center p-3 space-x-2 w-64 hover:shadow-lg transition-transform duration-300">
+            <div className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaYoutube className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">4.42M Subscribers</p>
@@ -104,7 +108,7 @@ function Footer() {
               </div>
             </div>
 
-            <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center p-3 space-x-2 w-64 hover:shadow-lg transition-transform duration-300">
+            <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaGoogle className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">30.4k Followers</p>

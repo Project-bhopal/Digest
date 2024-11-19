@@ -10,10 +10,10 @@ function Category({category, para, recommendeddata, mustReaddata}) {
   return (
     <>  
       <div>
-        <div className="h-[95vh] w-full flex">
-          <div className="h-full w-[45%] flex justify-center items-center border-t border-l-[5px] border-b border-black dark:border-lime">
-            <div className="w-[450px] space-y-5 mt-[-120px]">
-              <h1 className="text-5xl bg-black dark:bg-white w-fit pb-2 text-white dark:text-black font-bold">
+        <div className="lg:h-[95vh] flex lg:flex-row flex-col lg:mx-0 mx-5 lg:pt-2 pt-4">
+          <div className="h-full lg:w-[45%] flex lg:justify-center items-center lg:border-t border-t-[5px] lg:border-l-[5px] border-l lg:border-b lg:border-r-0 border-r border-black dark:border-lime">
+            <div className="lg:w-[450px] space-y-5 lg:mt-[-120px] py-5 m-5">
+              <h1 className="lg:text-5xl md:text-4xl text-3xl bg-black dark:bg-white w-fit pb-2 text-white dark:text-black font-bold">
                 {category}
               </h1>
               <p className="italic font-medium text-black dark:text-white text-sm leading-6">
@@ -21,7 +21,7 @@ function Category({category, para, recommendeddata, mustReaddata}) {
               </p>
             </div>
           </div>
-          <div className="h-full w-[55%]">
+          <div className="h-full lg:w-[55%]">
             <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
               {/* Image Section */}
               <Image
@@ -59,6 +59,9 @@ function Category({category, para, recommendeddata, mustReaddata}) {
           heading={""}
           cardsData={mustReaddata}
         />
+        <div className="mt-5 w-full flex items-center justify-center">
+          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">Show More</button>
+        </div>
       </div>
     </>
   );
