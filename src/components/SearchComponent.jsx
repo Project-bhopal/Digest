@@ -30,7 +30,7 @@ const SearchComponent = () => {
   return (
     <div className="relative">
       <button onClick={handleSearchClick} aria-label="Search Icon">
-        <FaSearch className="text-black dark:text-white text-lg" />
+        <FaSearch className="lg:text-black lg:dark:text-white text-white text-lg" />
       </button>
       {isSearchOpen && (
         <div ref={searchRef} className={`absolute top-7 right-0 delay-100`}>

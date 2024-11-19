@@ -5,7 +5,7 @@ import card2 from "@/assets/card2.jpg";
 import card3 from "@/assets/card3.jpg";
 import card4 from "@/assets/card4.webp";
 
-function page() {
+function digital() {
 
   const mustReaddata = [
     {
@@ -85,4 +85,4 @@ function page() {
   )
 }
 
-export default page
+export default digital

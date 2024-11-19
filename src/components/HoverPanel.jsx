@@ -5,10 +5,11 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import "@/css/swiperbg.css";
 
 function HoverPanel({ openData, set }) {
+  console.log("inside hover")
   return (
     <>
       <div
-        className="p-5 absolute top-[28.2px] left-[-152px] z-10 "
+        className="p-5 absolute top-[28.2px] left-[-161px] z-10"
         onMouseEnter={() => set(true)}
         onMouseLeave={() => set(false)}
       >
@@ -28,7 +29,7 @@ function HoverPanel({ openData, set }) {
           <div className="grid grid-cols-5 gap-[3px]">
             {openData.cards.map((card, index) => (
               <div className="h-full w-[240px] space-y-3" key={index}>
-                <Image src={card.image} className="h-[135px]" />
+                <Image alt="panal imagex" src={card.image} className="h-[135px]" />
                 <h1 className="p text-xl text-black dark:text-white dark:hover:text-black font-bold leading-7">{card.text}</h1>
                 <p className="text-xs">{card.date}</p>
               </div>
@@ -38,6 +39,7 @@ function HoverPanel({ openData, set }) {
       </div>
     </>
   );
+  console.log('end of the page');
 }
 
 export default HoverPanel;

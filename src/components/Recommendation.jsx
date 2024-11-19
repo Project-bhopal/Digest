@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Card from "./Card";
 
 
@@ -6,23 +7,25 @@ function Recommendation({label, icon, heading, cardsData}) {
   
   return (
     <>
-      <div className="mb-10">
+      <div className="mb-10 lg:mx-0 mx-5">
         <div className="space-y-3 py-7">
 
-        <h1 className="text-6xl text-black dark:text-white font-bold flex items-center gap-5">{label}  {icon}</h1>
-        <h2 className="text-xl italic font-[350]">
+        <h1 className="lg:text-6xl md:text-5xl text-3xl text-black dark:text-white font-bold flex items-center gap-5">{label}  {icon}</h1>
+        <h2 className="lg:text-xl text-base italic font-[350]">
             {heading}
         </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[3px]">
-          {cardsData.map((card, index) => (
+          {cardsData.map((item, index) => (
+            <Link href={`/blog/${index}`}>
             <Card
               key={index}
-              image={card.image}
-              category={card.category}
-              title={card.title}
-              date={card.date}
+              image={item.image}
+              category={item.category}
+              title={item.title}
+              date={item.date}
             />
+            </Link>
           ))}
         </div>
       </div>
