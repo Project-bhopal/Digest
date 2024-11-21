@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         <AppRouterCacheProvider>
         <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
           <Navbar/>
-          <div className='xl:px-[7%] lg:px-[5%]'>
+          <div className='xl:px-[7%] lg:px-[3%]'>
             {children}
           </div>
           <Footer/>

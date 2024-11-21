@@ -76,7 +76,7 @@ function Footer() {
                 MARKET TRENDS
               </Link>
               <Link
-                href={"/"}
+                href={"/category/techmoves"}
                 className="hover:text-lime ease-in-out duration-300"
               >
                 TECH MOVES
@@ -84,29 +84,29 @@ function Footer() {
             </div>
           </div>
           <div className="lg:w-fit w-full container flex lg:flex-row flex-col lg:space-x-1 space-y-1 pt-5">
-            <div className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
+            <a href="https://www.facebook.com/" target="blank"  className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaFacebook className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">393.9k Followers</p>
                 <p className="text-xs">Like</p>
               </div>
-            </div>
+            </a>
 
-            <div className="social-box bg-[#00151C] hover:bg-[#13B9EE] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
+            <a href="https://x.com/" target="blank " className="social-box bg-[#00151C] hover:bg-[#13B9EE] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaXTwitter className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">34.3k Followers</p>
                 <p className="text-xs">Follow</p>
               </div>
-            </div>
+            </a>
 
-            <div className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
+            <a href="/" className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaYoutube className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">4.42M Subscribers</p>
                 <p className="text-xs">Subscribe</p>
               </div>
-            </div>
+            </a>
 
             <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
               <FaGoogle className="text-3xl" />

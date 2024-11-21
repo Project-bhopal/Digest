@@ -13,7 +13,7 @@ import card3 from "@/assets/card3.jpg";
 import card4 from "@/assets/card4.webp";
 import Link from "next/link";
 
-function TodayandTrendingSection({ label, title, date, image }) {
+function TodayandTrendingSection({ category, title, date, image, label }) {
   return (
     <>
       <div className={` lg:py-4 py-1 dark:border-white mx-5`}>
@@ -21,9 +21,12 @@ function TodayandTrendingSection({ label, title, date, image }) {
           {image ? (
             <Image src={image} className="md:h-auto h-[440px] w-full" />
           ) : (
-            <span className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] text-black font-semibold text-[10px]">
-              {label}
-            </span>
+            <Link
+              href={`/category/${category.toLowerCase()}`}
+              className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] hover:text-white hover:bg-[#04031D] duration-150 text-black font-semibold text-[10px]"
+            >
+              {category}
+            </Link>
           )}
           <ul className="lg:space-y-2 space-y-0.5 flex">
             <li className={`border-b border-gray-300 lg:pb-4 pb-2 flex gap-3`}>
@@ -50,31 +53,36 @@ function TodayandTrendingSection({ label, title, date, image }) {
 function StartupSection({ label, title, date, image }) {
   return (
     <>
-      <div className={`  h-[350px]  lg:py-4 py-1 dark:border-white mx-5 relative `}>
+      <div
+        className={`  h-[350px]  lg:py-4 py-1 dark:border-white mx-5 relative `}
+      >
         <section className="space-y-5 h-full">
           {image ? (
-            <Image src={image} className="absolute h-full w-full -z-10" />
+            <Image
+              src={image}
+              className="absolute h-full w-full object-cover -z-10"
+            />
           ) : (
-            <span className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] text-black font-semibold text-[10px]">
+            <Link
+              href={""}
+              className="md:ms-0 ms-5 py-[3px] px-2 bg-[#C2FF74] hover:text-white duration-150 text-black font-semibold text-[10px]"
+            >
               {label}
-            </span>
+            </Link>
           )}
-          <ul className="lg:space-y-2 space-y-0.5 h-full ">
-            <li className={`h-full`}>
-              <div className="h-full flex flex-col justify-end">
-                <div className="flex items-center">
-                  <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8 ">
-                    <span>{title}</span>
-                  </p>
-                </div>
-                <div
-                  className={`text-white text-xs flex gap-2 mt-3 ms-2`}
-                >
-                  <h6 className="font-medium">{date}</h6>
-                </div>
+
+          <div class="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
+            <div className="h-full flex flex-col justify-end">
+              <div className="flex items-center">
+                <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8 ">
+                  <span>{title}</span>
+                </p>
               </div>
-            </li>
-          </ul>
+              <div className={`text-white text-xs flex gap-2 mt-3 ms-2`}>
+                <h6 className="font-medium">{date}</h6>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </>
@@ -90,11 +98,14 @@ function SponsoredSection({ category, text, image, by }) {
           className="lg:h-[360px] h-[500px] w-full object-cover"
         />
         <div className="text-white lg:ps-[5%] ps-[2%] relative">
-          <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
+          <Link
+            href={`/category/${category.toLowerCase()}`}
+            className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74]  hover:text-white duration-150 text-black font-semibold text-[10px] tracking-[1px]"
+          >
             {category}
-          </span>
+          </Link>
           <div className="space-y-6 pt-6 px-4">
-            <p className="p cursor-pointer text-[38px] font-bold leading-[50px] hover:text-black duration-200">
+            <p className="p cursor-pointer sm:text-[38px] text-[25px] font-bold sm:leading-[50px] leading-[30px] hover:text-black duration-200">
               {text}
             </p>
             <div className=" text-xs flex ps-2 pb-5">
@@ -255,44 +266,44 @@ function HomebottomSection() {
 
   return (
     <>
-      <div className="flex lg:flex-row flex-col gap-5 w-full">
+      <div className="flex lg:flex-row flex-col lg:gap-3 gap-5 w-full">
         <div className="lg:w-[50%] w-full space-x-3">
           <h2 className="text-3xl font-bold flex items-center lg:ms-0 ms-6 lg:mb-0 mb-5">
             <HiArrowLongRight className="text-5xl" /> &nbsp;
-            <span className="lg:text-3xl text-5xl"> Today</span>
+            <span className="lg:text-3xl sm:text-5xl text-4xl"> Today</span>
           </h2>
           {todayItems.map((item, index) => (
             <div className="">
               <Link href={`/blog/${index}`} className="w-full">
-              <TodayandTrendingSection
-                label={item.label}
-                title={item.title}
-                date={item.date}
-              />
+                <TodayandTrendingSection
+                  category={item.label}
+                  title={item.title}
+                  date={item.date}
+                />
               </Link>
             </div>
           ))}
         </div>
         <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
           <h2 className="text-3xl font-bold flex items-center mb-4">
-            <span className="lg:text-3xl text-5xl ">🔔 Sponsored</span>
+            <span className="lg:text-3xl sm:text-5xl text-4xl ">🔔 Sponsored</span>
           </h2>
           {Sponsored.map((item, index) => (
             <Link href={`blog/${index}`}>
-            <SponsoredSection
-              label={item.label}
-              text={item.text}
-              image={item.image}
-              by={item.by}
-              category={item.category}
-            />
-           </Link>
+              <SponsoredSection
+                label={item.label}
+                text={item.text}
+                image={item.image}
+                by={item.by}
+                category={item.category}
+              />
+            </Link>
           ))}
         </div>
         <div className="lg:w-[50%] w-full lg:mt-0 mt-10">
           <div>
             <h2 className="text-3xl font-bold flex items-center ms-6 lg:mb-0 mb-5">
-              <span className="lg:text-3xl text-5xl"> Tech Moves</span>
+              <span className="lg:text-3xl sm:text-5xl text-4xl"> Tech Moves</span>
               &nbsp;
               <PiArrowBendRightDownBold className="lg:text-xl text-3xl mt-3" />
             </h2>
@@ -300,12 +311,12 @@ function HomebottomSection() {
               {techMoves.map((item, index) => (
                 <div className="">
                   <Link href={`blog/${index}`}>
-                  <TodayandTrendingSection
-                    label={item.label}
-                    title={item.title}
-                    date={item.date}
-                    image={item.image}
-                  />
+                    <TodayandTrendingSection
+                      category={item.label}
+                      title={item.title}
+                      date={item.date}
+                      image={item.image}
+                    />
                   </Link>
                 </div>
               ))}
@@ -317,16 +328,16 @@ function HomebottomSection() {
               &nbsp;
               <PiArrowBendRightDownBold className="lg:text-xl text-3xl mt-3" />
             </h2>
-            <div className="flex lg:flex-col md:flex-row flex-col gap-1">
+            <div className="grid lg:grid-cols-1 md:grid-cols-3 grid-cols-1 md:gap-2 gap-5">
               {stratups.map((item, index) => (
                 <div className="">
                   <Link href={`blog/${index}`}>
-                  <StartupSection
-                    label={item.label}
-                    title={item.title}
-                    date={item.date}
-                    image={item.image}
-                  />
+                    <StartupSection
+                      label={item.label}
+                      title={item.title}
+                      date={item.date}
+                      image={item.image}
+                    />
                   </Link>
                 </div>
               ))}

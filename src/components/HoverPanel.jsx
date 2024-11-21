@@ -28,11 +28,14 @@ function HoverPanel({ openData, set }) {
           </div>
           <div className="grid grid-cols-5 gap-[3px]">
             {openData.cards.map((card, index) => (
+              <Link 
+              href={`/blog/${index}`}>
               <div className="h-full w-[240px] space-y-3" key={index}>
                 <Image alt="panal imagex" src={card.image} className="h-[135px]" />
                 <h1 className="p text-xl text-black dark:text-white dark:hover:text-black font-bold leading-7">{card.text}</h1>
                 <p className="text-xs">{card.date}</p>
               </div>
+              </Link>
             ))}
           </div>
         </div>
