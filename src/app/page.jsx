@@ -166,9 +166,9 @@ export default function Home() {
           <Link href={`/blog/${1}`} className="w-full">
             <Image src={homeimage} className="lg:h-[50%] h-[100vh] lg:w-full w-full object-cover" />
             <div className="text-white lg:ps-[5%] ps-[2%] relative">
-              <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
+              <Link href={""} className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black hover:text-white font-semibold text-[10px] tracking-[1px]">
                 TECH MOVES
-              </span>
+              </Link>
               <div className="lg:space-y-5 space-y-3 pt-3">
                 <p className="p w-full cursor-pointer lg:text-[52px] md:text-[40px] text-[30px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px] hover:text-black duration-200">
                   The Tech Trends Driving Major Transformations in Business
@@ -246,9 +246,9 @@ export default function Home() {
             <Link href={`/blog/${"section2"}`}>
             <Image src={spotlightimage} className="lg:h-[50%] w-full object-contain" />
             <div className="text-black dark:text-white lg:ps-[5%] ps-[2%] relative">
-              <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
+              <Link href={""} className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] hover:text-white duration-150 text-black font-semibold text-[10px] tracking-[1px]">
                 TECH MOVES
-              </span>
+              </Link>
               <div className="lg:space-y-5 space-y-3 py-4">
                 <p className="p cursor-pointer lg:text-[52px] md:text-[45px] text-[30px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px] hover:text-black duration-200">Unveiling Emerging Tech Trends: What to Expect in the Next Decade
                 </p>
@@ -268,8 +268,8 @@ export default function Home() {
           </div>
         </div>
         <Advertisement />
-        <div className="lg:h-[90vh] w-full flex lg:flex-row flex-col mb-3 mt-16">
-          <div className="bg-[#D9F3FF] dark:bg-[#477286] h-[94%] lg:w-[50%] flex items-center justify-center">
+        <div className="min-lg:h-[90vh] h-auto w-full flex lg:flex-row flex-col mb-3 mt-16">
+          <div className="bg-[#D9F3FF] dark:bg-[#477286] min-h-[94%] lg:w-[50%] flex items-center justify-center">
             <div className="text-black lg:ps-[5%] ps-[2%]">
               <div className="space-y-6 lg:pt-3 md:pt-10  md:px-10 lg:py-0 md:py-16 py-5 text-black dark:text-white">
                 <p className="cursor-pointer lg:text-[52px] md:text-[45px] text-[35px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px]">

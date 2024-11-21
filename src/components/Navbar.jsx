@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import logo2 from "../assets/logo2.jpg";
 import logo1 from "../assets/Startup-1.png";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
@@ -27,6 +27,8 @@ function Navbar() {
   const pathname = usePathname();
   const { themeMode, darkTheme, lightTheme } = useTheme();
 
+  const router = useRouter();
+
   const handleChange = (e) => {
     const isChecked = e.target.checked;
     if (isChecked) {
@@ -37,16 +39,31 @@ function Navbar() {
     }
   };
 
+  useEffect(() => {
+    if (router.pathname === "/" && router.asPath.includes("#newsLetter")) {
+      const section = document.getElementById("newsLetter");
+      if (section) {
+        const topPosition = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: topPosition,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [router]);
+
   const handleNewsletterSectionClick = () => {
-    const section = document.getElementById("newsLetter");
-    if (section) {
-      const topPosition = section.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: topPosition,
-        behavior: "smooth",
-      });
+    if (router.pathname !== "/") {
+      router.push("/#newsLetter");
     } else {
-      console.error("Section with ID 'newsletter' not found.");
+      const section = document.getElementById("newsLetter");
+      if (section) {
+        const topPosition = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: topPosition,
+          behavior: "smooth",
+        });
+      }
     }
   };
 

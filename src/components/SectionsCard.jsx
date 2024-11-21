@@ -7,11 +7,11 @@ import Link from "next/link";
 
 
 
-const SectionsCard = ({Items, section, icon, withImage, imageFirst, drawer  }) => {
+const   SectionsCard = ({Items, section, icon, withImage, imageFirst, drawer  }) => {
 
   
   return (
-    <div className={`px-6 md:py-8 py-4 ${imageFirst ? 'lg:w-[45%] w-full' : 'lg:w-[50%] w-full'} border-t-[3px] border-black dark:border-white`}>
+    <div className={`px-6 md:py-8 py-4 ${imageFirst ? 'lg:w-[45%] w-full' : 'lg:w-[50%] w-full'} border-t-[3px] border-black dark:border-white`}> 
       <section>
         <h2 className=" font-bold md:mb-6 mb-4 flex items-center">
         {icon}<span className={`px-2 ${(drawer) ? 'text-3xl bg-[#375D0B] w-[82px]' : `md:text-5xl text-3xl ${section === "Trending" ? 'w-[130px]' : 'w-full'}    ${!withImage&&'bg-yellow-100 dark:bg-[#80592C]'}`} `}>{section}</span> 
