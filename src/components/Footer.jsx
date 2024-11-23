@@ -9,7 +9,7 @@ import "../css/SocialBoxes.css";
 function Footer() {
   return (
     <>
-      <div className="mt-20 min-h-[392px] bg-black border-t-[6px] border-[#C2FF74] lg:px-[7%] px-[3%] py-[1%] text-white ">
+      <div className="fixec bottom-0 mt-20 min-h-[392px] bg-black border-t-[6px] border-[#C2FF74] lg:px-[7%] px-[3%] py-[1%] text-white ">
         <div className="space-y-2 w-full ">
           <div className="flex justify-between  md:flex-row flex-col">
             <div className="space-y-3 sm:w-[72%] w-full ">

@@ -4,6 +4,7 @@ import '../css/swiperbg.css'
 import Advertisement from "./Advertisement";
 import Recommendation from "./Recommendation";
 import { HiArrowLongRight } from "react-icons/hi2";
+import Link from "next/link";
 
 function Category({category, para, recommendeddata, mustReaddata}) {
 
@@ -22,6 +23,7 @@ function Category({category, para, recommendeddata, mustReaddata}) {
             </div>
           </div>
           <div className="h-full lg:w-[55%]">
+            <Link href={`/blog/${1}`}>
             <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
               {/* Image Section */}
               <Image
@@ -50,6 +52,7 @@ function Category({category, para, recommendeddata, mustReaddata}) {
               </div>
               </div>
             </div>
+            </Link>
           </div>
         </div>
           <Advertisement/>

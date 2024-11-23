@@ -1,10 +1,36 @@
 "use client";
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 const CreatePost = () => {
+  const [postData, setPostData] = useState({});
   const [contentSections, setContentSections] = useState([
     { id: 1, type: "", items: [] },
   ]);
+  const [formErrors, setFormErrors] = useState({});
+
+  const inputHandler = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    if (name == "imagePost") {
+      const file = event.target.file[0];
+      setPostData((values) => ({ ...values, [name]: file }));
+    }
+    setPostData((values) => ({ ...values, [name]: value }));
+    setFormErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
+  };
+
+  const validate = () => {
+    const errors = {};
+    if (!postData.postHeading) errors.postHeading = "Post Heading is required*";
+    if (!postData.subheading) errors.subheading = "Sub Heading is required*";
+    if (!postData.imagePost) errors.imagePost = "Post image is required*";
+    if (!postData.category) errors.category = "Category is required*";
+    if (!postData.createdBy) errors.createdBy = "Required*";
+    if (!postData.designation) errors.designation = "Designation is required*";
+    if (!postData.description) errors.description = "Description is required*";
+    return errors;
+  };
 
   const addContentSection = () => {
     setContentSections([
@@ -23,6 +49,50 @@ const CreatePost = () => {
         section.id === id ? { ...section, type } : section
       )
     );
+  };
+
+  const contentHandler = (event, id) => {
+    const name = event.target.name;
+    const value = event.target.value;
+
+    if (name === "imageUpload[]") {
+      const file = event.target.files[0]; // Access the uploaded file
+      setContentSections((prevSections) =>
+        prevSections.map((section) =>
+          section.id === id
+            ? {
+                ...section,
+                items: [...section.items, { file }],
+              }
+            : section
+        )
+      );
+    } else if (name === "quoteText[]" || name === "quoteAuthor[]") {
+      setContentSections((prevSections) =>
+        prevSections.map((section) =>
+          section.id === id
+            ? {
+                ...section,
+                items: [
+                  ...section.items.filter((item) => item.type !== "quote"), // Remove any existing quote for the section
+                  {
+                    text:
+                      name === "quoteText[]"
+                        ? value
+                        : section.items.find((item) => item.type === "quote")
+                            ?.text || "", // Preserve existing text if available
+                    author:
+                      name === "quoteAuthor[]"
+                        ? value
+                        : section.items.find((item) => item.type === "quote")
+                            ?.author || "", // Preserve existing author if available
+                  },
+                ],
+              }
+            : section
+        )
+      );
+    }
   };
 
   const addListItem = (id) => {
@@ -51,17 +121,38 @@ const CreatePost = () => {
   };
 
   const handleSubmit = async (e) => {
+    setPostData((values) => ({ ...values, contentSections: contentSections }));
     e.preventDefault();
-    const formData = new FormData(e.target);
-    try {
-      const response = await fetch("/api/posts/create", {
-        method: "POST",
-        body: formData,
-      });
-      if (response.ok) {
-        // alert("Post created successfully!");
+    const errors = validate();
+    setFormErrors(errors);
+    const formData = new FormData();
+
+    for (const key in postData) {
+      if (postData[key] instanceof File || postData[key] instanceof Blob) {
+        // For file or Blob objects
+        formData.append(key, postData[key]);
       } else {
-        // alert("Error creating post.");
+        // For other data types (e.g., strings, numbers)
+        formData.append(key, postData[key]);
+      }
+    }
+    console.log(formData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/posts/create",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      if (response.ok) {
+        alert("Post created successfully!");
+      } else {
+        alert("Error creating post.");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -94,8 +185,11 @@ const CreatePost = () => {
                 id="postHeading"
                 name="postHeading"
                 className="mt-1 block p-2 w-full rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                required
+                onChange={inputHandler}
               />
+              {formErrors.postHeading && (
+                <p className="text-red-500 text-xs">{formErrors.postHeading}</p>
+              )}
             </div>
 
             {/* Subheading */}
@@ -111,7 +205,11 @@ const CreatePost = () => {
                 id="subheading"
                 name="subheading"
                 className="mt-1 block p-2 w-full rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                onChange={inputHandler}
               />
+              {formErrors.subheading && (
+                <p className="text-red-500 text-xs">{formErrors.subheading}</p>
+              )}
             </div>
 
             {/* Category */}
@@ -126,12 +224,18 @@ const CreatePost = () => {
                 id="category"
                 name="category"
                 className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                required
+                onChange={inputHandler}
               >
                 <option value="">Select a Category</option>
-                <option value="technology">Technology</option>
-                <option value="lifestyle">Lifestyle</option>
+                <option value="marketing">Marketing</option>
+                <option value="advertising">Advertising</option>
+                <option value="market trends">Market Trends</option>
+                <option value="tech moves">Tech Moves</option>
+                <option value="startups">Startups</option>
               </select>
+              {formErrors.category && (
+                <p className="text-red-500 text-xs">{formErrors.category}</p>
+              )}
             </div>
 
             {/* Image Post */}
@@ -147,7 +251,11 @@ const CreatePost = () => {
                 id="imagePost"
                 name="imagePost"
                 className="mt-1 block w-full text-sm text-gray-500"
+                onChange={inputHandler}
               />
+              {formErrors.imagePost && (
+                <p className="text-red-500 text-xs">{formErrors.imagePost}</p>
+              )}
             </div>
 
             {/* Created By */}
@@ -163,8 +271,11 @@ const CreatePost = () => {
                 id="createdBy"
                 name="createdBy"
                 className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                required
+                onChange={inputHandler}
               />
+              {formErrors.createdBy && (
+                <p className="text-red-500 text-xs">{formErrors.createdBy}</p>
+              )}
             </div>
 
             {/* Designation */}
@@ -180,8 +291,11 @@ const CreatePost = () => {
                 id="designation"
                 name="designation"
                 className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-                required
+                onChange={inputHandler}
               />
+              {formErrors.designation && (
+                <p className="text-red-500 text-xs">{formErrors.designation}</p>
+              )}
             </div>
           </div>
 
@@ -198,8 +312,11 @@ const CreatePost = () => {
               name="description"
               rows="4"
               className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
-              required
+              onChange={inputHandler}
             />
+            {formErrors.description && (
+              <p className="text-red-500 text-xs">{formErrors.description}</p>
+            )}
           </div>
 
           {/* Content Sections */}
@@ -276,6 +393,7 @@ const CreatePost = () => {
                       id={`imageUpload${section.id}`}
                       name="imageUpload[]"
                       className="mt-1 block w-full text-sm text-gray-500"
+                      onChange={(e) => contentHandler(e, section.id)}
                     />
                   </div>
                 )}
@@ -326,6 +444,7 @@ const CreatePost = () => {
                       id={`quoteText${section.id}`}
                       name="quoteText[]"
                       className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                      onChange={(e) => contentHandler(e, section.id)}
                     />
                     <br />
                     <label
@@ -339,6 +458,7 @@ const CreatePost = () => {
                       id={`quoteAuthor${section.id}`}
                       name="quoteAuthor[]"
                       className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                      onChange={(e) => contentHandler(e, section.id)}
                     />
                   </div>
                 )}

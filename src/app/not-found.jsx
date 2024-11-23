@@ -4,14 +4,14 @@ import { FaSearch } from "react-icons/fa";
 
 const NotFoundPage = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[90vh] bg-white px-6">
+    <div className="flex flex-col items-center justify-center min-h-[90vh]  px-6">
       <div className="text-center flex flex-col items-center">
         {/* Illustration */}
         <div className="text-green-500 sm:text-[135px] text-7xl font-bold mb-2">404</div>
-        <p className="sm:text-5xl text-lg font-bold text-gray-800 mb-4">
+        <p className="sm:text-5xl text-lg font-bold text-gray-800 dark:text-white mb-4">
           Something's wrong here…
         </p>
-        <p className="text-gray-700 mb-6 sm:text-lg text-sm">
+        <p className="text-gray-700 dark:text-white mb-6 sm:text-lg text-sm">
           It looks like nothing was found at this location. The page you were
           looking for does not exist or was loading incorrectly.
         </p>

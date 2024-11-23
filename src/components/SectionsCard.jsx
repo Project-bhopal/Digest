@@ -24,7 +24,7 @@ const   SectionsCard = ({Items, section, icon, withImage, imageFirst, drawer  })
               <div className="w-full">
               <div className="lg:w-auto w-full text-left flex items-center">
                 {!withImage&&<span className="lg:text-2xl md:text-xl text-base mr-2 -rotate-[13deg]"><AiFillThunderbolt /></span>}
-              <p className={`p w-full hover:text-white dark:hover:text-black text-black dark:text-white duration-200 text-start ${drawer ? "text-xl" : "md:text-3xl text-xl"} font-[600] lg:tracking-normal tracking-tighter cursor-pointer`}>
+              <p className={`p w-full  dark:hover:text-black text-black dark:text-white duration-200 text-start ${drawer ? "text-xl" : "md:text-3xl text-xl"} font-[600] lg:tracking-normal tracking-tighter cursor-pointer`}>
                 <span>{item.title}</span>
               </p>
 

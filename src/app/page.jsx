@@ -11,7 +11,6 @@ import spotlight1 from "@/assets/spotlight1.webp";
 import spotlight2 from "@/assets/spotlight2.webp";
 import spotlight3 from "@/assets/spotlight3.webp";
 import spotlight4 from "@/assets/spotlight4.webp";
-
 import card1 from "@/assets/card1.webp";
 import card2 from "@/assets/card2.jpg";
 import card3 from "@/assets/card3.jpg";
@@ -158,9 +157,13 @@ export default function Home() {
     },
   ];
 
+  const Hover = () =>{
+    console.log("hover")
+  }
+
   return (
     <>
-      <div className=" text-black dark:text-white duration-100">
+      <div className=" text-black dark:text-white duration-100 ">
         <div className="lg:min-h-[110vh] w-full flex lg:flex-row flex-col mb-3">
           <div className="bg-[#04031D] min-h-[94%] lg:w-[55%] w-full lg:pb-0 pb-7">
           <Link href={`/blog/${1}`} className="w-full">
@@ -173,7 +176,7 @@ export default function Home() {
                 <p className="p w-full cursor-pointer lg:text-[52px] md:text-[40px] text-[30px] font-bold lg:leading-[65px] md:leading-[50px] leading-[40px] hover:text-black duration-200">
                   The Tech Trends Driving Major Transformations in Business
                 </p>
-                <h2 className="lg:text-xl md:text-base text-[14px] text-gray-300">
+                <h2 className={`lg:text-xl md:text-base text-[14px] text-gray-300 `}>
                   By recognizing and leveraging these advantages, businesses can
                   position themselves as trailblazers in their industries,
                   driving success

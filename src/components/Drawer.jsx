@@ -55,6 +55,7 @@ export default function MenuDrawer() {
       <Box>
         <div className="space-y-10 p-6">
           <div className="space-y-2">
+            <div className="w-full flex items-center justify-end"><RxCross2 className="text-4xl text-white" onClick={toggleDrawer(false)}/></div>
             <h1 className="text-white">Search</h1>
             <div className="w-full flex items-center p-2 gap-2 border-[0.5px] border-gray-600">
               <FaSearch className="text-gray-400 text-lg font-semibold" />
