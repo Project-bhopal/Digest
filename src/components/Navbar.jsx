@@ -34,7 +34,6 @@ function Navbar() {
     if (isChecked) {
       darkTheme();
     } else {
-      console.log("called");
       lightTheme();
     }
   };
@@ -288,8 +287,7 @@ function Navbar() {
                 href={"/"}
                 className={`${
                   pathname === "/" ? "border-b-2 border-[#6DBA16]" : ""
-                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] duration-200 lg:text-black lg:dark:text-white text-white`}
-                prefetch={true}
+                }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black lg:dark:text-white text-white`}
               >
                 Home
               </Link>
@@ -307,7 +305,7 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenMarketing(false)}
-                prefetch={true}
+                
               >
                 Marketing{" "}
                 {
@@ -325,7 +323,7 @@ function Navbar() {
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white `}
-                prefetch={true}
+                
               >
                 Marketing{" "}
               </Link>
@@ -343,7 +341,7 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenStartups(false)}
-                prefetch={true}
+                
               >
                 Startups{" "}
                 {
@@ -362,7 +360,7 @@ function Navbar() {
                     : ""
                 } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white`}
                 
-                prefetch={true}
+                
               >
                 Startups{" "}
               </Link>
@@ -377,7 +375,7 @@ function Navbar() {
                   setOpenStartups(false);
                 }}
                 onMouseLeave={() => setOpenPages(false)}
-                prefetch={true}
+                
               >
                 Pages{" "}
                 {
@@ -393,7 +391,7 @@ function Navbar() {
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black lg:dark:text-white text-white lg:block hidden`}
-                prefetch={true}
+                
               >
                 Blog
               </Link>
@@ -437,7 +435,7 @@ function Navbar() {
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
                 } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
-                prefetch={true}
+                
               >
                 Blog Index
               </Link>
@@ -446,7 +444,7 @@ function Navbar() {
                 className={`${
                   pathname === "/contactUs" ? "border-b-2 border-[#6DBA16]" : ""
                 } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
-                prefetch={true}
+                
               >
                 Contact Us
               </Link>
@@ -482,28 +480,28 @@ function Navbar() {
                   <Link
                     href={"/blog"}
                     className="hover:text-[#89c742] duration-200"
-                    prefetch={true}
+                    
                   >
                     Blog Index
                   </Link>
                   <Link
                     href={"/contactUs"}
                     className="hover:text-[#89c742] duration-200"
-                    prefetch={true}
+                    
                   >
                     Contact Us
                   </Link>
                   <Link
                     href={"/search"}
                     className="hover:text-[#89c742] duration-200"
-                    prefetch={true}
+                    
                   >
                     Search Page
                   </Link>
                   <Link
                     href={"/404"}
                     className="hover:text-[#89c742] duration-200"
-                    prefetch={true}
+                    
                   >
                     404 Page
                   </Link>

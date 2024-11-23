@@ -1,9 +1,13 @@
 "use client";
 import Image from "next/image";
 import img from "@/assets/card3.jpg";
+import card1 from "@/assets/card1.webp";
+import card2 from "@/assets/card2.jpg";
+import card3 from "@/assets/card3.jpg";
+import card4 from "@/assets/card4.webp";
 import { FaFacebookF } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { HiMiniLink } from "react-icons/hi2";
+import { HiArrowLongRight, HiMiniLink } from "react-icons/hi2";
 import { FaPrint } from "react-icons/fa";
 import { TfiMoreAlt, TfiThought } from "react-icons/tfi";
 import { IoBookOutline } from "react-icons/io5";
@@ -26,6 +30,7 @@ import "@/css/postSocialBoxes.css";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { useRef } from "react";
 import Link from "next/link";
+import Recommendation from "@/components/Recommendation";
 
 function Post({ params }) {
   const sectionRefs = useRef([]);
@@ -126,6 +131,33 @@ function Post({ params }) {
     },
   ];
 
+  const mustReaddata = [
+    {
+      image: card1,
+      category: "Startups",
+      title: "18 Top Fall Fashion Trends from New York Fashion",
+      date: "January 31, 2024",
+    },
+    {
+      image: card2,
+      category: "Startups",
+      title: "12 Summer Outfit Formulas for Lazy Girls Everywhere",
+      date: "January 31, 2024",
+    },
+    {
+      image: card3,
+      category: "Market Trends",
+      title: "Closer Look at Innovative Ventures Influencing Market Trends",
+      date: "January 31, 2024",
+    },
+    {
+      image: card4,
+      category: "Startups",
+      title: "Hidden Ways To Save Money That You Might Be Missing",
+      date: "January 31, 2024",
+    },
+  ];
+
   const scrollToSection = (index) => {
     sectionRefs.current[index]?.scrollIntoView({
       behavior: "smooth",
@@ -135,11 +167,11 @@ function Post({ params }) {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <Image src={img} className="w-full h-[80vh] object-cover mt-5" />
+        <Image src={img} className="w-full max-h-[80vh] object-cover mt-5" />
         <div className="lg:w-[57%] md:w-[70%] w-[90%] space-y-7 text-black dark:text-white">
           <Link
-            href={``}
-            className="py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]"
+            href={`/category/techmoves`}
+            className="py-1 px-2 bg-[#C2FF74] text-black hover:bg-[#04031D] hover:text-white duration-200 font-semibold text-[10px] tracking-[1px]"
           >
             TECH MOVES
           </Link>
@@ -153,18 +185,60 @@ function Post({ params }) {
           </p>
           <div className="h-40 border-t-4 flex flex-col justify-around border-b-4 pb-4">
             <div className="flex md:flex-row flex-col items-center md:gap-5 ">
-              <div className="Container w-fit flex items-center gap-5 ">
-                <FaFacebookF className="social text-black dark:text-white text-[20px] duration-200" />
-                <FaXTwitter className="social text-black dark:text-white text-[20px] duration-200 " />
-                <MdMail className="social text-black dark:text-white text-[22px] duration-200 " />
-                <HiMiniLink className="social text-black dark:text-white text-[22px] duration-200" />
-                <FaPrint className="social text-black dark:text-white text-[20px] duration-200" />
-                <TfiMoreAlt className="social text-black dark:text-white text-[20px] duration-200 " />
+              <div className="Container w-fit flex items-center gap-5">
+                {/* Facebook Icon */}
+                <div className="relative group">
+                  <FaFacebookF className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
+                    Facebook
+                  </div>
+                </div>
+
+                {/* Twitter Icon */}
+                <div className="relative group">
+                  <FaXTwitter className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                    Twitter
+                  </div>
+                </div>
+
+                {/* Email Icon */}
+                <div className="relative group">
+                  <MdMail className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                    Email
+                  </div>
+                </div>
+
+                {/* Copy Link Icon */}
+                <div className="relative group">
+                  <HiMiniLink className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                    Copy Link
+                  </div>
+                </div>
+
+                {/* Print Icon */}
+                <div className="relative group" onClick={()=>{window.print()}}>
+                  <FaPrint className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg" >
+                    Print
+                  </div>
+                </div>
+
+                {/* More Options Icon */}
+                <div className="relative group">
+                  <TfiMoreAlt className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black  text-white text-xs px-2 py-1 shadow-lg">
+                    More Options
+                  </div>
+                </div>
               </div>
-              <>
+
+              
                 <span className="text-gray-500 text-xs cursor-none">|</span>
                 <p>6 min Read</p>
-              </>
+              
             </div>
             <div className="flex items-center space-x-4">
               <Image
@@ -296,7 +370,7 @@ function Post({ params }) {
                 </span>
                 <Link
                   href={""}
-                  className="text-black font-bold hover:text-lime duration-200"
+                  className="text-black dark:text-white font-bold hover:text-lime dark:hover:text-lime duration-200"
                 >
                   Digital
                 </Link>
@@ -307,7 +381,7 @@ function Post({ params }) {
                 </span>
                 <Link
                   href={""}
-                  className="text-black font-bold  hover:text-lime duration-200"
+                  className="text-black dark:text-white font-bold  hover:text-lime dark:hover:text-lime duration-200"
                 >
                   rubynews.com, timenews.com
                 </Link>
@@ -318,7 +392,7 @@ function Post({ params }) {
                 </span>
                 <Link
                   href={""}
-                  className="text-black font-bold  hover:text-lime duration-200"
+                  className="text-black dark:text-white font-bold  hover:text-lime dark:hover:text-lime duration-200"
                 >
                   ThemeRuby, MarsNews
                 </Link>
@@ -337,30 +411,56 @@ function Post({ params }) {
               </div>
               <div className="Container flex items-center md:space-x-4 space-x-2 mt-4">
                 {/* Facebook Button */}
-                <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100 rounded hover:bg-gray-200">
-                  <span className="md:text-xl text-lg">
-                    <FaFacebookF />
-                  </span>
-                  <span className="text-black text-xs font-bold">Facebook</span>
-                </button>
-                {/* Twitter Button */}
-                <button className="social flex items-center space-x-2 md:px-4 px-2  py-2 bg-gray-100 rounded hover:bg-gray-200">
-                  <span className="md:text-xl text-lg">
-                    <FaXTwitter />
-                  </span>
-                  <span className="text-black text-xs font-bold">Twitter</span>
-                </button>
-                {/* Copy Link Button */}
-                <button className="social  flex items-center space-x-2 md:px-4 px-1 py-2 bg-gray-100 rounded hover:bg-gray-200">
-                  <span className="md:text-xl text-lg">
-                    <HiMiniLink />
-                  </span>
-                </button>
-                {/* More Options */}
+                <div className="relative group">
+                  <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
+                    <span className="md:text-xl text-lg">
+                      <FaFacebookF className="text-black" />
+                    </span>
+                    <span className="text-black text-xs font-bold">
+                      Facebook
+                    </span>
+                  </button>
+                  <div className="w-fit absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                    Facebook
+                  </div>
+                </div>
 
-                <span className="text-black hover:text-lime duration-200">
-                  <TfiMoreAlt />
-                </span>
+                {/* Twitter Button */}
+                <div className="relative group">
+                  <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
+                    <span className="md:text-xl text-lg">
+                      <FaXTwitter className="text-black" />
+                    </span>
+                    <span className="text-black text-xs font-bold">
+                      Twitter
+                    </span>
+                  </button>
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 rounded shadow-lg">
+                    Twitter
+                  </div>
+                </div>
+
+                {/* Copy Link Button */}
+                <div className="relative group">
+                  <button className="social flex items-center space-x-2 md:px-4 px-1 py-2 bg-gray-100 rounded hover:bg-gray-200">
+                    <span className="md:text-xl text-lg">
+                      <HiMiniLink className="text-black" />
+                    </span>
+                  </button>
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
+                    Copy Link
+                  </div>
+                </div>
+
+                {/* More Options */}
+                <div className="relative group">
+                  <span className="text-black dark:text-white hover:text-lime duration-200">
+                    <TfiMoreAlt />
+                  </span>
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                    More Options
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -372,7 +472,7 @@ function Post({ params }) {
               </span>{" "}
               Leave a Comment
             </h2>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-sm text-gray-600 dark:text-white mt-2">
               Your email address will not be published. Required fields are
               marked <span className="text-red-500">*</span>
             </p>
@@ -382,7 +482,7 @@ function Post({ params }) {
               {/* Comment Textarea */}
               <div>
                 <textarea
-                  className="w-full border border-black p-3 h-52 outline-none"
+                  className="w-full border border-black text-black p-3 h-52 outline-none"
                   placeholder="Leave a Comment"
                   required
                 ></textarea>
@@ -392,19 +492,19 @@ function Post({ params }) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <input
                   type="text"
-                  className="w-full border border-black  p-3 outline-none"
+                  className="w-full border border-black texg-black  p-3 outline-none"
                   placeholder="Your name"
                   required
                 />
                 <input
                   type="email"
-                  className="w-full border border-black  p-3 outline-none"
+                  className="w-full border border-black text-black  p-3 outline-none"
                   placeholder="Your email"
                   required
                 />
                 <input
                   type="url"
-                  className="w-full border border-black  p-3 outline-none"
+                  className="w-full border border-black text-black p-3 outline-none"
                   placeholder="Your website"
                 />
               </div>
@@ -413,9 +513,9 @@ function Post({ params }) {
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
-                  className="-blackext-g outline-none"
+                  className="-blackext-g outline-none size-5"
                 />
-                <label className="text-gray-600 text-sm">
+                <label className="text-gray-600 dark:text-white text-sm">
                   Save my name, email, and website in this browser for the next
                   time I comment.
                 </label>
@@ -433,6 +533,12 @@ function Post({ params }) {
             </form>
           </div>
         </div>
+        <Recommendation
+          label="You Might Also like"
+          icon={<HiArrowLongRight />}
+          heading={""}
+          cardsData={mustReaddata}
+        />
       </div>
     </>
   );

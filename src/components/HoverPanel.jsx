@@ -5,7 +5,6 @@ import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import "@/css/swiperbg.css";
 
 function HoverPanel({ openData, set }) {
-  console.log("inside hover")
   return (
     <>
       <div
