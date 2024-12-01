@@ -2,43 +2,24 @@
 import { FaRegArrowAltCircleRight, FaSearch } from "react-icons/fa";
 import card1 from "@/assets/card1.webp";
 import Image from "next/image";
+import { useContext, useEffect, useState } from "react";
+import PostContext from "@/context/postContext";
+import Link from "next/link";
 
 function Search() {
+  const [recommendedSection, setRecommendedSection] = useState([]);
+  const { posts } = useContext(PostContext);
+
+  useEffect(() => {
+    setRecommendedSection(
+      [...posts].sort(() => Math.random() - 0.5).slice(0, 8)
+    );
+  }, [posts]);
+
   const openMarketingData = {
     category: "Marketing",
     route: "/category/marketing",
-    cards: [
-      {
-        image: card1,
-        text: "Strategies to Elevate Brand Stories and Capture Audience Attention",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Tracking the Rapid Advances in Technology and Their Impact",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "A Chronicle of Innovative Minds Shaping the Future with Creative Ingenuity",
-        date: "February 1, 2024",
-      },
-    ],
+    cards: recommendedSection,
   };
 
   return (
@@ -68,25 +49,35 @@ function Search() {
         </div>
         <div className="mt-10 grid lg:grid-cols-4 md:grid-cols-3 justify-between gap-[10px]">
           {openMarketingData.cards.map((card, index) => (
+            <Link href={`/blog/${card._id}`}>
             <div className="lg:h-96 md:w-[312px]" key={index}>
               <div className="h-[50%]">
-                <Image
-                  alt="search image"
-                  src={card.image}
-                  className="h-[100%]"
-                />
+                <div className="relative h-full w-full">
+                  <Image
+                    alt="search image"
+                    src={card.image || "/default-image.jpg"} // Fallback to a default image
+                    layout="fill" // Ensures the image spans the container
+                    objectFit="cover" // Matches the `object-cover` behavior
+                    className="object-cover"
+                  />
+                </div>
               </div>
               <div className="h-[50%] border dark:border-gray-700 pt-4 px-2 space-y-3">
                 <h1 className="p text-2xl text-black dark:text-white dark:hover:text-black font-bold leading-7">
-                  {card.text}
+                  {card.postHeading}
                 </h1>
-                <p className="text-black dark:text-white text-xs ms-1">{card.date}</p>
+                <p className="text-black dark:text-white text-xs ms-1">
+                  {card.date}
+                </p>
               </div>
             </div>
+            </Link>
           ))}
         </div>
         <div className="mt-5 w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">Show More</button>
+          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">
+            Show More
+          </button>
         </div>
       </div>
     </>
