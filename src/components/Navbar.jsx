@@ -1,28 +1,58 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import logo2 from "../assets/logo2.jpg";
 import logo1 from "../assets/Startup-1.png";
 import { usePathname, useRouter } from "next/navigation";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaSearch } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaYoutube } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
-// import { FaSearch } from "react-icons/fa";
-// import Tooltip from '@mui/material/Tooltip';
 import Image from "next/image";
 import { FormControlLabel, FormGroup, styled, Switch } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
 import useTheme from "../context/theme.js";
 import SearchComponent from "./SearchComponent";
-import card1 from "@/assets/card1.webp";
 import HoverPanel from "./HoverPanel";
 import MenuDrawer from "./Drawer.jsx";
+import PostContext from "@/context/postContext";
 
 function Navbar() {
   const [openMarketing, setOpenMarketing] = useState(false);
   const [openStartups, setOpenStartups] = useState(false);
   const [openPages, setOpenPages] = useState(false);
+  const [marketing, setMarketing] = useState([]);
+  const [startups, setStartups] = useState([]);
+  const [open, setOpen] = useState(false);
+  
+  function formatDate(date) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const dayName = days[date.getDay()];
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    
+    return `${dayName}, ${monthName} ${day}, ${year}`;
+}
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+
+  const { posts } = useContext(PostContext);
+  useEffect(() => {
+    setMarketing([...posts]
+      .filter((item) => item?.category === "marketing")
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 5));
+    setStartups([...posts]
+        .filter((item) => item?.category === "startups")
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5));
+  }, [posts]);
 
   const pathname = usePathname();
   const { themeMode, darkTheme, lightTheme } = useTheme();
@@ -42,7 +72,8 @@ function Navbar() {
     if (router.pathname === "/" && router.asPath.includes("#newsLetter")) {
       const section = document.getElementById("newsLetter");
       if (section) {
-        const topPosition = section.getBoundingClientRect().top + window.scrollY;
+        const topPosition =
+          section.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
           top: topPosition,
           behavior: "smooth",
@@ -57,7 +88,8 @@ function Navbar() {
     } else {
       const section = document.getElementById("newsLetter");
       if (section) {
-        const topPosition = section.getBoundingClientRect().top + window.scrollY;
+        const topPosition =
+          section.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
           top: topPosition,
           behavior: "smooth",
@@ -130,74 +162,11 @@ function Navbar() {
     },
   }));
 
-  const openMarketingData = {
-    category: "Marketing",
-    route: "/category/marketing",
-    cards: [
-      {
-        image: card1,
-        text: "Strategies to Elevate Brand Stories and Capture Audience Attention",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Tracking the Rapid Advances in Technology and Their Impact",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "A Chronicle of Innovative Minds Shaping the Future with Creative Ingenuity",
-        date: "February 1, 2024",
-      },
-    ],
-  };
-  const openStartupData = {
-    category: "Startups",
-    route: "/category/startups",
-    cards: [
-      {
-        image: card1,
-        text: "Strategies to Elevate Brand Stories and Capture Audience Attention",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Building Meaningful Connections and Loyalty in Modern Marketing",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Tracking the Rapid Advances in Technology and Their Impact",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
-        date: "February 1, 2024",
-      },
-      {
-        image: card1,
-        text: "A Chronicle of Innovative Minds Shaping the Future with Creative Ingenuity",
-        date: "February 1, 2024",
-      },
-    ],
-  };
-
   return (
     <>
       <nav className="lg:h-32 h-[86px] lg:border-t-8 border-lime xl:px-[7%] lg:px-[5%] flex lg:flex-row flex-col gap-3 lg:bg-white bg-black dark:bg-black text-black dark:text-white duration-100 ">
         <div className="flex justify-between">
-          <MenuDrawer />
+          <MenuDrawer toggleDrawer={toggleDrawer} open={open}/>
           <Link href={"/"}>
             <Image
               src={logo2}
@@ -211,7 +180,9 @@ function Navbar() {
             />
           </Link>
           <div className="lg:hidden flex items-center gap-3">
-            <SearchComponent />
+            <button onClick={toggleDrawer(true)} aria-label="Search Icon">
+              <FaSearch className=" text-white text-lg" />
+            </button>
             <FormGroup>
               <FormControlLabel
                 control={
@@ -228,7 +199,7 @@ function Navbar() {
         <div className="w-full">
           <div className="h-[60%] w-full lg:flex hidden justify-between p-3 border-b-[3px] border-black dark:border-white">
             <div className="flex justify-center items-center">
-              <h6 className="text-xs">Wednesday, Oct 9, 2024</h6>
+              <h6 className="text-xs italic">{formatDate(new Date())}</h6>
             </div>
             <div className="w-auto flex items-center gap-3">
               <h5 className="text-xs">What's Hot :</h5>
@@ -268,7 +239,7 @@ function Navbar() {
               </Link>
               <span>|</span>
               <Link
-                href={"/category/market-trends"}
+                href={"/category/markettrends"}
                 className={`font-bold text-[10px] hover:text-lime ease-in-out duration-300 hover:underline`}
               >
                 Market Trends
@@ -305,7 +276,6 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenMarketing(false)}
-                
               >
                 Marketing{" "}
                 {
@@ -323,7 +293,6 @@ function Navbar() {
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white `}
-                
               >
                 Marketing{" "}
               </Link>
@@ -341,7 +310,6 @@ function Navbar() {
                   setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenStartups(false)}
-                
               >
                 Startups{" "}
                 {
@@ -359,8 +327,6 @@ function Navbar() {
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
                 } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:hidden flex items-center lg:text-black lg:dark:text-white text-white`}
-                
-                
               >
                 Startups{" "}
               </Link>
@@ -375,7 +341,6 @@ function Navbar() {
                   setOpenStartups(false);
                 }}
                 onMouseLeave={() => setOpenPages(false)}
-                
               >
                 Pages{" "}
                 {
@@ -391,7 +356,6 @@ function Navbar() {
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
                 }  font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black lg:dark:text-white text-white lg:block hidden`}
-                
               >
                 Blog
               </Link>
@@ -435,7 +399,6 @@ function Navbar() {
                 className={`${
                   pathname === "/blog" ? "border-b-2 border-[#6DBA16]" : ""
                 } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
-                
               >
                 Blog Index
               </Link>
@@ -444,7 +407,6 @@ function Navbar() {
                 className={`${
                   pathname === "/contactUs" ? "border-b-2 border-[#6DBA16]" : ""
                 } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
-                
               >
                 Contact Us
               </Link>
@@ -464,13 +426,12 @@ function Navbar() {
               <SearchComponent />
             </div>
             {openMarketing && (
-              <HoverPanel openData={openMarketingData} set={setOpenMarketing} />
+              <HoverPanel openData={marketing} set={setOpenMarketing} />
             )}
             {openStartups && (
-              <HoverPanel openData={openStartupData} set={setOpenStartups} />
+              <HoverPanel openData={startups} set={setOpenStartups} />
             )}
             {openPages && (
-            
               <div
                 className="p-5 absolute top-[28.2px] left-[260px] z-10"
                 onMouseEnter={() => setOpenPages(true)}
@@ -480,28 +441,24 @@ function Navbar() {
                   <Link
                     href={"/blog"}
                     className="hover:text-[#89c742] duration-200"
-                    
                   >
                     Blog Index
                   </Link>
                   <Link
                     href={"/contactUs"}
                     className="hover:text-[#89c742] duration-200"
-                    
                   >
                     Contact Us
                   </Link>
                   <Link
                     href={"/search"}
                     className="hover:text-[#89c742] duration-200"
-                    
                   >
                     Search Page
                   </Link>
                   <Link
                     href={"/404"}
                     className="hover:text-[#89c742] duration-200"
-                    
                   >
                     404 Page
                   </Link>

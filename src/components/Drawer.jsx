@@ -13,12 +13,7 @@ import SectionsCard from "./SectionsCard.jsx";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { FaXTwitter } from "react-icons/fa6";
 
-export default function MenuDrawer() {
-  const [open, setOpen] = useState(false);
-
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
+export default function MenuDrawer({toggleDrawer, open}) {
 
   const trendingItems = [
     {

@@ -14,8 +14,24 @@ import Image from "next/image";
 import Advertisement from "@/components/Advertisement";
 import Recommendation from "@/components/Recommendation";
 import { HiArrowLongRight } from "react-icons/hi2";
+import PostContext from "@/context/postContext";
+import { useContext, useEffect, useState } from "react";
 
 function Blog() {
+  const [mustReadSection, setMustReadSection] = useState([]);
+  const [trendingPost, setTrendingPost] = useState([]);
+  const [latestSection, setLatestSection] = useState([]);
+  const {posts} = useContext(PostContext);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      setTrendingPost(posts[Math.floor(Math.random() * 5) + 1]);
+      setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
+      setLatestSection([...posts].sort(() => Math.random() - 0.5).slice(0, 8));
+    }
+  }, [posts]);
+
+
   const spotlightItems = [
     {
       title: "White House Reminds Lawmakers not to Travel to Afghanistan",
@@ -141,7 +157,7 @@ function Blog() {
       <div>
         <div className="lg:h-[110vh] w-full flex lg:flex-row flex-col-reverse">
           <SectionsCard
-            Items={spotlightItems}
+            Items={mustReadSection}
             section="Must Read"
             icon={<GrFlag className="text-5xl"/>}
             withImage={true}
@@ -150,21 +166,18 @@ function Blog() {
           <div className="bg-[#04031D] lg:h-[95.5%] h-fit lg:w-[55%] w-full lg:pb-0 pb-7">
             <Image src={sportlightimage} className="lg:h-[50%] object-cover" />
             <div className="text-white lg:ps-[5%] ps-[2%] relative">
-              <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px]">
-                TECH MOVES
+              <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px] uppercase">
+                {trendingPost.category}
               </span>
               <div className="lg:space-y-5 space-y-3 pt-3">
                 <p className="p cursor-pointer lg:text-[52px] md:text-[40px] text-[30px] font-bold lg:leading-[65px]  md:leading-[50px] leading-[40px] hover:text-black duration-200">
-                  Unveiling Emerging Tech Trends: What to Expect in the Next
-                  Decade
+                  {trendingPost.postHeading}
                 </p>
                 <h2 className="lg:text-xl md:text-base text-[14px] text-white">
-                  Politics is the art of looking for trouble, finding it
-                  everywhere, diagnosing it incorrectly and applying the wrong
-                  remedies
+                  {trendingPost.subheading}
                 </h2>
                 <div className=" text-xs flex gap-2">
-                  By <span className="font-bold">TechInsider</span> |
+                  By <span className="font-bold">{trendingPost.createdBy}</span> |
                   <h6 className="font-medium">January 31, 2024</h6>|
                   <h6 className="font-medium">6 min Read</h6>
                 </div>
@@ -177,7 +190,7 @@ function Blog() {
           label={`Latest News`}
           icon = { <HiArrowLongRight/>}
           heading={""}
-          cardsData={mustReaddata}
+          cardsData={latestSection}
         />
         <div className="w-full flex items-center justify-center">
           <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">Show More</button>

@@ -17,12 +17,12 @@ function Recommendation({label, icon, heading, cardsData}) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[3px]">
           {cardsData.map((item, index) => (
-            <Link href={`/blog/${index}`}>
+            <Link href={`/blog/${item._id}`}>
             <Card
               key={index}
-              image={item.image}
+              image={item.imagePost}
               category={item.category}
-              title={item.title}
+              title={item.postHeading}
               date={item.date}
             />
             </Link>

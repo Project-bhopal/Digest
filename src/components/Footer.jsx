@@ -52,25 +52,25 @@ function Footer() {
           <div className="border-t border-b border-lime py-2 h-auto w-full lg:text-[18px] text-[11px] font-bold ">
             <div  className="w-fit sm:flex grid xs:grid-cols-4 grid-cols-2 xs:gap-0 gap-2 sm:space-x-10 xs:space-x-6">
               <Link
-                href={"/"}
+                href={"/category/marketing"}
                 className="hover:text-lime ease-in-out duration-300"
               >
                 MARKETING
               </Link>
               <Link
-                href={"/"}
+                href={"/category/startups"}
                 className="hover:text-lime ease-in-out duration-300"
               >
                 STARTUPS
               </Link>
               <Link
-                href={"/"}
+                href={"/category/advertising"}
                 className="hover:text-lime ease-in-out duration-300"
               >
                 ADVERTISING
               </Link>
               <Link
-                href={"/"}
+                href={"/category/markettrends"}
                 className="hover:text-lime ease-in-out duration-300 text-nowrap"
               >
                 MARKET TRENDS

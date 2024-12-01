@@ -4,17 +4,29 @@ import card1 from '@/assets/card1.webp'
 import card2 from "@/assets/card2.jpg";
 import card3 from "@/assets/card3.jpg";
 import card4 from "@/assets/card4.webp";
+import { useContext, useEffect, useState } from "react";
+import PostContext from "@/context/postContext";
 
 
 function MarketTrends() {
-  const recommendeddata = {
-    image: card1,
-    category: "Analysis",
-    author : "TechInsider",
-    title: "The Remarkable Developments Pushing the Limits of Innovation",
-    date: "January 31, 2024",
-  }
+    const [ marketTrendsPosts, setMarketTrendsPosts] = useState([])
 
+
+    const {posts} = useContext(PostContext);
+    useEffect(()=>{
+        setMarketTrendsPosts(posts.filter((item) => item?.category == "market trends"));
+    },[posts]);
+  
+  
+    const recommendeddata = {
+      id : marketTrendsPosts[0]?._id,
+      image: marketTrendsPosts[0]?.imagePost,
+      category: marketTrendsPosts[0]?.category,
+      author : marketTrendsPosts[0]?.createdBy,
+      title: marketTrendsPosts[0]?.postHeading,
+      date: "January 31, 2024",
+    }
+  
   const mustReaddata = [
     {
         image: card1,
@@ -87,7 +99,7 @@ function MarketTrends() {
       category = "Market Trends"
       para = "And then there is the most dangerous risk of all — the risk of spending your life not doing what you want on the bet you can buy yourself the freedom to do it later."
       recommendeddata={recommendeddata}
-      mustReaddata={mustReaddata}
+      mustReaddata={marketTrendsPosts}
       />
     </>
   )

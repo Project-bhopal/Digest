@@ -7,12 +7,20 @@ const Card = ({ image, category, title, date }) => {
   return (
     <div className="bg-[#04031D] text-white overflow-hidden shadow-md h-full w-full cursor-pointer">
       {/* Image Section */}
-      <Image src={image} alt={title} className="w-full h-[320px] object-cover" />
+      <div className="w-full h-[320px] relative">
+      <Image
+        src={`/${image}`} // Dynamic image path
+        alt={title} // Alt text
+        layout="fill" // Makes the image fill the container
+        objectFit="cover" // Ensures the image covers the area without distortion
+        className="object-cover"
+      />
+    </div>
 
       {/* Content Section */}
       <div className="p-5  relative">
         {/* Category Tag */}
-        <Link href={`/category/${category.toLowerCase()}`} className="absolute top-[-21px] inline-block bg-[#C2FF74] hover:bg-[#04031D] text-[#010328]  duration-150 text-[9px] tracking-[1px] font-bold px-2 py-1 uppercase">
+        <Link href={`/category/${category.toLowerCase().replace(/[-\s]+/g, '')}`} className="absolute top-[-21px] inline-block bg-[#C2FF74] hover:bg-[#04031D] text-[#010328] hover:text-white  duration-150 text-[9px] tracking-[1px] font-bold px-2 py-1 uppercase">
           {category}
         </Link>
 

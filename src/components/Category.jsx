@@ -1,15 +1,14 @@
 "use client";
 import Image from "next/image";
-import '../css/swiperbg.css'
+import "../css/swiperbg.css";
 import Advertisement from "./Advertisement";
 import Recommendation from "./Recommendation";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Link from "next/link";
 
-function Category({category, para, recommendeddata, mustReaddata}) {
-
+function Category({ category, para, recommendeddata, mustReaddata }) {
   return (
-    <>  
+    <>
       <div>
         <div className="lg:h-[95vh] flex lg:flex-row flex-col lg:mx-0 mx-5 lg:pt-2 pt-4">
           <div className="h-full lg:w-[45%] flex lg:justify-center items-center lg:border-t border-t-[5px] lg:border-l-[5px] border-l lg:border-b lg:border-r-0 border-r border-black dark:border-lime">
@@ -23,47 +22,55 @@ function Category({category, para, recommendeddata, mustReaddata}) {
             </div>
           </div>
           <div className="h-full lg:w-[55%]">
-            <Link href={`/blog/${1}`}>
-            <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
-              {/* Image Section */}
-              <Image
-                src={recommendeddata.image}
-                alt={recommendeddata.category}
-                className="w-full h-[400px] object-cover"
-              />
+            <Link href={`/blog/${recommendeddata.id}`}>
+              <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
+                {/* Image Section */}
+                <div className="relative w-full h-[400px]">
+                  <Image
+                    src={`/${recommendeddata.image}`} // Fallback to a default image if `recommendeddata.image` is undefined
+                    alt={recommendeddata.category} // Fallback alt text
+                    layout="fill" // Makes the image span the parent container
+                    objectFit="cover" // Matches `object-cover`
+                    className="object-cover"
+                  />
+                </div>
 
-              {/* Content Section */}
-              <div className="p-5  relative">
-                {/* Category Tag */}
-                <span className="absolute top-[-29.5px] inline-block bg-[#C2FF74] text-[#010328] text-[9px] tracking-[1px] font-bold px-3 py-2 uppercase">
-                  {recommendeddata.category}
-                </span>
+                {/* Content Section */}
+                <div className="p-5  relative">
+                  {/* Category Tag */}
+                  <span className="absolute top-[-29.5px] inline-block hover:text-white duration-200 bg-[#C2FF74] text-[#010328] text-[9px] tracking-[1px] font-bold px-3 py-2 uppercase">
+                    {recommendeddata.category}
+                  </span>
 
-                {/* Title */}
-                <h2 className="p text-[52px] leading-tight font-[700] hover:text-black duration-200">
-                  {recommendeddata.title}
-                </h2>
+                  {/* Title */}
+                  <h2 className="p text-[52px] leading-tight font-[700] hover:text-black duration-200">
+                    {recommendeddata.title}
+                  </h2>
 
-                
-                <div className={`text-white text-xs flex gap-2 mt-3 ms-5`}>
-                By <span className="text-white font-bold">{recommendeddata.author}</span> | 
-                <h6 className="font-medium">{recommendeddata.date}</h6> |
-                <h6 className="font-medium">6 min Read</h6>
+                  <div className={`text-white text-xs flex gap-2 mt-3 ms-5`}>
+                    By{" "}
+                    <span className="text-white font-bold">
+                      {recommendeddata.author}
+                    </span>{" "}
+                    |<h6 className="font-medium">{recommendeddata.date}</h6> |
+                    <h6 className="font-medium">6 min Read</h6>
+                  </div>
+                </div>
               </div>
-              </div>
-            </div>
             </Link>
           </div>
         </div>
-          <Advertisement/>
-          <Recommendation
+        <Advertisement />
+        <Recommendation
           label={`Latest ${category}`}
-          icon = { <HiArrowLongRight/>}
+          icon={<HiArrowLongRight />}
           heading={""}
           cardsData={mustReaddata}
         />
         <div className="mt-5 w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">Show More</button>
+          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">
+            Show More
+          </button>
         </div>
       </div>
     </>

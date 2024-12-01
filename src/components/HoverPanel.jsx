@@ -18,7 +18,7 @@ function HoverPanel({ openData, set }) {
               {openData.category}
             </h1>
             <Link
-              href={openData.route}
+              href={`/category/${openData[0]?.category}`}
               className="flex items-center text-xs font-semibold text-black dark:text-white hover:text-lime
               dark:hover:text-lime duration-200 gap-1"
             >
@@ -26,14 +26,23 @@ function HoverPanel({ openData, set }) {
             </Link>
           </div>
           <div className="grid grid-cols-5 gap-[3px]">
-            {openData.cards.map((card, index) => (
-              <Link 
-              href={`/blog/${index}`}>
-              <div className="h-full w-[240px] space-y-3" key={index}>
-                <Image alt="panal imagex" src={card.image} className="h-[135px]" />
-                <h1 className="p text-xl text-black dark:text-white dark:hover:text-black font-bold leading-7">{card.text}</h1>
-                <p className="text-xs">{card.date}</p>
-              </div>
+            {openData.map((card, index) => (
+              <Link href={`/blog/${index}`}>
+                <div className="h-full w-[240px] space-y-3" key={index}>
+                  <div className="relative h-[135px] w-full">
+                    <Image
+                      alt="Panel image"
+                      src={`/${card.imagePost}`} // Fallback to a default image if `card.imagePost` is undefined
+                      layout="fill" // Ensures the image spans the container
+                      objectFit="cover" // Matches the styling of the original image
+                      className="object-cover"
+                    />
+                  </div>
+                  <h1 className="p text-xl text-black dark:text-white dark:hover:text-black font-bold leading-7">
+                    {card.postHeading}
+                  </h1>
+                  <p className="text-xs">{card.date}</p>
+                </div>
               </Link>
             ))}
           </div>
@@ -41,7 +50,6 @@ function HoverPanel({ openData, set }) {
       </div>
     </>
   );
-  console.log('end of the page');
 }
 
 export default HoverPanel;
