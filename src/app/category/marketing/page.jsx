@@ -5,13 +5,10 @@ import PostContext from "@/context/postContext";
 
 
 function Marketing() {
-  const [ marketingPosts, setMarketingPosts] = useState([])
 
 
-  const {posts} = useContext(PostContext);
-  useEffect(()=>{
-    setMarketingPosts(posts.filter((item) => item?.category == "marketing"));
-  },[posts]);
+  const {marketingPosts, handleShowMore} = useContext(PostContext);
+
 
 
   const recommendeddata = {
@@ -31,6 +28,7 @@ function Marketing() {
       para = "Explore in-depth articles that unravel the latest marketing campaigns, dissecting the strategies employed by industry giants to captivate audiences and establish brand resonance. The multifaceted world of promotional endeavors."
       recommendeddata={recommendeddata}
       mustReaddata={marketingPosts}
+      handleShowMore={handleShowMore}
       />
     </>
   )

@@ -16,6 +16,34 @@ import axios from "axios";
 export default function RootLayout({ children }) {
   const [themeMode, setThemeMode] = useState("light");
   const [posts, setPosts] = useState([]);
+  const [showMore, setShowMore] = useState(8);
+
+  
+
+  const [trendingPost, setTrendingPost] = useState({});
+  const [trendingSection, setTrendingSection] = useState([]);
+  const [recommendedSection, setRecommendedSection] = useState([]);
+  const [spotlightPost, setSpotlightPost] = useState([]);
+  const [spotlightSection, setSpotlightSection] = useState([]);
+  const [popularSection, setPopularSection] = useState([]);
+  const [mustReadSection, setMustReadSection] = useState([]);
+
+  // Advertising page
+  const [ advertisingPosts, setAdvertisingPosts] = useState([]);
+  // Marketing page
+  const [ marketingPosts, setMarketingPosts] = useState([]);
+  // MarketTrends
+  const [ marketTrendsPosts, setMarketTrendsPosts] = useState([]);
+  // Startups
+  const [ startupsPosts, setStartupsPosts] = useState([]);
+  // TechMoves
+  const [ techMovesPosts, setTechMovesPosts] = useState([])
+  // Latest post for blogs page
+  const [latestSection, setLatestSection] = useState([]);
+
+  const handleShowMore = () => {
+    setShowMore((prev) => prev + 8); // Increment showMore
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +59,33 @@ export default function RootLayout({ children }) {
     };
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (posts.length > 0) {
+      setTrendingPost(posts[Math.floor(Math.random() * 5) + 1]);
+      setSpotlightPost(posts[Math.floor(Math.random() * 5) + 1]);
+    }
+    setTrendingSection(posts.slice(0, 5).map((item) => item));
+    setRecommendedSection(
+      [...posts].sort(() => Math.random() - 0.5).slice(0, 4)
+    );
+    setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
+    setSpotlightSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
+    setPopularSection([...posts].sort(() => Math.random() - 0.5).slice(0, 3));
+
+    //Advertising page
+    setAdvertisingPosts(posts.filter((item) => item?.category == "advertising").slice(0, showMore));
+    // Marketing page
+    setMarketingPosts(posts.filter((item) => item?.category == "marketing").slice(0, showMore));
+    // MarketTrends
+    setMarketTrendsPosts(posts.filter((item) => item?.category == "market trends").slice(0, showMore));
+    // Startups
+    setStartupsPosts(posts.filter((item) => item?.category == "startups").slice(0, showMore));
+    // TechMoves
+    setTechMovesPosts(posts.filter((item) => item?.category == "tech moves").slice(0, showMore));
+    // Latest posts for blogs page
+    setLatestSection([...posts].sort(() => Math.random() - 0.5).slice(0, showMore));
+  }, [posts, showMore]);
 
   const darkTheme = () => {
     setThemeMode("dark");
@@ -54,7 +109,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-white dark:bg-black ">
         <AppRouterCacheProvider>
-          <PostContext.Provider value={{posts, setPosts}}>
+          <PostContext.Provider value={{posts, trendingPost, trendingSection, recommendedSection, spotlightPost, spotlightSection, popularSection, mustReadSection, advertisingPosts, marketingPosts, marketTrendsPosts, startupsPosts, techMovesPosts, latestSection, handleShowMore}}>
             <ThemeProvider value={{ themeMode, darkTheme, lightTheme }}>
               <Navbar />
               <div className="xl:px-[7%] lg:px-[3%]">{children}</div>

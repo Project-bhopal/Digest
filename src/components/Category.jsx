@@ -6,7 +6,7 @@ import Recommendation from "./Recommendation";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Link from "next/link";
 
-function Category({ category, para, recommendeddata, mustReaddata }) {
+function Category({ category, para, recommendeddata, mustReaddata, handleShowMore }) {
   return (
     <>
       <div>
@@ -68,7 +68,7 @@ function Category({ category, para, recommendeddata, mustReaddata }) {
           cardsData={mustReaddata}
         />
         <div className="mt-5 w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">
+          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6" onClick={()=>handleShowMore()}>
             Show More
           </button>
         </div>
