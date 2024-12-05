@@ -31,16 +31,11 @@ import PostContext from "@/context/postContext";
 
 function Post({ params }) {
   const [postData, setPostData] = useState({});
-  const [recommendedSection, setRecommendedSection] = useState([]);
   const sectionRefs = useRef([]);
 
-  const {posts} = useContext(PostContext);
+  const {recommendedSection} = useContext(PostContext);
 
-  useEffect(()=>{
-    setRecommendedSection(
-      [...posts].sort(() => Math.random() - 0.5).slice(0, 4)
-    );
-  },[])
+
   console.log(recommendedSection)
 
   useEffect(() => {
@@ -260,7 +255,7 @@ function Post({ params }) {
           <div>
             <p className="text-[17px] leading-7">{postDescription2}</p>
           </div>
-          <div className="w-full flex flex-col items-center text-center space-y-3 font-bold py-10">
+          {/* <div className="w-full flex flex-col items-center text-center space-y-3 font-bold py-10">
             <div className="w-[88%]">
               <FaQuoteLeft className=" justify-self-center text-3xl text-[#6DBA16]" />
               <p className="text-[23px]">
@@ -271,7 +266,7 @@ function Post({ params }) {
                 <BsDashLg className="text-[#6DBA16]" /> Steve Martin
               </p>
             </div>
-          </div>
+          </div> */}
           {Array.isArray(postData.contentSections) &&
             postData.contentSections.map((content, index) => (
               <div

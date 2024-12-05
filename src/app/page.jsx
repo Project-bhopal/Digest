@@ -18,30 +18,12 @@ import { useContext, useEffect, useState } from "react";
 import PostContext from "@/context/postContext";
 
 export default function Home() {
-  const [trendingPost, setTrendingPost] = useState({});
-  const [trendingSection, setTrendingSection] = useState([]);
-  const [recommendedSection, setRecommendedSection] = useState([]);
-  const [spotlightPost, setSpotlightPost] = useState([]);
-  const [spotlightSection, setSpotlightSection] = useState([]);
-  const [popularSection, setPopularSection] = useState([]);
-  const [mustReadSection, setMustReadSection] = useState([]);
-
-  const {posts} = useContext(PostContext);
 
 
-  useEffect(() => {
-    if (posts.length > 0) {
-      setTrendingPost(posts[Math.floor(Math.random() * 5) + 1]);
-      setSpotlightPost(posts[Math.floor(Math.random() * 5) + 1]);
-    }
-    setTrendingSection(posts.slice(0, 5).map((item) => item));
-    setRecommendedSection(
-      [...posts].sort(() => Math.random() - 0.5).slice(0, 4)
-    );
-    setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
-    setSpotlightSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
-    setPopularSection([...posts].sort(() => Math.random() - 0.5).slice(0, 3));
-  }, [posts]);
+  const {trendingPost, trendingSection, recommendedSection, spotlightPost, spotlightSection, popularSection, mustReadSection,} = useContext(PostContext);
+
+
+  
 
   return (
     <>

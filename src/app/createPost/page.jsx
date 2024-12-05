@@ -13,7 +13,7 @@ const CreatePost = () => {
     const name = event.target.name;
     const value = event.target.value;
     if (name == "imagePost") {
-      const file = event.target.file[0];
+      const file = event.target.file;
       setPostData((values) => ({ ...values, [name]: file }));
     }
     setPostData((values) => ({ ...values, [name]: value }));
@@ -52,47 +52,57 @@ const CreatePost = () => {
   };
 
   const contentHandler = (event, id) => {
-    const name = event.target.name;
-    const value = event.target.value;
-
-    if (name === "imageUpload[]") {
-      const file = event.target.files[0]; // Access the uploaded file
-      setContentSections((prevSections) =>
-        prevSections.map((section) =>
-          section.id === id
-            ? {
-                ...section,
-                items: [...section.items, { file }],
-              }
-            : section
-        )
-      );
-    } else if (name === "quoteText[]" || name === "quoteAuthor[]") {
-      setContentSections((prevSections) =>
-        prevSections.map((section) =>
-          section.id === id
-            ? {
-                ...section,
-                items: [
-                  ...section.items.filter((item) => item.type !== "quote"), // Remove any existing quote for the section
-                  {
-                    text:
-                      name === "quoteText[]"
-                        ? value
-                        : section.items.find((item) => item.type === "quote")
-                            ?.text || "", // Preserve existing text if available
-                    author:
-                      name === "quoteAuthor[]"
-                        ? value
-                        : section.items.find((item) => item.type === "quote")
-                            ?.author || "", // Preserve existing author if available
-                  },
-                ],
-              }
-            : section
-        )
-      );
-    }
+    const { name, value, files } = event.target;
+  
+    setContentSections((prevSections) =>
+      prevSections.map((section) => {
+        if (section.id !== id) return section;
+  
+        if (name === "contentHeading[]") {
+          return {
+            ...section,
+            contentHeading: value, // Properly set contentHeading
+          };
+        }
+  
+        if (name === "contentDescription[]") {
+          return {
+            ...section,
+            contentDescription: value, // Properly set contentDescription
+          };
+        }
+  
+        if (name === "imageUpload[]") {
+          const file = files[0];
+          return {
+            ...section,
+            items: [...section.items, { type: "image", file }],
+          };
+        }
+  
+        if (name === "quoteText[]" || name === "quoteAuthor[]") {
+          const existingQuote =
+            section.items.find((item) => item.type === "quote") || {
+              text: "",
+              author: "",
+            };
+  
+          return {
+            ...section,
+            items: [
+              ...section.items.filter((item) => item.type !== "quote"),
+              {
+                type: "quote",
+                text: name === "quoteText[]" ? value : existingQuote.text,
+                author: name === "quoteAuthor[]" ? value : existingQuote.author,
+              },
+            ],
+          };
+        }
+  
+        return section;
+      })
+    );
   };
 
   const addListItem = (id) => {
@@ -121,8 +131,10 @@ const CreatePost = () => {
   };
 
   const handleSubmit = async (e) => {
-    setPostData((values) => ({ ...values, contentSections: contentSections }));
     e.preventDefault();
+    // console.log(contentSections)
+    setPostData((values) => ({ ...values, contentSections }));
+    console.log(postData)
     const errors = validate();
     setFormErrors(errors);
     const formData = new FormData();
@@ -136,12 +148,13 @@ const CreatePost = () => {
         formData.append(key, postData[key]);
       }
     }
-    console.log(formData);
+
 
     try {
+      console.log(formData)
       const response = await axios.post(
         "http://localhost:5000/api/posts/create",
-        formData,
+        postData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
@@ -149,7 +162,7 @@ const CreatePost = () => {
         }
       );
 
-      if (response.ok) {
+      if (response.status == 201) {
         alert("Post created successfully!");
       } else {
         alert("Error creating post.");
@@ -319,6 +332,63 @@ const CreatePost = () => {
             )}
           </div>
 
+          <div className="border-t-2 border-b-2 border-lime py-2 my-10 space-y-5">
+            <h1 className="text-sm font-bold text-gray-500 dark:text-gray-200">
+              If Sponsored
+            </h1>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
+              {/* Sponsored By */}
+              <div>
+                <label
+                  htmlFor="sponsoredBy"
+                  className="block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  Sponsored By
+                </label>
+                <input
+                  type="text"
+                  id="sponsoredBy"
+                  name="sponsoredBy"
+                  className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                  onChange={inputHandler}
+                />
+              </div>
+
+              {/* Company Name */}
+              <div>
+                <label
+                  htmlFor="companyName"
+                  className="block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  id="companyName"
+                  name="companyName"
+                  className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                  onChange={inputHandler}
+                />
+              </div>
+              {/* Company Logo */}
+              <div>
+                <label
+                  htmlFor="companyLogo"
+                  className="block text-sm font-medium text-gray-700 dark:text-white"
+                >
+                  Company Logo
+                </label>
+                <input
+                  type="file"
+                  id="companyLogo"
+                  name="companyLogo"
+                  className="mt-1 block w-full text-sm text-gray-500"
+                  onChange={inputHandler}
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Content Sections */}
           <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4">
             Content Section
@@ -341,6 +411,7 @@ const CreatePost = () => {
                     id={`contentHeading${section.id}`}
                     name="contentHeading[]"
                     className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                    onChange={(e)=>contentHandler(e, section.id)}
                   />
                 </div>
 
@@ -355,6 +426,7 @@ const CreatePost = () => {
                     id={`contentDescription${section.id}`}
                     name="contentDescription[]"
                     className="mt-1 block w-full p-2 rounded-md border-gray-300 shadow-sm border focus:border-lime-500 focus:ring-lime-500 sm:text-sm"
+                    onChange={(e)=>contentHandler(e, section.id)}
                   />
                 </div>
 

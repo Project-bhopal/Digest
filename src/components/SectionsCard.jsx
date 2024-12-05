@@ -11,6 +11,7 @@ const SectionsCard = ({
   withImage,
   imageFirst,
   drawer,
+  toggleDrawer
 }) => {
   return (
     <div
@@ -35,7 +36,7 @@ const SectionsCard = ({
         </h2>
         <ul className="md:space-y-4 space-y-2">
           {Items.map((item, index) => (
-            <Link href={`/blog/${item._id}`}>
+            <Link href={`/blog/${item._id}`} onclick={()=>{drawer? toggleDrawer() : ""}}>
               <li
                 key={index}
                 className={`border-b-[1px] py-3 ${
@@ -64,7 +65,7 @@ const SectionsCard = ({
                     )}
                     <p
                       className={`p w-full  dark:hover:text-black text-black dark:text-white duration-200 text-start ${
-                        drawer ? "text-xl" : "md:text-3xl text-xl"
+                        drawer ? "text-xl text-white" : "md:text-3xl text-xl"
                       } font-[600] lg:tracking-normal tracking-tighter cursor-pointer`}
                     >
                       <span>{item?.postHeading}</span>

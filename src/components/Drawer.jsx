@@ -1,49 +1,27 @@
 "use client";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Button from "@mui/material/Button";
 import { TbMenuDeep } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "@/css/Drawer.css";
 import { FaFacebookF, FaRegArrowAltCircleRight, FaSearch, FaTiktok, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import SectionsCard from "./SectionsCard.jsx";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { FaXTwitter } from "react-icons/fa6";
+import PostContext from "@/context/postContext.js";
 
 export default function MenuDrawer({toggleDrawer, open}) {
+  const [trendingSection, setTrendingSection] = useState([])
+  const {posts} = useContext(PostContext);
 
-  const trendingItems = [
-    {
-      title:
-        "Strategies to Elevate Brand Stories and Capture Audience Attention",
-      author: "TechInsider",
-      date: "February 1, 2024",
-    },
-    {
-      title: "Building Meaningful Connections and Loyalty in Modern Marketing",
-      author: "TechInsider",
-      date: "February 1, 2024",
-    },
-    {
-      title:
-        "Navigating Optimizing Platforms for Effective Audience Engagement",
-      author: "TechInsider",
-      date: "February 1, 2024",
-    },
-    {
-      title: "The Remarkable Developments Pushing the Limits of Innovation",
-      author: "TechInsider",
-      date: "February 1, 2024",
-    },
-    {
-      title: "Creating Valuable and Persuasive for Targeted Audiences",
-      author: "TechInsider",
-      date: "January 31, 2024",
-    },
-  ];
+  useEffect(()=>{
+    console.log('called')
+    setTrendingSection([...posts].sort(() => Math.random() - 0.5).slice(0, 5));
+  },[])
+  console.log("drawer trending section" , trendingSection)
 
   const DrawerList = (
     <div className="h-full w-[100%]">
@@ -80,7 +58,7 @@ export default function MenuDrawer({toggleDrawer, open}) {
                 <Link href={"/"} onClick={toggleDrawer(false)}>404 Page</Link>
               </div>
               <div>
-                <Link href={"/SearchPage"} onClick={toggleDrawer(false)}>Search Page</Link>
+                <Link href={"/SearchComponent"} onClick={toggleDrawer(false)}>Search Page</Link>
               </div>
             </div>
           </div>
@@ -107,12 +85,13 @@ export default function MenuDrawer({toggleDrawer, open}) {
         </div>
         <div className=" bg-black text-white text-[10%]">
           <SectionsCard
-            Items={trendingItems}
+            Items={trendingSection}
             section="Trending"
             icon={<HiArrowLongRight className="text-4xl" />}
             withImage={false}
             imageFirst={false}
             drawer={true}
+            toggleDrawer={toggleDrawer(false)}
             />
         </div>
         <div className="flex items-center justify-between p-6">

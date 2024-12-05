@@ -1,4 +1,4 @@
-const { createContext } = require("react");
+const { createContext, useState } = require("react");
 
 
 const PostContext = createContext();
