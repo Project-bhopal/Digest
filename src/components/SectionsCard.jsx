@@ -48,7 +48,7 @@ const SectionsCard = ({
                 {withImage && (
                   <div className="relative md:h-[135px] h-[90px] md:w-[180px] w-[120px]">
                     <Image
-                      src={`/${item?.imagePost}`} // Ensure a default image is used if `imagePost` is undefined
+                      src={`${item?.imagePost}`} // Ensure a default image is used if `imagePost` is undefined
                       alt={item?.postHeading}
                       layout="fill" // Makes the image fill the container dimensions
                       objectFit="cover" // Ensures the image covers the area without distortion

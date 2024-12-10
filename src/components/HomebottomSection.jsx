@@ -26,7 +26,7 @@ function TodayandTrendingSection({
           {image ? (
             <div className="relative md:h-auto h-[440px] w-full">
               <Image
-                src={`/${image}`} // Fallback to a default image if `image` is undefined
+                src={`${image}`} // Fallback to a default image if `image` is undefined
                 alt="Dynamic Image"
                 layout="fill" // Ensures the image fills the container
                 objectFit="cover" // Matches the behavior of `w-full` and responsive height
@@ -74,7 +74,7 @@ function StartupSection({ postHeading, date, image }) {
         <section className="space-y-5 h-full">
           <div className="relative h-full w-full -z-10">
             <Image
-              src={`/${image}`} // Fallback to a default image if `image` is undefined
+              src={`${image}`} // Fallback to a default image if `image` is undefined
               alt={postHeading}
               layout="fill" // Ensures the image spans the entire container
               objectFit="cover" // Matches `object-cover` for background-like behavior
@@ -106,7 +106,7 @@ function SponsoredSection({ category, text, image, by }) {
       <div className="bg-[#04031D] lg:min-h-[580px]">
         <div className="relative lg:h-[360px] h-[500px] w-full">
           <Image
-            src={`/${image}`} // Fallback to a default image
+            src={`${image}`} // Fallback to a default image
             alt="Responsive Image"
             layout="fill" // Ensures the image spans the container
             objectFit="cover" // Matches `object-cover` for fitting behavior

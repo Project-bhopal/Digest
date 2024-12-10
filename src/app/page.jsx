@@ -33,7 +33,7 @@ export default function Home() {
             <Link href={`/blog/${trendingPost._id}`} className="w-full">
               <div className="relative w-full h-[100vh] lg:h-[50%]">
                 <Image
-                  src={`/${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
+                  src={`${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
                   alt="Post Image"
                   layout="fill" // Makes the image fill the container
                   objectFit="cover" // Ensures the image maintains its aspect ratio and covers the area
@@ -128,7 +128,7 @@ export default function Home() {
             <Link href={`/blog/${spotlightPost._id}`}>
               <div className="relative lg:h-[50%] w-full">
                 <Image
-                  src={`/${spotlightPost?.imagePost}`} // Fallback to a default image if `imagePost` is undefined
+                  src={`${spotlightPost?.imagePost}`} // Fallback to a default image if `imagePost` is undefined
                   alt="Spotlight Post"
                   layout="fill" // Ensures the image fills the container
                   objectFit="contain" // Matches Tailwind's `object-contain`
