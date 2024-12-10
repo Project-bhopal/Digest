@@ -281,7 +281,7 @@ function Post({ params }) {
                 {content.contentType == "image" && (
                   <div className="relative min-w-[85vw] justify-self-center">
                     <Image
-                      src={`/${content.imageUpload}`} // Fallback to a default image
+                      src={`${content.imageUpload}`} // Fallback to a default image
                       alt="Content Image"
                       layout="fill" // Ensures the image spans the container
                       objectFit="contain" // Matches the intended behavior for large images
