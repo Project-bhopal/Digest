@@ -9,7 +9,7 @@ const Card = ({ image, category, title, date }) => {
       {/* Image Section */}
       <div className="w-full h-[320px] relative">
       <Image
-        src={`/${image}`} // Dynamic image path
+        src={`${image}`} // Dynamic image path
         alt={title} // Alt text
         layout="fill" // Makes the image fill the container
         objectFit="cover" // Ensures the image covers the area without distortion

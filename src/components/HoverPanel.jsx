@@ -32,7 +32,7 @@ function HoverPanel({ openData, set }) {
                   <div className="relative h-[135px] w-full">
                     <Image
                       alt="Panel image"
-                      src={`/${card.imagePost}`} // Fallback to a default image if `card.imagePost` is undefined
+                      src={`${card.imagePost}`} // Fallback to a default image if `card.imagePost` is undefined
                       layout="fill" // Ensures the image spans the container
                       objectFit="cover" // Matches the styling of the original image
                       className="object-cover"
