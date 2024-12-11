@@ -2,7 +2,7 @@
 import Image from "next/image";
 import img from "@/assets/card3.jpg";
 import card1 from "@/assets/card1.webp";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiArrowLongRight, HiMiniLink } from "react-icons/hi2";
 import { FaPrint } from "react-icons/fa";
@@ -27,6 +27,7 @@ import Link from "next/link";
 import Recommendation from "@/components/Recommendation";
 import axios from "axios";
 import PostContext from "@/context/postContext";
+import { useRouter } from "next/navigation";
 
 function Post({ params }) {
   const [postData, setPostData] = useState({});
@@ -34,7 +35,20 @@ function Post({ params }) {
 
   const { recommendedSection } = useContext(PostContext);
 
-  console.log(recommendedSection);
+  const router = useRouter();
+
+  const copyToClipboard = () => {
+    if (typeof window !== "undefined") {
+      const currentUrl = window.location.href; // Get the current page's URL
+      navigator.clipboard.writeText(currentUrl) // Copy to clipboard
+        .then(() => {
+          alert("Page URL copied to clipboard!");
+        })
+        .catch((err) => {
+          console.error("Failed to copy URL: ", err);
+        });
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -103,7 +117,7 @@ function Post({ params }) {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <div className="relative w-full h-[50vh] md:h-[80vh] lg:h-screen mt-5">
+        <div className="relative w-full h-[50vh] md:h-[80vh] mt-5">
           <Image
             src={`/${postData.imagePost}`}
             alt="Post Image"
@@ -130,33 +144,47 @@ function Post({ params }) {
             <div className="flex md:flex-row flex-col items-center md:gap-5 ">
               <div className="Container w-fit flex items-center gap-5">
                 {/* Facebook Icon */}
-                <div className="relative group">
-                  <FaFacebookF className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                <a href="" target="blank" className="relative group">
+                  <FaLinkedin className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
                   <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
-                    Facebook
+                    LinkedIn
                   </div>
-                </div>
+                </a>
 
                 {/* Twitter Icon */}
-                <div className="relative group">
-                  <FaXTwitter className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
+                <a
+                  href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
+                  target="blank"
+                  className="relative group"
+                >
+                  <FaInstagram className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
                   <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
-                    Twitter
+                    Instagram
                   </div>
-                </div>
+                </a>
 
                 {/* Email Icon */}
                 <div className="relative group">
-                  <MdMail className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer" />
-                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                  <a
+                    href="mailto:" /* Email id */
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center"
+                  >
+                    <MdMail className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer" />
+                  </a>
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
                     Email
                   </div>
                 </div>
 
                 {/* Copy Link Icon */}
                 <div className="relative group">
-                  <HiMiniLink className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer" />
-                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
+                  <HiMiniLink
+                    className="social text-black dark:text-white text-[22px] duration-200 cursor-pointer"
+                    onClick={copyToClipboard}
+                  />
+                  <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
                     Copy Link
                   </div>
                 </div>
@@ -369,39 +397,39 @@ function Post({ params }) {
               </div>
               <div className="Container flex items-center md:space-x-4 space-x-2 mt-4">
                 {/* Facebook Button */}
-                <div className="relative group">
+                <a href="" target="blank" className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
                     <span className="md:text-xl text-lg">
-                      <FaFacebookF className="text-black" />
+                      <FaLinkedin className="text-black" />
                     </span>
                     <span className="text-black text-xs font-bold">
-                      Facebook
+                      LinkedIn
                     </span>
                   </button>
                   <div className="w-fit absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1  shadow-lg">
-                    Facebook
+                    LinkedIn
                   </div>
-                </div>
+                </a>
 
                 {/* Twitter Button */}
-                <div className="relative group">
+                <a href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5" target="blank" className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
                     <span className="md:text-xl text-lg">
-                      <FaXTwitter className="text-black" />
+                      <FaInstagram className="text-black" />
                     </span>
                     <span className="text-black text-xs font-bold">
-                      Twitter
+                      Instagram
                     </span>
                   </button>
                   <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 rounded shadow-lg">
-                    Twitter
+                    Instagram
                   </div>
-                </div>
+                </a>
 
                 {/* Copy Link Button */}
                 <div className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-1 py-2 bg-gray-100 rounded hover:bg-gray-200">
-                    <span className="md:text-xl text-lg">
+                    <span className="md:text-xl text-lg" onClick={copyToClipboard}>
                       <HiMiniLink className="text-black" />
                     </span>
                   </button>
