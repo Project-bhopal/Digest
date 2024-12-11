@@ -38,16 +38,16 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
                 {/* Content Section */}
                 <div className="p-5  relative">
                   {/* Category Tag */}
-                  <span className="absolute top-[-29.5px] inline-block hover:text-white duration-200 bg-[#C2FF74] text-[#010328] text-[9px] tracking-[1px] font-bold px-3 py-2 uppercase">
+                  <span className="absolute top-[-29.5px] inline-block hover:text-white duration-200 bg-[#C2FF74] text-[#010328] sm:text-[9px] text-[8px] tracking-[1px] font-bold sm:px-3 px-2 sm:py-2 py-1 uppercase">
                     {recommendeddata.category}
                   </span>
 
                   {/* Title */}
-                  <h2 className="p text-[52px] leading-tight font-[700] hover:text-black duration-200">
+                  <h2 className="p lg:text-[50px] sm:text-5xl text-2xl leading-tight font-[700] hover:text-black duration-200">
                     {recommendeddata.title}
                   </h2>
 
-                  <div className={`text-white text-xs flex gap-2 mt-3 ms-5`}>
+                  <div className={`text-white text-xs flex gap-2 mt-3 sm:ms-5 ms-2`}>
                     By{" "}
                     <span className="text-white font-bold">
                       {recommendeddata.author}

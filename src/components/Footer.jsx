@@ -13,7 +13,7 @@ function Footer() {
         <div className="space-y-2 w-full ">
           <div className="flex justify-between  md:flex-row flex-col">
             <div className="space-y-3 sm:w-[72%] w-full ">
-              <div className="w-fit text-[17px] font-[700] grid xs:grid-cols-4 grid-cols-3 space-x-6">
+              <div className="w-fit text-[17px] font-[700] flex flex-wrap gap-x-6">
                 <Link
                   href={"/"}
                   className="hover:text-lime ease-in-out duration-300 text-nowrap lg:text-[15px] text-[13px]"
@@ -34,7 +34,7 @@ function Footer() {
                 </Link>
                 <Link
                   href={"/"}
-                  className="hover:text-lime ease-in-out duration-300 lg:text-[15px] text-[13px]"
+                  className="hover:text-lime ease-in-out duration-300 lg:text-[15px] text-[13px] "
                 >
                   Deal
                 </Link>
@@ -50,7 +50,7 @@ function Footer() {
             </div>
           </div>
           <div className="border-t border-b border-lime py-2 h-auto w-full lg:text-[18px] text-[11px] font-bold ">
-            <div  className="w-fit sm:flex grid xs:grid-cols-4 grid-cols-2 xs:gap-0 gap-2 sm:space-x-10 xs:space-x-6">
+            <div  className="w-fit flex flex-wrap gap-x-8 sm:gap-y-0 gap-y-2 ">
               <Link
                 href={"/category/marketing"}
                 className="hover:text-lime ease-in-out duration-300"
@@ -108,13 +108,6 @@ function Footer() {
               </div>
             </a>
 
-            <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center p-3 space-x-2 lg:w-60 w-full hover:shadow-lg transition-transform duration-300">
-              <FaGoogle className="text-3xl" />
-              <div>
-                <p className="text-sm font-bold">30.4k Followers</p>
-                <p className="text-xs">Follow</p>
-              </div>
-            </div>
           </div>
         </div>
       </div>

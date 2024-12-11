@@ -25,7 +25,7 @@ const Card = ({ image, category, title, date }) => {
         </Link>
 
         {/* Title */}
-        <h2 className="p text-[28px] leading-tight font-[700] hover:text-black duration-200">
+        <h2 className="p sm:text-[28px] text-[18px] leading-tight font-[700] hover:text-black duration-200">
           {title}
         </h2>
 
