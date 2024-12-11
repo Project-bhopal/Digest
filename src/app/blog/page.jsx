@@ -1,5 +1,4 @@
 "use client";
-import sportlightimage from "@/assets/spotlightimage.jpg";
 import SectionsCard from "@/components/SectionsCard";
 import { GrFlag } from "react-icons/gr";
 import Image from "next/image";
@@ -10,9 +9,8 @@ import PostContext from "@/context/postContext";
 import { useContext } from "react";
 
 function Blog() {
-  
-  const {trendingPost, mustReadSection, latestSection, handleShowMore} = useContext(PostContext);
-
+  const { trendingPost, mustReadSection, latestSection, handleShowMore } =
+    useContext(PostContext);
 
   return (
     <>
@@ -21,12 +19,20 @@ function Blog() {
           <SectionsCard
             Items={mustReadSection}
             section="Must Read"
-            icon={<GrFlag className="text-5xl"/>}
+            icon={<GrFlag className="text-5xl" />}
             withImage={true}
             imageFirst={true}
           />
           <div className="bg-[#04031D] lg:h-[95.5%] h-fit lg:w-[55%] w-full lg:pb-0 pb-7">
-            <Image src={sportlightimage} className="lg:h-[50%] object-cover" />
+            <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
+              <Image
+                src={`/${trendingPost.imagePost || "default-image.jpg"}`} // Fallback to a default image
+                alt="Trending Post Image"
+                layout="fill" // Makes the image fill the container
+                objectFit="cover" // Matches `object-cover` behavior
+                className="object-cover"
+              />
+            </div>
             <div className="text-white lg:ps-[5%] ps-[2%] relative">
               <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px] uppercase">
                 {trendingPost.category}
@@ -39,8 +45,8 @@ function Blog() {
                   {trendingPost.subheading}
                 </h2>
                 <div className=" text-xs flex gap-2">
-                  By <span className="font-bold">{trendingPost.createdBy}</span> |
-                  <h6 className="font-medium">January 31, 2024</h6>|
+                  By <span className="font-bold">{trendingPost.createdBy}</span>{" "}
+                  |<h6 className="font-medium">January 31, 2024</h6>|
                   <h6 className="font-medium">6 min Read</h6>
                 </div>
               </div>
@@ -50,12 +56,17 @@ function Blog() {
         <Advertisement />
         <Recommendation
           label={`Latest News`}
-          icon = { <HiArrowLongRight/>}
+          icon={<HiArrowLongRight />}
           heading={""}
           cardsData={latestSection}
         />
         <div className="w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6" onClick={()=>handleShowMore()}>Show More</button>
+          <button
+            className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6"
+            onClick={() => handleShowMore()}
+          >
+            Show More
+          </button>
         </div>
       </div>
     </>

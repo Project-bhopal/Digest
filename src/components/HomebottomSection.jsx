@@ -1,13 +1,9 @@
 "use client";
-import homeimage from "@/assets/homeimage.webp";
 import Image from "next/image";
 import { HiArrowLongRight } from "react-icons/hi2";
 import { PiArrowBendRightDownBold } from "react-icons/pi";
 
 import card1 from "@/assets/card1.webp";
-import card2 from "@/assets/card2.jpg";
-import card3 from "@/assets/card3.jpg";
-import card4 from "@/assets/card4.webp";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import PostContext from "@/context/postContext";
@@ -47,7 +43,7 @@ function TodayandTrendingSection({
             <li className={`border-b border-gray-300 lg:pb-4 pb-2 flex gap-3`}>
               <div>
                 <div className="flex items-center">
-                  <p className="p hover:text-white dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[22px] font-[700] cursor-pointer leading-8">
+                  <p className="p hover:text-white dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[21px] font-[700] cursor-pointer md:leading-8 leading-7">
                     <span>{postHeading}</span>
                   </p>
                 </div>
@@ -82,7 +78,7 @@ function StartupSection({ postHeading, date, image }) {
             />
           </div>
 
-          <div class="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
+          <div className="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
             <div className="h-full flex flex-col justify-end">
               <div className="flex items-center">
                 <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8 ">
@@ -104,7 +100,7 @@ function SponsoredSection({ category, text, image, by }) {
   return (
     <>
       <div className="bg-[#04031D] lg:min-h-[580px]">
-        <div className="relative lg:h-[360px] h-[500px] w-full">
+        <div className="relative lg:h-[360px] h-[300px] w-full">
           <Image
             src={`${image}`} // Fallback to a default image
             alt="Responsive Image"
@@ -121,11 +117,11 @@ function SponsoredSection({ category, text, image, by }) {
             {category}
           </Link>
           <div className="space-y-6 pt-6 px-4">
-            <p className="p cursor-pointer sm:text-[38px] text-[25px] font-bold sm:leading-[50px] leading-[30px] hover:text-black duration-200">
+            <p className="p cursor-pointer sm:text-[38px] text-[22px] font-bold sm:leading-[50px] leading-[30px] hover:text-black duration-200">
               {text}
             </p>
             <div className=" text-xs flex ps-2 pb-5">
-              <span className="flex gap-3">Sponsored by <Image src={card1} className="size-10"/></span>
+              <span className="flex gap-3">Sponsored by <Image src={""} alt="sponsored by" className="size-10"/></span>
             </div>
           </div>
         </div>
@@ -162,43 +158,17 @@ function HomebottomSection() {
     );
   }, [posts]);
 
-  // const Sponsored = [
-  //   {
-  //     image: card1,
-  //     category: "Advertising",
-  //     text: "Intersection of Technology and Finance in Shaping the Economy",
-  //     date: "January 31, 2024",
-  //   },
-  //   {
-  //     image: card2,
-  //     category: "Marketing",
-  //     text: "Innovators Redefining Modern Industries Through Revolutionary Ideas",
-  //     date: "January 31, 2024",
-  //   },
-  //   {
-  //     image: card3,
-  //     category: "Market Trends",
-  //     text: "Analyzing Market Trends as Consumer Priorities Redefine Product",
-  //     date: "January 31, 2024",
-  //   },
-  //   {
-  //     image: card4,
-  //     category: "Marketing",
-  //     text: "Tech Weapons We Need To Combat Global Warming",
-  //     date: "January 31, 2024",
-  //   },
-  // ];
-
+ 
   return (
     <>
       <div className="flex lg:flex-row flex-col lg:gap-3 gap-5 w-full">
         <div className="lg:w-[50%] w-full space-x-3">
           <h2 className="text-3xl font-bold flex items-center lg:ms-0 ms-6 lg:mb-0 mb-5">
-            <HiArrowLongRight className="text-5xl" /> &nbsp;
-            <span className="lg:text-3xl sm:text-5xl text-4xl"> Today</span>
+            <HiArrowLongRight className="sm:text-5xl text-2xl" /> &nbsp;
+            <span className="lg:text-3xl sm:text-5xl text-2xl"> Today</span>
           </h2>
           {posts.map((item, index) => (
-            <div className="">
+            <div className="" key={index}>
               <Link href={`/blog/${item._id}`} className="w-full">
                 <TodayandTrendingSection
                   category={item?.category}
@@ -211,12 +181,12 @@ function HomebottomSection() {
         </div>
         <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
           <h2 className="text-3xl font-bold flex items-center mb-4">
-            <span className="lg:text-3xl sm:text-5xl text-4xl ">
+            <span className="lg:text-3xl sm:text-5xl text-2xl ">
               🔔 Sponsored
             </span>
           </h2>
           {sponsored.map((item, index) => (
-            <Link href={`blog/${item._id}`}>
+            <Link href={`blog/${item._id}`} key={index}>
               <SponsoredSection
                 label={item.category}
                 text={item.postHeading}
@@ -230,7 +200,7 @@ function HomebottomSection() {
         <div className="lg:w-[50%] w-full lg:mt-0 mt-10">
           <div>
             <h2 className="text-3xl font-bold flex items-center ms-6 lg:mb-0 mb-5">
-              <span className="lg:text-3xl sm:text-5xl text-4xl">
+              <span className="lg:text-3xl sm:text-5xl text-2xl">
                 {" "}
                 Tech Moves
               </span>
@@ -239,7 +209,7 @@ function HomebottomSection() {
             </h2>
             <div className="grid lg:grid-cols-1 md:grid-cols-3 grid-cols-1 ">
               {techMoves?.map((item, index) => (
-                <div className="">
+                <div className="" key={index}>
                   <Link href={`blog/${item._id}`}>
                     <TodayandTrendingSection
                       category={item.category}
@@ -254,13 +224,13 @@ function HomebottomSection() {
           </div>
           <div className="lg:w-auto h-auto w-full">
             <h2 className="text-3xl font-bold ms-6 flex items-center lg:mb-0 mb-5 lg:mt-8 mt-10">
-              <span className="lg:text-3xl text-5xl">Startups</span>
+              <span className="lg:text-3xl sm:text-5xl text-2xl">Startups</span>
               &nbsp;
               <PiArrowBendRightDownBold className="lg:text-xl text-3xl mt-3" />
             </h2>
             <div className="grid lg:grid-cols-1 md:grid-cols-3 grid-cols-1 md:gap-2 gap-5">
               {startups.map((item, index) => (
-                <div className="">
+                <div className="" key={index}>
                   <Link href={`blog/${item._id}`}>
                     <StartupSection
                       postHeading={item.postHeading}

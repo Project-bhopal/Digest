@@ -20,7 +20,6 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import { MdExpandMore } from "react-icons/md";
 
-
 import "@/css/postSocialBoxes.css";
 import { AiFillThunderbolt } from "react-icons/ai";
 import { useContext, useEffect, useRef, useState } from "react";
@@ -33,10 +32,9 @@ function Post({ params }) {
   const [postData, setPostData] = useState({});
   const sectionRefs = useRef([]);
 
-  const {recommendedSection} = useContext(PostContext);
+  const { recommendedSection } = useContext(PostContext);
 
-
-  console.log(recommendedSection)
+  console.log(recommendedSection);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -63,7 +61,6 @@ function Post({ params }) {
     };
 
     fetchData();
-    
   }, [params.postId]);
 
   let description = postData.description;
@@ -97,7 +94,6 @@ function Post({ params }) {
   const postDescription1 = result[0];
   const postDescription2 = result[1];
 
-
   const scrollToSection = (index) => {
     sectionRefs.current[index]?.scrollIntoView({
       behavior: "smooth",
@@ -107,26 +103,29 @@ function Post({ params }) {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <div className="relative w-full mt-5">
+        <div className="relative w-full h-[50vh] md:h-[80vh] lg:h-screen mt-5">
           <Image
-            src={card1}
+            src={`/${postData.imagePost}`}
             alt="Post Image"
-            layout="responsive"
-            width={1920} 
-            height={1080} 
-            objectFit="contain" 
-            // className="object-contain"
+            layout="fill"
+            objectFit="cover"
+            className="h-full w-full"
           />
         </div>
+
         <div className="lg:w-[57%] md:w-[70%] w-[90%] space-y-7 text-black dark:text-white">
           <Link
-            href={`/category/${postData?.category?.toLowerCase().replace(/[-\s]+/g, '')}`}
+            href={`/category/${postData?.category
+              ?.toLowerCase()
+              .replace(/[-\s]+/g, "")}`}
             className="py-1 px-2 bg-[#C2FF74] text-black hover:bg-[#04031D] hover:text-white duration-200 font-semibold text-[10px] tracking-[1px] uppercase cursor-pointer"
           >
             {postData.category}
           </Link>
-          <h1 className="text-6xl font-bold">{postData.postHeading}</h1>
-          <p className="text-lg">{postData.subheading}</p>
+          <h1 className=" font-bold lg:text-[50px] md:text-[38px] text-[30px]">
+            {postData.postHeading}
+          </h1>
+          <p className=" md:text-base text-[15px]">{postData.subheading}</p>
           <div className="h-40 border-t-4 flex flex-col justify-around border-b-4 pb-4">
             <div className="flex md:flex-row flex-col items-center md:gap-5 ">
               <div className="Container w-fit flex items-center gap-5">

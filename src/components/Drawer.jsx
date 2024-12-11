@@ -14,14 +14,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import PostContext from "@/context/postContext.js";
 
 export default function MenuDrawer({toggleDrawer, open}) {
-  const [trendingSection, setTrendingSection] = useState([])
-  const {posts} = useContext(PostContext);
+  
+  const {trendingSection} = useContext(PostContext);
 
-  useEffect(()=>{
-    console.log('called')
-    setTrendingSection([...posts].sort(() => Math.random() - 0.5).slice(0, 5));
-  },[])
-  console.log("drawer trending section" , trendingSection)
 
   const DrawerList = (
     <div className="h-full w-[100%]">

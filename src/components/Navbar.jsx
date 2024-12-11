@@ -164,7 +164,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="lg:h-32 h-[86px] lg:border-t-8 border-lime xl:px-[7%] lg:px-[5%] flex lg:flex-row flex-col gap-3 lg:bg-white bg-black dark:bg-black text-black dark:text-white duration-100 ">
+      <nav className="lg:h-32 h-[86px] lg:border-t-8 border-lime xl:px-[7%] lg:px-[3%] flex lg:flex-row flex-col gap-3 lg:bg-white bg-black dark:bg-black text-black dark:text-white duration-100 ">
         <div className="flex justify-between">
           <MenuDrawer toggleDrawer={toggleDrawer} open={open}/>
           <Link href={"/"}>
@@ -385,7 +385,7 @@ function Navbar() {
                 Advertising
               </Link>
               <Link
-                href={"/category/market-trends"}
+                href={"/category/markettrends"}
                 className={`${
                   pathname === "/category/market-trends"
                     ? "border-b-2 border-[#6DBA16]"

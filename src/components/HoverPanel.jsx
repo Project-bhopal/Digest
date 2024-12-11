@@ -27,7 +27,7 @@ function HoverPanel({ openData, set }) {
           </div>
           <div className="grid grid-cols-5 gap-[3px]">
             {openData.map((card, index) => (
-              <Link href={`/blog/${card._id}`}>
+              <Link href={`/blog/${card._id}`} key={index}>
                 <div className="h-full w-[240px] space-y-3" key={index}>
                   <div className="relative h-[135px] w-full">
                     <Image

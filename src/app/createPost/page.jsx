@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 
 const CreatePost = () => {
+  const [isSponsored, setIsSponsored] = useState(false)
   const [postData, setPostData] = useState({});
   const [contentSections, setContentSections] = useState([
     { id: 1, type: "", items: [] },
@@ -332,10 +333,11 @@ const CreatePost = () => {
             )}
           </div>
 
-          <div className="border-t-2 border-b-2 border-lime py-2 my-10 space-y-5">
-            <h1 className="text-sm font-bold text-gray-500 dark:text-gray-200">
-              If Sponsored
+            <h1 className="text-sm font-bold text-gray-500 dark:text-gray-200 ">
+              If Sponsored <input type="checkbox" name="isSponsored" id="isSponsored" className={`size-4 
+                ${!isSponsored ? "mb-5" : "mb-0"}`} onChange={()=>{inputHandler, setIsSponsored(!isSponsored)}}/>
             </h1>
+          <div className={`border-t-2 border-b-2 border-lime py-2 my-10 space-y-5 ${isSponsored ? "block" : "hidden"}`}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
               {/* Sponsored By */}
               <div>
