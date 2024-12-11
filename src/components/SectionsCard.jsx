@@ -25,7 +25,7 @@ const SectionsCard = ({
           <span
             className={`px-2  ${
               drawer
-                ? "text-3xl  bg-[#375D0B] w-[82px]"
+                ? "text-2xl  bg-[#375D0B] w-[82px]"
                 : `md:text-5xl text-3xl ${
                     section === "Trending" ? "w-[130px]" : "w-full"
                   }    ${!withImage && "bg-yellow-100 dark:bg-[#80592C]"}`

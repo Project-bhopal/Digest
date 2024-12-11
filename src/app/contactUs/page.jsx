@@ -1,32 +1,38 @@
 "use client";
 
-import { FaFacebook, FaGoogle, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaGoogle,
+  FaInstagram,
+  FaLinkedin,
+  FaYoutube,
+} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import "@/css/SocialBoxes.css";
 
 function ContactUs() {
   return (
     <>
-      <div className="lg:border-t-[3px] border-black dark:border-white lg:mx-0 mx-5  ">
-        <div className="text-center mt-6">
-          <h1 className="text-xl font-bold text-gray-500">Get In Touch</h1>
-          <h1 className="text-4xl text-black dark:text-white font-bold">
+      <div className="lg:border-t-[3px] border-black dark:border-white lg:mx-0 mx-5">
+        <div className="text-center mt-6 space-y-3">
+          <h1 className="sm:text-xl text-base font-bold text-gray-500">Get In Touch</h1>
+          <h1 className="sm:text-4xl text-3xl text-black dark:text-white font-bold">
             Contact US
           </h1>
         </div>
-        <div className="flex lg:flex-row flex-col justify-between">
+        <div className="flex lg:flex-row flex-col justify-between gap-5 mt-5">
           <div className="lg:w-[68%]">
             <div className="space-y-6">
-              <h3 className="text-2xl text-black dark:text-white font-bold">
+              <h3 className="sm:text-2xl text-xl text-black dark:text-white font-bold">
                 General Customer Care & Technical Support
               </h3>
-              <h3 className="text-black dark:text-white text-[17px] leading-relaxed">
+              <h3 className="text-black dark:text-white sm:text-[17px] text-[15px] leading-relaxed">
                 As we address the needs of our customers, email wait times may
                 be longer than usual. In an effort to give you the best customer
                 experience possible, we encourage you to take advantage of our
                 phones. In most cases this is the fastest and easiest option.
               </h3>
-              <h3 className="text-black dark:text-white text-[17px] leading-relaxed">
+              <h3 className="text-black dark:text-white sm:text-[17px] text-[15px] leading-relaxed">
                 Your satisfaction is our priority, and our Contact page serves
                 as a gateway to a hassle-free and reassuring experience. Whether
                 you need general assistance or technical support, our customer
@@ -35,7 +41,7 @@ function ContactUs() {
                 our brand is not only problem-free but also leaves you with a
                 positive and lasting impression.
               </h3>
-              <h3 className="text-black dark:text-white text-[17px] leading-relaxed">
+              <h3 className="text-black dark:text-white sm:text-[17px] text-[15px] leading-relaxed">
                 Our technical support team is well-equipped to assist you with
                 any technical challenges you may encounter. From troubleshooting
                 product issues to guiding you through software configurations,
@@ -112,38 +118,46 @@ function ContactUs() {
 
                 <button
                   type="submit"
-                  className="w-52 bg-[#6DBA16] text-white font-semibold py-3"
+                  className="sm:w-52 w-36 bg-[#6DBA16] text-white font-semibold sm:py-3 py-2"
                 >
                   Submit
                 </button>
               </form>
             </div>
           </div>
-          <div className="lg:w-auto w-full flex justify-center items-center">
-          <div className="w-fit container flex flex-col space-y-1.5 pt-5 h-fit">
-              <div className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center justify-between px-3 py-2 space-x-2 w-[360px] hover:shadow-lg transition-transform duration-300">
+          <div className="lg:w-auto w-full flex justify-center items-center ">
+            <div className="w-fit container flex flex-col space-y-1.5 pt-5 h-fit">
+              <a
+                href="/"
+                target="blank"
+                className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center justify-between px-3 py-2 space-x-2 sm:w-[360px] w-[270px] hover:shadow-lg transition-transform duration-300"
+              >
                 <div className="flex items-center">
-                  <FaFacebook className="text-3xl" />
+                  <FaLinkedin className="text-3xl" />
                   &nbsp;
                   <span className="text-sm font-thin text-gray-300"> | </span>
                   &nbsp;
                   <p className="text-base font-bold">Facebook</p>
                 </div>
                 <p className="text-sm font-medium">Like</p>
-              </div>
+              </a>
 
-              <div className="social-box bg-[#00151C] hover:bg-[#13B9EE] text-white flex items-center justify-between px-3 py-2 space-x-2 w-[360px] hover:shadow-lg transition-transform duration-300">
+              <a
+                href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
+                target="blank"
+                className="social-box bg-[#F11056] hover:bg-[#E52D38] text-white flex items-center justify-between px-3 py-2 space-x-2 sm:w-[360px] w-[270px] hover:shadow-lg transition-transform duration-300"
+              >
                 <div className="flex items-center">
-                  <FaXTwitter className="text-3xl" />
+                  <FaInstagram className="text-3xl" />
                   &nbsp;
                   <span className="text-sm font-thin text-gray-300"> | </span>
                   &nbsp;
                   <p className="text-base font-bold">Twitter</p>
                 </div>
                 <p className="text-sm font-medium">Follow</p>
-              </div>
+              </a>
 
-              <div className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center justify-between px-3 py-2 space-x-2 w-[360px] hover:shadow-lg transition-transform duration-300">
+              {/* <div className="social-box bg-red-500 hover:bg-[#FC161E] text-white flex items-center justify-between px-3 py-2 space-x-2 sm:w-[360px] w-[270px] hover:shadow-lg transition-transform duration-300">
                 <div className="flex items-center">
                   <FaYoutube className="text-3xl" />
                   &nbsp;
@@ -154,7 +168,7 @@ function ContactUs() {
                 <p className="text-sm font-medium">Subscribe</p>
               </div>
 
-              <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center justify-between px-3 py-2 space-x-2 w-[360px] hover:shadow-lg transition-transform duration-300">
+              <div className="social-box bg-blue-700 hover:bg-[#1d30d8] text-white flex items-center justify-between px-3 py-2 space-x-2 sm:w-[360px] w-[270px] hover:shadow-lg transition-transform duration-300">
                 <div className="flex items-center">
                   <FaGoogle className="text-3xl" />
                   &nbsp;
@@ -163,8 +177,8 @@ function ContactUs() {
                   <p className="text-base font-bold">Google News</p>
                 </div>
                 <p className="text-sm font-medium">Follow</p>
-              </div>
-          </div>
+              </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -1,18 +1,15 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import logo2 from "../assets/logo2.jpg";
-import logo1 from "../assets/Startup-1.png";
+import logo1 from "../assets/logo1.jpg";
+import logo2 from "../assets/Startup-1.png";
 import { usePathname, useRouter } from "next/navigation";
-import { FaFacebookF, FaSearch } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaYoutube } from "react-icons/fa";
-import { FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaLinkedin, FaSearch } from "react-icons/fa";
 import Image from "next/image";
 import { FormControlLabel, FormGroup, styled, Switch } from "@mui/material";
 import { MdExpandMore } from "react-icons/md";
 import useTheme from "../context/theme.js";
-import SearchComponent from "./SearchComponent";
+import SearchComponent from "../app/searchComponent/page";
 import HoverPanel from "./HoverPanel";
 import MenuDrawer from "./Drawer.jsx";
 import PostContext from "@/context/postContext";
@@ -24,34 +21,58 @@ function Navbar() {
   const [marketing, setMarketing] = useState([]);
   const [startups, setStartups] = useState([]);
   const [open, setOpen] = useState(false);
-  
+
   function formatDate(date) {
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+
     const dayName = days[date.getDay()];
     const monthName = months[date.getMonth()];
     const day = date.getDate();
     const year = date.getFullYear();
-    
+
     return `${dayName}, ${monthName} ${day}, ${year}`;
-}
+  }
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-
   const { posts } = useContext(PostContext);
   useEffect(() => {
-    setMarketing([...posts]
-      .filter((item) => item?.category === "marketing")
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 5));
-    setStartups([...posts]
+    setMarketing(
+      [...posts]
+        .filter((item) => item?.category === "marketing")
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 5)
+    );
+    setStartups(
+      [...posts]
         .filter((item) => item?.category === "startups")
         .sort(() => Math.random() - 0.5)
-        .slice(0, 5));
+        .slice(0, 5)
+    );
   }, [posts]);
 
   const pathname = usePathname();
@@ -166,15 +187,15 @@ function Navbar() {
     <>
       <nav className="lg:h-32 h-[86px] lg:border-t-8 border-lime xl:px-[7%] lg:px-[3%] flex lg:flex-row flex-col gap-3 lg:bg-white bg-black dark:bg-black text-black dark:text-white duration-100 ">
         <div className="flex justify-between">
-          <MenuDrawer toggleDrawer={toggleDrawer} open={open}/>
+          <MenuDrawer toggleDrawer={toggleDrawer} open={open} />
           <Link href={"/"}>
             <Image
-              src={logo2}
+              src={logo1}
               alt="logo"
               className="h-[120px] w-36 lg:block hidden"
             />
             <Image
-              src={logo1}
+              src={logo2}
               alt="logo"
               className="sm:h-10 h-6 sm:w-[150px] w-[80px] lg:hidden block sm:ms-10"
             />
@@ -273,7 +294,6 @@ function Navbar() {
                 onMouseEnter={() => {
                   setOpenMarketing(true);
                   setOpenStartups(false);
-                  setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenMarketing(false)}
               >
@@ -307,7 +327,6 @@ function Navbar() {
                 onMouseEnter={() => {
                   setOpenStartups(true);
                   setOpenMarketing(false);
-                  setOpenPages(false);
                 }}
                 onMouseLeave={() => setOpenStartups(false)}
               >
@@ -331,26 +350,14 @@ function Navbar() {
                 Startups{" "}
               </Link>
 
-              <div
+              <Link
+                href={"/contactUs"}
                 className={`${
                   pathname === "/pagess" ? "border-b-2 border-[#6DBA16]" : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:flex hidden items-center text-black dark:text-white`}
-                onMouseEnter={() => {
-                  setOpenPages(true);
-                  setOpenMarketing(false);
-                  setOpenStartups(false);
-                }}
-                onMouseLeave={() => setOpenPages(false)}
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black text-white dark:text-white`}
               >
-                Pages{" "}
-                {
-                  <MdExpandMore
-                    className={`${
-                      openPages ? "-rotate-180 " : ""
-                    } duration-200 text-lg font-bold`}
-                  />
-                }
-              </div>
+                Contact Us{" "}
+              </Link>
               <Link
                 href={"/blog"}
                 className={`${
@@ -402,20 +409,18 @@ function Navbar() {
               >
                 Blog Index
               </Link>
-              <Link
-                href={"/contactUs"}
-                className={`${
-                  pathname === "/contactUs" ? "border-b-2 border-[#6DBA16]" : ""
-                } font-semibold text-[15px] ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}
-              >
-                Contact Us
-              </Link>
             </div>
             <div className="w-[270px] lg:flex hidden items-center justify-between">
-              <FaFacebookF className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
-              <FaXTwitter className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
-              <FaYoutube className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
-              <FaTiktok className="text-black dark:text-white text-[16px] hover:text-[21px] duration-200" />
+              <a href="/" target="_blank" rel="noopener noreferrer">
+                <FaLinkedin className="text-black dark:text-white text-[20px] hover:text-[23px] duration-200" />
+              </a>
+              <a
+                href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
+                target="blank"
+                rel="noopener noreferrer"
+              >
+                <FaInstagram className="text-black dark:text-white text-[20px] hover:text-[23px] duration-200" />
+              </a>
               <button
                 className="bg-lime hover:bg-[black] hover:text-[white]  text-black duration-300 px-4 py-1 font-medium text-sm"
                 onClick={handleNewsletterSectionClick}
@@ -423,47 +428,16 @@ function Navbar() {
                 Newsletter
               </button>
               {/* <FaSearch className="text-black dark:text-white text-lg " /> */}
-              <SearchComponent />
+              {/* <SearchComponent /> */}
+              <Link href={`/searchComponent`}>
+              <FaSearch className="lg:text-black lg:dark:text-white text-white text-lg" />
+              </Link>
             </div>
             {openMarketing && (
               <HoverPanel openData={marketing} set={setOpenMarketing} />
             )}
             {openStartups && (
               <HoverPanel openData={startups} set={setOpenStartups} />
-            )}
-            {openPages && (
-              <div
-                className="p-5 absolute top-[28.2px] left-[260px] z-10"
-                onMouseEnter={() => setOpenPages(true)}
-                onMouseLeave={() => setOpenPages(false)}
-              >
-                <div className="bg-white border dark:border-none  dark:bg-[#191C20] h-[150px] w-[200px] flex flex-col p-5 text-[13.2px] space-y-3">
-                  <Link
-                    href={"/blog"}
-                    className="hover:text-[#89c742] duration-200"
-                  >
-                    Blog Index
-                  </Link>
-                  <Link
-                    href={"/contactUs"}
-                    className="hover:text-[#89c742] duration-200"
-                  >
-                    Contact Us
-                  </Link>
-                  <Link
-                    href={"/search"}
-                    className="hover:text-[#89c742] duration-200"
-                  >
-                    Search Page
-                  </Link>
-                  <Link
-                    href={"/404"}
-                    className="hover:text-[#89c742] duration-200"
-                  >
-                    404 Page
-                  </Link>
-                </div>
-              </div>
             )}
           </div>
         </div>
