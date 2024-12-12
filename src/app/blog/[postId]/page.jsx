@@ -313,6 +313,7 @@ function Post({ params }) {
                       layout="fill" // Ensures the image spans the container
                       objectFit="contain" // Matches the intended behavior for large images
                       className="object-contain"
+                      
                     />
                   </div>
                 )}
