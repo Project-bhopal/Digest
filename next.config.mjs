@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // assetPrefix : "https://startupdigest.in/",
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'api.startupdigest.in',
+        port: '',
+        pathname: '/uploads/**',
+        search: '',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

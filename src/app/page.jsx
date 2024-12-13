@@ -5,7 +5,6 @@ import { HiArrowLongRight } from "react-icons/hi2";
 import { PiArrowBendRightDownBold } from "react-icons/pi";
 import { IoStarSharp } from "react-icons/io5";
 import { FaHeart } from "react-icons/fa";
-import card1 from "@/assets/card1.webp"
 import "../css/swiperbg.css";
 
 import Recommendation from "@/components/Recommendation";
@@ -34,7 +33,7 @@ export default function Home() {
 
               <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
                 <Image  
-                  src={`/${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
+                  src={`${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
 
 
                   alt="Post Image"

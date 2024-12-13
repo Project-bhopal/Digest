@@ -49,7 +49,7 @@ export default function RootLayout({ children }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/posts/allpost/"
+          `${API_URL}/api/posts/allpost/`
         );
         const data = response.data.data;
         setPosts(data);

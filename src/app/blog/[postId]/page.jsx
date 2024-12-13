@@ -54,7 +54,7 @@ function Post({ params }) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/posts/allpost/${params.postId}`
+          `${API_URL}/api/posts/allpost/${params.postId}`
         );
 
         // Process the fetched data
@@ -119,7 +119,7 @@ function Post({ params }) {
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full h-[50vh] md:h-[80vh] mt-5">
           <Image
-            src={`/${postData.imagePost}`}
+            src={`${postData?.imagePost}`}
             alt="Post Image"
             layout="fill"
             objectFit="cover"
@@ -308,7 +308,7 @@ function Post({ params }) {
                 {content.contentType == "image" && (
                   <div className="relative min-w-[85vw] justify-self-center">
                     <Image
-                      src={`${content.imageUpload}`} // Fallback to a default image
+                      src={`${content?.imageUpload}`} // Fallback to a default image
                       alt="Content Image"
                       layout="fill" // Ensures the image spans the container
                       objectFit="contain" // Matches the intended behavior for large images

@@ -154,7 +154,7 @@ const CreatePost = () => {
     try {
       console.log(formData)
       const response = await axios.post(
-        "http://localhost:5000/api/posts/create",
+        `${API_URL}/api/posts/create`,
         postData,
         {
           headers: {
