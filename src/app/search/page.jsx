@@ -53,13 +53,14 @@ function Search() {
             <div className="lg:h-96 md:w-[312px]" key={index}>
               <div className="h-[50%]">
                 <div className="relative h-full w-full">
-                  <Image
+                  {/* <Image
+                  onError={(e) => console.error(e.target.id)}
                     alt="search image"
                     src={`${card?.image}`} // Fallback to a default image
                     layout="fill" // Ensures the image spans the container
                     objectFit="cover" // Matches the `object-cover` behavior
                     className="object-cover"
-                  />
+                  /> */}
                 </div>
               </div>
               <div className="h-[50%] border dark:border-gray-700 pt-4 px-2 space-y-3">

@@ -72,13 +72,14 @@ const SearchComponent = () => {
                     className="w-full flex items-center justify-between py-2 px-3 text-white border-b-[1px] border-gray-700"
                   >
                     <div className="relative h-14 w-16">
-                      <Image
+                      {/* <Image
+                      onError={(e) => console.error(e.target.id)}
                         src={`${item?.imagePost}`}is undefined
                         alt="Thumbnail"
                         layout="fill" 
                         objectFit="cover"
                         className="object-cover"
-                      />
+                      /> */}
                     </div>
                     <div className="w-[75%]">
                       <h1 className="p text-[18px] font-semibold text-white hover:text-black duration-200">

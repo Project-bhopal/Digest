@@ -9,7 +9,7 @@ const CreatePost = () => {
     { id: 1, type: "", items: [] },
   ]);
   const [formErrors, setFormErrors] = useState({});
-
+  const API_URL=process.env.NEXT_PUBLIC_API_URL;
   const inputHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;

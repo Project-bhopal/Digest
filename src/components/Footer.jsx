@@ -45,7 +45,7 @@ function Footer() {
               </h1>
             </div>
             <div className="md:w-auto w-full place-items-end">
-              <Image src={logo1} className="md:h-18 h-15 md:w-32 w-28 " />
+              {/* <Image onError={(e) => console.error(e.target.id)} src={`/${logo1}`} className="md:h-18 h-15 md:w-32 w-28 " /> */}
             </div>
           </div>
           <div className="border-t border-b border-lime py-2 h-auto w-full lg:text-[18px] text-[11px] font-bold ">

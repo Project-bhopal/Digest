@@ -8,13 +8,14 @@ const Card = ({ image, category, title, date }) => {
     <div className="bg-[#04031D] text-white overflow-hidden shadow-md h-full w-full cursor-pointer">
       {/* Image Section */}
       <div className="w-full h-[320px] relative">
-      <Image
+      {/* <Image
+      onError={(e) => console.error(e.target.id)}
         src={`${image}`} // Dynamic image path
         alt={title} // Alt text
         layout="fill" // Makes the image fill the container
         objectFit="cover" // Ensures the image covers the area without distortion
         className="object-cover"
-      />
+      /> */}
     </div>
 
       {/* Content Section */}

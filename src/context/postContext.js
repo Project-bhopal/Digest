@@ -1,6 +1,6 @@
 const { createContext, useState } = require("react");
 
 
-const PostContext = createContext();
+const PostContext = createContext("");
 
 export default PostContext;
