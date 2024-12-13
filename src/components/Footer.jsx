@@ -45,11 +45,15 @@ function Footer() {
               </h1>
             </div>
             <div className="md:w-auto w-full place-items-end">
-              {/* <Image onError={(e) => console.error(e.target.id)} src={`/${logo1}`} className="md:h-18 h-15 md:w-32 w-28 " /> */}
+              <Image
+                onError={(e) => console.error(e.target.id)}
+                src={logo1}
+                className="md:h-18 h-15 md:w-32 w-28 "
+              />
             </div>
           </div>
           <div className="border-t border-b border-lime py-2 h-auto w-full lg:text-[18px] text-[11px] font-bold ">
-            <div  className="w-fit flex flex-wrap gap-x-8 sm:gap-y-0 gap-y-2 ">
+            <div className="w-fit flex flex-wrap gap-x-8 sm:gap-y-0 gap-y-2 ">
               <Link
                 href={"/category/marketing"}
                 className="hover:text-lime ease-in-out duration-300"
@@ -83,24 +87,29 @@ function Footer() {
             </div>
           </div>
           <div className="lg:w-fit w-full container flex flex-wrap gap-1 py-5 ">
-            <a href="https://www.facebook.com/" target="blank"  className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center sm:p-3 p-1 space-x-2 sm:w-60 w-52  hover:shadow-lg transition-transform duration-300">
+            <a
+              href="https://www.facebook.com/"
+              target="blank"
+              className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center sm:p-3 p-1 space-x-2 sm:w-60 w-52  hover:shadow-lg transition-transform duration-300"
+            >
               <FaLinkedin className="text-3xl" />
               <div>
-                <p  className="text-sm font-bold">LinkedIn</p>
+                <p className="text-sm font-bold">LinkedIn</p>
                 <p className="text-xs">Follow</p>
               </div>
             </a>
 
-            <a href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5" target="blank " className="social-box bg-[#F11056] hover:bg-[#E52D38] text-white flex items-center sm:p-3 p-1 space-x-2 sm:w-60 w-52 hover:shadow-lg transition-transform duration-300">
+            <a
+              href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
+              target="blank "
+              className="social-box bg-[#F11056] hover:bg-[#E52D38] text-white flex items-center sm:p-3 p-1 space-x-2 sm:w-60 w-52 hover:shadow-lg transition-transform duration-300"
+            >
               <FaInstagram className="text-3xl" />
               <div>
                 <p className="text-sm font-bold">Instagram</p>
                 <p className="text-xs">Follow</p>
               </div>
             </a>
-
-            
-
           </div>
         </div>
       </div>

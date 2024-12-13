@@ -3,6 +3,9 @@ import { AiFillThunderbolt } from "react-icons/ai";
 import "../css/swiperbg.css";
 import Image from "next/image";
 import Link from "next/link";
+import card1 from '@/assets/card1.webp'
+import LoadingAnimation from "./Loading";
+
 
 const SectionsCard = ({
   Items,
@@ -47,14 +50,16 @@ const SectionsCard = ({
               >
                 {withImage && (
                   <div className="relative md:h-[135px] h-[90px] md:w-[180px] w-[120px]">
-                    {/* <Image
+                    {!item?.imagePost ? <LoadingAnimation/> :
+                    <Image
                     onError={(e) => console.error(e.target.id)}
-                      src={`${item?.imagePost}`} // Ensure a default image is used if `imagePost` is undefined
+                      src={`${item?.imagePost}` || `/${card1}`} // Ensure a default image is used if `imagePost` is undefined
                       alt={item?.postHeading}
                       layout="fill" // Makes the image fill the container dimensions
                       objectFit="cover" // Ensures the image covers the area without distortion
                       className="object-cover"
-                    /> */}
+                    />
+                    }
                   </div>
                 )}
                 <div className="w-full">

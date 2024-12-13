@@ -189,19 +189,19 @@ function Navbar() {
         <div className="flex justify-between">
           <MenuDrawer toggleDrawer={toggleDrawer} open={open} />
           <Link href={"/"}>
-            {/* <Image
+            <Image
             onError={(e) => console.error(e.target.id)}
               src={logo1}
               alt="logo"
               className="h-[120px] w-36 lg:block hidden"
-            /> */}
+            />
 
-            {/* <Image
+            <Image
             onError={(e) => console.error(e.target.id)}
               src={logo2}
               alt="logo"
               className="sm:h-10 h-6 sm:w-[150px] w-[80px] lg:hidden block sm:ms-10"
-            /> */}
+            />
           </Link>
           <div className="lg:hidden flex items-center gap-3">
             <button onClick={toggleDrawer(true)} aria-label="Search Icon">
@@ -356,8 +356,8 @@ function Navbar() {
               <Link
                 href={"/contactUs"}
                 className={`${
-                  pathname === "/pagess" ? "border-b-2 border-[#6DBA16]" : ""
-                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black text-white dark:text-white`}
+                  pathname === "/contactUs" ? "border-b-2 border-[#6DBA16]" : ""
+                } font-semibold text-[15px] hover:border-b-2 border-[#6DBA16] lg:text-black text-white dark:text-white w-[78px] `}
               >
                 Contact Us{" "}
               </Link>
@@ -397,7 +397,7 @@ function Navbar() {
               <Link
                 href={"/category/markettrends"}
                 className={`${
-                  pathname === "/category/market-trends"
+                  pathname === "/category/markettrends"
                     ? "border-b-2 border-[#6DBA16]"
                     : ""
                 } font-semibold text-[15px]  ease-in-out duration-300 lg:hidden block lg:text-black lg:dark:text-white text-white text-nowrap`}

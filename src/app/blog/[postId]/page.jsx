@@ -28,6 +28,7 @@ import Recommendation from "@/components/Recommendation";
 import axios from "axios";
 import PostContext from "@/context/postContext";
 import { useRouter } from "next/navigation";
+import LoadingAnimation from "@/components/Loading";
 
 function Post({ params }) {
   const [postData, setPostData] = useState({});
@@ -35,13 +36,14 @@ function Post({ params }) {
 
   const { recommendedSection } = useContext(PostContext);
 
-const API_URL=process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
   const copyToClipboard = () => {
     if (typeof window !== "undefined") {
       const currentUrl = window.location.href; // Get the current page's URL
-      navigator.clipboard.writeText(currentUrl) // Copy to clipboard
+      navigator.clipboard
+        .writeText(currentUrl) // Copy to clipboard
         .then(() => {
           alert("Page URL copied to clipboard!");
         })
@@ -119,14 +121,16 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
     <>
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full h-[50vh] md:h-[80vh] mt-5">
-          {/* <Image
-          onError={(e) => console.error(e.target.id)}
-            src={`${postData?.imagePost}`}
+          {!postData?.imagePost ? <LoadingAnimation/> : 
+          <Image
+            onError={(e) => console.error(e.target.id)}
+            src={`${postData?.imagePost}` || `/${card1}`}
             alt="Post Image"
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             className="h-full w-full"
-          /> */}
+          />
+          }
         </div>
 
         <div className="lg:w-[57%] md:w-[70%] w-[90%] space-y-7 text-black dark:text-white">
@@ -217,12 +221,12 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
               <p>6 min Read</p>
             </div>
             <div className="flex items-center space-x-4">
-              {/* <Image
+              <Image
               onError={(e) => console.error(e.target.id)}
-                src={`/${img}`}
+                src={img}
                 alt="Author"
                 className="w-14 h-14 rounded-full"
-              /> */}
+              />
               <div>
                 <p className="text-sm dark:text-gray-300">
                   By{" "}
@@ -310,7 +314,8 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
                 </p>
                 {content.contentType == "image" && (
                   <div className="relative min-w-[85vw] justify-self-center">
-                    {/* <Image
+                    {/* {!content?.imageUpload ? <LoadingAnimation/> :
+                    <Image
                     onError={(e) => console.error(e.target.id)}
                       src={`${content?.imageUpload}`} // Fallback to a default image
                       alt="Content Image"
@@ -318,7 +323,8 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
                       objectFit="contain" // Matches the intended behavior for large images
                       className="object-contain"
                       
-                    /> */}
+                    />
+                    } */}
                   </div>
                 )}
                 {content.contentType == "list" && (
@@ -417,7 +423,11 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
                 </a>
 
                 {/* Twitter Button */}
-                <a href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5" target="blank" className="relative group">
+                <a
+                  href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
+                  target="blank"
+                  className="relative group"
+                >
                   <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
                     <span className="md:text-xl text-lg">
                       <FaInstagram className="text-black" />
@@ -434,7 +444,10 @@ const API_URL=process.env.NEXT_PUBLIC_API_URL;
                 {/* Copy Link Button */}
                 <div className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-1 py-2 bg-gray-100 rounded hover:bg-gray-200">
-                    <span className="md:text-xl text-lg" onClick={copyToClipboard}>
+                    <span
+                      className="md:text-xl text-lg"
+                      onClick={copyToClipboard}
+                    >
                       <HiMiniLink className="text-black" />
                     </span>
                   </button>
