@@ -189,16 +189,19 @@ function Navbar() {
         <div className="flex justify-between">
           <MenuDrawer toggleDrawer={toggleDrawer} open={open} />
           <Link href={"/"}>
-            <Image
+            {/* <Image
+            onError={(e) => console.error(e.target.id)}
               src={logo1}
               alt="logo"
               className="h-[120px] w-36 lg:block hidden"
-            />
-            <Image
+            /> */}
+
+            {/* <Image
+            onError={(e) => console.error(e.target.id)}
               src={logo2}
               alt="logo"
               className="sm:h-10 h-6 sm:w-[150px] w-[80px] lg:hidden block sm:ms-10"
-            />
+            /> */}
           </Link>
           <div className="lg:hidden flex items-center gap-3">
             <button onClick={toggleDrawer(true)} aria-label="Search Icon">

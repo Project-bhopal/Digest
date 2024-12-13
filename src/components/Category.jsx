@@ -26,13 +26,14 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
               <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
                 {/* Image Section */}
                 <div className="relative w-full h-[400px]">
-                  <Image
+                  {/* <Image
+                  onError={(e) => console.error(e.target.id)}
                     src={`${recommendeddata?.image}`} // Fallback to a default image if `recommendeddata.image` is undefined
                     alt={recommendeddata.category} // Fallback alt text
                     layout="fill" // Makes the image span the parent container
                     objectFit="cover" // Matches `object-cover`
                     className="object-cover"
-                  />
+                  /> */}
                 </div>
 
                 {/* Content Section */}

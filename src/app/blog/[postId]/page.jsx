@@ -35,6 +35,7 @@ function Post({ params }) {
 
   const { recommendedSection } = useContext(PostContext);
 
+const API_URL=process.env.NEXT_PUBLIC_API_URL;
   const router = useRouter();
 
   const copyToClipboard = () => {
@@ -118,13 +119,14 @@ function Post({ params }) {
     <>
       <div className="w-full flex flex-col items-center">
         <div className="relative w-full h-[50vh] md:h-[80vh] mt-5">
-          <Image
+          {/* <Image
+          onError={(e) => console.error(e.target.id)}
             src={`${postData?.imagePost}`}
             alt="Post Image"
             layout="fill"
             objectFit="cover"
             className="h-full w-full"
-          />
+          /> */}
         </div>
 
         <div className="lg:w-[57%] md:w-[70%] w-[90%] space-y-7 text-black dark:text-white">
@@ -215,11 +217,12 @@ function Post({ params }) {
               <p>6 min Read</p>
             </div>
             <div className="flex items-center space-x-4">
-              <Image
-                src={img}
+              {/* <Image
+              onError={(e) => console.error(e.target.id)}
+                src={`/${img}`}
                 alt="Author"
                 className="w-14 h-14 rounded-full"
-              />
+              /> */}
               <div>
                 <p className="text-sm dark:text-gray-300">
                   By{" "}
@@ -307,14 +310,15 @@ function Post({ params }) {
                 </p>
                 {content.contentType == "image" && (
                   <div className="relative min-w-[85vw] justify-self-center">
-                    <Image
+                    {/* <Image
+                    onError={(e) => console.error(e.target.id)}
                       src={`${content?.imageUpload}`} // Fallback to a default image
                       alt="Content Image"
                       layout="fill" // Ensures the image spans the container
                       objectFit="contain" // Matches the intended behavior for large images
                       className="object-contain"
                       
-                    />
+                    /> */}
                   </div>
                 )}
                 {content.contentType == "list" && (

@@ -41,6 +41,8 @@ export default function RootLayout({ children }) {
   // Latest post for blogs page
   const [latestSection, setLatestSection] = useState([]);
 
+  const API_URL=process.env.NEXT_PUBLIC_API_URL;
+
   const handleShowMore = () => {
     setShowMore((prev) => prev + 8); // Increment showMore
   };

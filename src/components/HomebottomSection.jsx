@@ -21,13 +21,14 @@ function TodayandTrendingSection({
         <section className="space-y-5">
           {image ? (
             <div className="relative md:h-auto h-[440px] w-full">
-              <Image
+              {/* <Image
+              onError={(e) => console.error(e.target.id)}
                 src={`${image}`} // Fallback to a default image if `image` is undefined
                 alt="Dynamic Image"
                 layout="fill" // Ensures the image fills the container
                 objectFit="cover" // Matches the behavior of `w-full` and responsive height
                 className="object-cover h-full"
-              />
+              /> */}
             </div>
           ) : (
             <Link
@@ -69,13 +70,14 @@ function StartupSection({ postHeading, date, image }) {
       >
         <section className="space-y-5 h-full">
           <div className="relative h-full w-full -z-10">
-            <Image
+            {/* <Image
+            onError={(e) => console.error(e.target.id)}
               src={`${image}`} // Fallback to a default image if `image` is undefined
               alt={postHeading}
               layout="fill" // Ensures the image spans the entire container
               objectFit="cover" // Matches `object-cover` for background-like behavior
               priority // Ensures the image is loaded quickly if it's above the fold
-            />
+            /> */}
           </div>
 
           <div className="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
@@ -101,13 +103,14 @@ function SponsoredSection({ category, text, image, by }) {
     <>
       <div className="bg-[#04031D] lg:min-h-[580px]">
         <div className="relative lg:h-[360px] h-[300px] w-full">
-          <Image
+          {/* <Image
+          onError={(e) => console.error(e.target.id)}
             src={`${image}`} // Fallback to a default image
             alt="Responsive Image"
             layout="fill" // Ensures the image spans the container
             objectFit="cover" // Matches `object-cover` for fitting behavior
             className="object-cover"
-          />
+          /> */}
         </div>
         <div className="text-white lg:ps-[5%] ps-[2%] relative">
           <Link

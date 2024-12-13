@@ -32,7 +32,8 @@ export default function Home() {
             <Link href={`/blog/${trendingPost._id}`} className="w-full">
 
               <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
-                <Image  
+                {/* <Image  
+                onError={(e) => console.error(e.target.id)}
                   src={`${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
 
 
@@ -40,7 +41,7 @@ export default function Home() {
                   layout="fill" // Makes the image fill the container
                   objectFit="cover" // Ensures the image maintains its aspect ratio and covers the area
                   className=" lg:w-full w-full object-cover"
-                />
+                /> */}
               </div>
               <div className="text-white h-auto lg:ps-[5%] ps-[2%] relative">
                 <Link
@@ -129,13 +130,14 @@ export default function Home() {
           <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:h-[95.5%] h-[70%x] lg:w-[55%] w-full">
             <Link href={`/blog/${spotlightPost._id}`}>
               <div className="relative lg:h-[50%] w-full">
-                <Image
+                {/* <Image
+                onError={(e) => console.error(e.target.id)}
                   src={`${spotlightPost?.imagePost}`} // Fallback to a default image if `imagePost` is undefined
                   alt="Spotlight Post"
                   layout="fill" // Ensures the image fills the container
                   objectFit="contain" // Matches Tailwind's `object-contain`
                   className="object-contain lg:h-[50%] w-full" // Optional, matches styling for clarity
-                />
+                /> */}
               </div>
               <div className="text-black dark:text-white lg:ps-[5%] ps-[2%] relative">
                 <Link

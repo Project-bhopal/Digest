@@ -25,13 +25,14 @@ function Blog() {
           />
           <div className="bg-[#04031D] lg:h-[95.5%] h-fit lg:w-[55%] w-full lg:pb-0 pb-7">
             <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
-              <Image
+              {/* <Image
+              onError={(e) => console.error(e.target.id)}
                 src={`${trendingPost?.imagePost}`} // Fallback to a default image
                 alt="Trending Post Image"
                 layout="fill" // Makes the image fill the container
                 objectFit="cover" // Matches `object-cover` behavior
                 className="object-cover"
-              />
+              /> */}
             </div>
             <div className="text-white lg:ps-[5%] ps-[2%] relative">
               <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px] uppercase">
