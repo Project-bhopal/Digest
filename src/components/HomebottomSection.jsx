@@ -7,6 +7,7 @@ import card1 from "@/assets/card1.webp";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import PostContext from "@/context/postContext";
+import LoadingAnimation from "@/components/Loading";
 
 function TodayandTrendingSection({
   category,
@@ -20,15 +21,15 @@ function TodayandTrendingSection({
       <div className={` lg:py-4 py-1 dark:border-white mx-5`}>
         <section className="space-y-5">
           {image ? (
-            <div className="relative md:h-auto h-[440px] w-full">
-              {/* <Image
-              onError={(e) => console.error(e.target.id)}
+            <div className="relative md:h-[220px] sm:h-[420px] h-[200px] w-full">
+              <Image
+                onError={(e) => console.error(e.target.id)}
                 src={`${image}`} // Fallback to a default image if `image` is undefined
                 alt="Dynamic Image"
                 layout="fill" // Ensures the image fills the container
                 objectFit="cover" // Matches the behavior of `w-full` and responsive height
-                className="object-cover h-full"
-              /> */}
+                className="object-cover h-full w-full"
+              />
             </div>
           ) : (
             <Link
@@ -70,14 +71,16 @@ function StartupSection({ postHeading, date, image }) {
       >
         <section className="space-y-5 h-full">
           <div className="relative h-full w-full -z-10">
-            {/* <Image
-            onError={(e) => console.error(e.target.id)}
+            {!image? <LoadingAnimation/> : 
+            <Image
+              onError={(e) => console.error(e.target.id)}
               src={`${image}`} // Fallback to a default image if `image` is undefined
               alt={postHeading}
               layout="fill" // Ensures the image spans the entire container
               objectFit="cover" // Matches `object-cover` for background-like behavior
               priority // Ensures the image is loaded quickly if it's above the fold
-            /> */}
+            />
+             }
           </div>
 
           <div className="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
@@ -103,14 +106,16 @@ function SponsoredSection({ category, text, image, by }) {
     <>
       <div className="bg-[#04031D] lg:min-h-[580px]">
         <div className="relative lg:h-[360px] h-[300px] w-full">
-          {/* <Image
+          {!image ? <LoadingAnimation/> : 
+          <Image
           onError={(e) => console.error(e.target.id)}
             src={`${image}`} // Fallback to a default image
             alt="Responsive Image"
             layout="fill" // Ensures the image spans the container
             objectFit="cover" // Matches `object-cover` for fitting behavior
             className="object-cover"
-          /> */}
+          />
+          }
         </div>
         <div className="text-white lg:ps-[5%] ps-[2%] relative">
           <Link
@@ -124,7 +129,10 @@ function SponsoredSection({ category, text, image, by }) {
               {text}
             </p>
             <div className=" text-xs flex ps-2 pb-5">
-              <span className="flex gap-3">Sponsored by <Image src={""} alt="sponsored by" className="size-10"/></span>
+              <span className="flex gap-3">
+                Sponsored by{" "}
+                <Image src={""} alt="sponsored by" className="size-10" />
+              </span>
             </div>
           </div>
         </div>
@@ -145,7 +153,7 @@ function HomebottomSection() {
       [...posts]
         .filter((item) => item?.category === "tech moves")
         .sort(() => Math.random() - 0.5)
-        .slice(0, 10)
+        .slice(0, 3)
     );
     setStartups(
       [...posts]
@@ -157,11 +165,10 @@ function HomebottomSection() {
       [...posts]
         .filter((item) => item?.isSponsored === true)
         .sort(() => Math.random() - 0.5)
-        .slice(0, 3)
+        .slice(0, 4)
     );
   }, [posts]);
 
- 
   return (
     <>
       <div className="flex lg:flex-row flex-col lg:gap-3 gap-5 w-full">
@@ -172,7 +179,7 @@ function HomebottomSection() {
           </h2>
           {posts.map((item, index) => (
             <div className="" key={index}>
-              <Link href={`/blog/${item._id}`} className="w-full">
+              <Link href={`/blog/${item._id}`} className="h-auto w-full">
                 <TodayandTrendingSection
                   category={item?.category}
                   postHeading={item?.postHeading}

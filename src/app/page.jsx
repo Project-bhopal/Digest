@@ -15,6 +15,8 @@ import HomebottomSection from "@/components/HomebottomSection";
 import Link from "next/link";
 import { useContext,} from "react";
 import PostContext from "@/context/postContext";
+import card1 from "@/assets/card1.webp"
+import LoadingAnimation from "@/components/Loading";
 
 export default function Home() {
 
@@ -30,22 +32,23 @@ export default function Home() {
         <div className="lg:min-h-[110vh] w-full flex lg:flex-row flex-col mb-3">
           <div className="bg-[#04031D] min-h-fit lg:w-[55%] w-full lg:pb-0 pb-7">
             <Link href={`/blog/${trendingPost._id}`} className="w-full">
-
               <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
-                {/* <Image  
-                onError={(e) => console.error(e.target.id)}
-                  src={`${trendingPost?.imagePost}`} // Fallback for when imagePost is undefined
-
-
+                {!trendingPost.imagePost ? (<LoadingAnimation/>) : 
+                <Image
+                  onError={(e) => console.error(e.target.id)}
+                  src={`${trendingPost?.imagePost}` || `/${card1}`} // Fallback for when imagePost is undefined
                   alt="Post Image"
                   layout="fill" // Makes the image fill the container
-                  objectFit="cover" // Ensures the image maintains its aspect ratio and covers the area
+                  objectFit="contain" // Ensures the image maintains its aspect ratio and covers the area
                   className=" lg:w-full w-full object-cover"
-                /> */}
+                />
+                }
               </div>
               <div className="text-white h-auto lg:ps-[5%] ps-[2%] relative">
                 <Link
-                  href={`/category/${trendingPost?.category?.toLowerCase().replace(/[-\s]+/g, '')}`}
+                  href={`/category/${trendingPost?.category
+                    ?.toLowerCase()
+                    .replace(/[-\s]+/g, "")}`}
                   className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black hover:text-white font-semibold text-[10px] tracking-[1px] uppercase"
                 >
                   {trendingPost?.category}
@@ -100,7 +103,7 @@ export default function Home() {
                 Sign Up Now
               </button>
               <div className="space-x-2">
-                <input type="checkbox" name="checkbox" required/>
+                <input type="checkbox" name="checkbox" required />
                 <label
                   htmlFor="checkbox"
                   className="md:text-[14px] text-[12px]"
@@ -119,7 +122,7 @@ export default function Home() {
           }
           cardsData={recommendedSection}
         />
-        <div className="lg:min-h-[110vh]  flex lg:flex-row flex-col-reverse mt-16 lg:mx-0 mx-5">
+        <div className="lg:min-h-[110vh] flex lg:flex-row flex-col-reverse mt-16 lg:mx-0 mx-5 ">
           <SectionsCard
             Items={spotlightSection}
             section="Spotlight"
@@ -127,21 +130,25 @@ export default function Home() {
             withImage={true}
             imageFirst={true}
           />
-          <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:h-[95.5%] h-[70%x] lg:w-[55%] w-full">
-            <Link href={`/blog/${spotlightPost._id}`}>
-              <div className="relative lg:h-[50%] w-full">
-                {/* <Image
+          <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:h-[105vh]  lg:w-[55%] w-full">
+            <Link href={`/blog/${spotlightPost._id}`} className="w-full">
+              <div className="relative lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh] w-full">
+              {!spotlightPost?.imagePost ? (<LoadingAnimation/>) : 
+                <Image
                 onError={(e) => console.error(e.target.id)}
                   src={`${spotlightPost?.imagePost}`} // Fallback to a default image if `imagePost` is undefined
                   alt="Spotlight Post"
                   layout="fill" // Ensures the image fills the container
                   objectFit="contain" // Matches Tailwind's `object-contain`
                   className="object-contain lg:h-[50%] w-full" // Optional, matches styling for clarity
-                /> */}
+                />
+              }
               </div>
               <div className="text-black dark:text-white lg:ps-[5%] ps-[2%] relative">
                 <Link
-                  href={`/category/${spotlightPost?.category?.toLowerCase().replace(/[-\s]+/g, '')}`}
+                  href={`/category/${spotlightPost?.category
+                    ?.toLowerCase()
+                    .replace(/[-\s]+/g, "")}`}
                   className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] hover:text-white duration-150 text-black font-semibold text-[10px] tracking-[1px] uppercase"
                 >
                   {spotlightPost?.category}

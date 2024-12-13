@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaRegArrowAltCircleRight } from "react-icons/fa";
 import "@/css/swiperbg.css";
+import LoadingAnimation from "./Loading";
 
 function HoverPanel({ openData, set }) {
   return (
@@ -30,14 +31,16 @@ function HoverPanel({ openData, set }) {
               <Link href={`/blog/${card._id}`} key={index}>
                 <div className="h-full w-[240px] space-y-3" key={index}>
                   <div className="relative h-[135px] w-full">
-                    {/* <Image
+                    {!card?.imagePost? <LoadingAnimation/> : 
+                    <Image
                     onError={(e) => console.error(e.target.id)}
                       alt="Panel image"
                       src={`${card?.imagePost}`} // Fallback to a default image if `card.imagePost` is undefined
                       layout="fill" // Ensures the image spans the container
                       objectFit="cover" // Matches the styling of the original image
                       className="object-cover"
-                    /> */}
+                    />
+                    }
                   </div>
                   <h1 className="p text-xl text-black dark:text-white dark:hover:text-black font-bold leading-7">
                     {card.postHeading}

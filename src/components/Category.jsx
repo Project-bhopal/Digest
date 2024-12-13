@@ -5,8 +5,16 @@ import Advertisement from "./Advertisement";
 import Recommendation from "./Recommendation";
 import { HiArrowLongRight } from "react-icons/hi2";
 import Link from "next/link";
+import card1 from "@/assets/card1.webp";
+import LoadingAnimation from "./Loading";
 
-function Category({ category, para, recommendeddata, mustReaddata, handleShowMore }) {
+function Category({
+  category,
+  para,
+  recommendeddata,
+  mustReaddata,
+  handleShowMore,
+}) {
   return (
     <>
       <div>
@@ -26,14 +34,18 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
               <div className="bg-[#111511] h-full text-white overflow-hidden shadow-md w-full cursor-pointer">
                 {/* Image Section */}
                 <div className="relative w-full h-[400px]">
-                  {/* <Image
-                  onError={(e) => console.error(e.target.id)}
-                    src={`${recommendeddata?.image}`} // Fallback to a default image if `recommendeddata.image` is undefined
-                    alt={recommendeddata.category} // Fallback alt text
-                    layout="fill" // Makes the image span the parent container
-                    objectFit="cover" // Matches `object-cover`
-                    className="object-cover"
-                  /> */}
+                  {!recommendeddata?.image ? (
+                    <LoadingAnimation />
+                  ) : (
+                    <Image
+                      onError={(e) => console.error(e.target.id)}
+                      src={`${recommendeddata?.image}` || `/${card1}`} // Fallback to a default image if `recommendeddata.image` is undefined
+                      alt={recommendeddata.category} // Fallback alt text
+                      layout="fill" // Makes the image span the parent container
+                      objectFit="cover" // Matches `object-cover`
+                      className="object-cover"
+                    />
+                  )}
                 </div>
 
                 {/* Content Section */}
@@ -48,7 +60,9 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
                     {recommendeddata.title}
                   </h2>
 
-                  <div className={`text-white text-xs flex gap-2 mt-3 sm:ms-5 ms-2`}>
+                  <div
+                    className={`text-white text-xs flex gap-2 mt-3 sm:ms-5 ms-2`}
+                  >
                     By{" "}
                     <span className="text-white font-bold">
                       {recommendeddata.author}
@@ -69,7 +83,10 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
           cardsData={mustReaddata}
         />
         <div className="mt-5 w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6" onClick={()=>handleShowMore()}>
+          <button
+            className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6"
+            onClick={() => handleShowMore()}
+          >
             Show More
           </button>
         </div>
