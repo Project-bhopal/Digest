@@ -4,21 +4,17 @@ import Drawer from "@mui/material/Drawer";
 import { TbMenuDeep } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import "@/css/Drawer.css";
 import {
-  FaFacebookF,
   FaInstagram,
   FaLinkedin,
   FaRegArrowAltCircleRight,
   FaSearch,
-  FaTiktok,
-  FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
 import SectionsCard from "./SectionsCard.jsx";
 import { HiArrowLongRight } from "react-icons/hi2";
-import { FaXTwitter } from "react-icons/fa6";
 import PostContext from "@/context/postContext.js";
 
 export default function MenuDrawer({ toggleDrawer, open }) {

@@ -15,7 +15,7 @@ function Developer() {
             <div className="relative w-40 h-40 md:w-64 md:h-64">
               <div className="absolute inset-0 border-4 border-blue-400 rounded-lg transform translate-x-4 translate-y-4"></div>
               <Image
-                src="/profile-pic.jpg" // Replace with the actual image path
+                src={""} // Replace with the actual image path
                 alt="Profile Picture"
                 className="rounded-lg"
                 fill
@@ -47,7 +47,7 @@ function Developer() {
             <div className="relative w-40 h-40 md:w-64 md:h-64">
               <div className="absolute inset-0 border-4 border-blue-400 rounded-lg transform translate-x-4 translate-y-4"></div>
               <Image
-                src="/profile-pic.jpg" // Replace with the actual image path
+                src={""} // Replace with the actual image path
                 alt="Profile Picture"
                 className="rounded-lg"
                 fill

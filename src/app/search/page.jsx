@@ -55,7 +55,7 @@ function Search() {
                 <div className="relative h-full w-full">
                   <Image
                     alt="search image"
-                    src={card.image || "/default-image.jpg"} // Fallback to a default image
+                    src={`${card?.image}`} // Fallback to a default image
                     layout="fill" // Ensures the image spans the container
                     objectFit="cover" // Matches the `object-cover` behavior
                     className="object-cover"

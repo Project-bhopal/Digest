@@ -73,7 +73,7 @@ const SearchComponent = () => {
                   >
                     <div className="relative h-14 w-16">
                       <Image
-                        src={item.imagePost}is undefined
+                        src={`${item?.imagePost}`}is undefined
                         alt="Thumbnail"
                         layout="fill" 
                         objectFit="cover"

@@ -27,7 +27,7 @@ function Category({ category, para, recommendeddata, mustReaddata, handleShowMor
                 {/* Image Section */}
                 <div className="relative w-full h-[400px]">
                   <Image
-                    src={`${recommendeddata.image}`} // Fallback to a default image if `recommendeddata.image` is undefined
+                    src={`${recommendeddata?.image}`} // Fallback to a default image if `recommendeddata.image` is undefined
                     alt={recommendeddata.category} // Fallback alt text
                     layout="fill" // Makes the image span the parent container
                     objectFit="cover" // Matches `object-cover`
