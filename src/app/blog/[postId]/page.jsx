@@ -127,7 +127,7 @@ function Post({ params }) {
             src={`${postData?.imagePost}` || `/${card1}`}
             alt="Post Image"
             layout="fill"
-            objectFit="contain"
+            objectFit="fill"
             className="h-full w-full"
           />
           }
