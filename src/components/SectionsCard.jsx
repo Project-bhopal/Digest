@@ -56,7 +56,7 @@ const SectionsCard = ({
                       src={`${item?.imagePost}` || `/${card1}`} // Ensure a default image is used if `imagePost` is undefined
                       alt={item?.postHeading}
                       layout="fill" // Makes the image fill the container dimensions
-                      objectFit="cover" // Ensures the image covers the area without distortion
+                      objectFit="fill" // Ensures the image covers the area without distortion
                       className="object-cover"
                     />
                     }

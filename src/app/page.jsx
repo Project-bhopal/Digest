@@ -39,7 +39,7 @@ export default function Home() {
                   src={`${trendingPost?.imagePost}` || `/${card1}`} // Fallback for when imagePost is undefined
                   alt="Post Image"
                   layout="fill" // Makes the image fill the container
-                  objectFit="contain" // Ensures the image maintains its aspect ratio and covers the area
+                  objectFit="fill" // Ensures the image maintains its aspect ratio and covers the area
                   className=" lg:w-full w-full object-cover"
                 />
                 }
