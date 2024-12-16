@@ -94,7 +94,7 @@ function Footer() {
             >
               <FaLinkedin className="text-3xl" />
               <div>
-                <p className="text-sm font-bold">LinkedIn</p>
+                <p className="text-sm font-bold">Linkedin</p>
                 <p className="text-xs">Follow</p>
               </div>
             </a>

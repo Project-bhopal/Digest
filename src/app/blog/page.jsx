@@ -33,7 +33,7 @@ function Blog() {
                 src={`${trendingPost?.imagePost}` || `/${card1}`} // Fallback to a default image
                 alt="Trending Post Image"
                 layout="fill" // Makes the image fill the container
-                objectFit="cover" // Matches `object-cover` behavior
+                objectFit="fill" // Matches `object-cover` behavior
                 className="object-cover"
               />
               }
