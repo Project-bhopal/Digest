@@ -137,9 +137,9 @@ function ContactUs() {
                   &nbsp;
                   <span className="text-sm font-thin text-gray-300"> | </span>
                   &nbsp;
-                  <p className="text-base font-bold">Facebook</p>
+                  <p className="text-base font-bold">Linkedin</p>
                 </div>
-                <p className="text-sm font-medium">Like</p>
+                <p className="text-sm font-medium">Follow</p>
               </a>
 
               <a
@@ -152,7 +152,7 @@ function ContactUs() {
                   &nbsp;
                   <span className="text-sm font-thin text-gray-300"> | </span>
                   &nbsp;
-                  <p className="text-base font-bold">Twitter</p>
+                  <p className="text-base font-bold">Instagram</p>
                 </div>
                 <p className="text-sm font-medium">Follow</p>
               </a>
