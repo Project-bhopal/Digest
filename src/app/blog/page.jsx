@@ -9,6 +9,7 @@ import PostContext from "@/context/postContext";
 import { useContext } from "react";
 import card1 from '@/assets/card1.webp'
 import LoadingAnimation from "@/components/Loading";
+import Link from "next/link";
 
 function Blog() {
   const { trendingPost, mustReadSection, latestSection, handleShowMore } =
@@ -26,6 +27,7 @@ function Blog() {
             imageFirst={true}
           />
           <div className="bg-[#04031D] lg:h-[95.5%] h-fit lg:w-[55%] w-full lg:pb-0 pb-7">
+            <Link href={`/blog/${trendingPost?._id}` } className="w-full">
             <div className="relative w-full lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh]">
               {!trendingPost?.imagePost ? <LoadingAnimation/> : 
               <Image
@@ -38,6 +40,7 @@ function Blog() {
               />
               }
             </div>
+            
             <div className="text-white lg:ps-[5%] ps-[2%] relative">
               <span className="absolute top-[-18px] py-1 px-2 bg-[#C2FF74] text-black font-semibold text-[10px] tracking-[1px] uppercase">
                 {trendingPost.category}
@@ -56,6 +59,7 @@ function Blog() {
                 </div>
               </div>
             </div>
+            </Link>
           </div>
         </div>
         <Advertisement />
