@@ -432,7 +432,7 @@ function Navbar() {
               </button>
               {/* <FaSearch className="text-black dark:text-white text-lg " /> */}
               {/* <SearchComponent /> */}
-              <Link href={`/searchComponent`}>
+              <Link href={`/search`}>
               <FaSearch className="lg:text-black lg:dark:text-white text-white text-lg" />
               </Link>
             </div>

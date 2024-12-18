@@ -3,8 +3,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { TbMenuDeep } from "react-icons/tb";
 import { RxCross2 } from "react-icons/rx";
-
-import { useContext} from "react";
+import { useContext, useState } from "react";
 import "@/css/Drawer.css";
 import {
   FaInstagram,
@@ -16,9 +15,26 @@ import Link from "next/link";
 import SectionsCard from "./SectionsCard.jsx";
 import { HiArrowLongRight } from "react-icons/hi2";
 import PostContext from "@/context/postContext.js";
+import { useRouter } from "next/navigation.js";
 
 export default function MenuDrawer({ toggleDrawer, open }) {
   const { trendingSection } = useContext(PostContext);
+  const router = useRouter();
+  const [query, setQuery] = useState("");
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    router.push("/search");
+    toggleDrawer(false);
+    // Prevent the default form submission
+    // router.push(`/search?query=${query}`); // Navigate to "/search" with the query parameter
+  };
+
+  // const handleIconClick = () => {
+  //   if (query.trim()) {
+  //     router.push(`/search?query=${query}`); // Navigate on button click
+  //   }
+  // };
 
   const DrawerList = (
     <div className="h-full w-[100%]">
@@ -34,14 +50,23 @@ export default function MenuDrawer({ toggleDrawer, open }) {
             <h1 className="text-white">Search</h1>
             <div className="w-full flex items-center p-2 gap-2 border-[0.5px] border-gray-600">
               <FaSearch className="text-gray-400 text-lg font-semibold" />
-              <form className="w-full">
+              <form
+                className="w-full"
+                onSubmit={(e) => {
+                  handleFormSubmit(e);
+                }}
+              >
                 <input
                   type="text"
+                  onChange={(e) => setQuery(e.target.value)} // Update query state
                   placeholder="Search Headlines, News..."
                   className="w-full bg-transparent placeholder:text-sm placeholder:text-gray-300 outline-none text-white "
                 />
               </form>
-              <FaRegArrowAltCircleRight className="text-white hover:text-lime duration-100" />
+              <FaRegArrowAltCircleRight
+                className="text-white hover:text-lime duration-100"
+                // onClick={handleIconClick}
+              />
             </div>
           </div>
           <div className="text-gray-200 space-y-2">
@@ -124,18 +149,14 @@ export default function MenuDrawer({ toggleDrawer, open }) {
           <h1 className="text-gray-200 text-xl font-bold">Follow Us</h1>
           <div className="flex items-center gap-5">
             <a href="/" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin
-                className="text-white text-[25px] duration-200"
-              />
+              <FaLinkedin className="text-white text-[25px] duration-200" />
             </a>
             <a
               href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram
-                className="text-white text-[25px] duration-200"
-              />
+              <FaInstagram className="text-white text-[25px] duration-200" />
             </a>
           </div>
         </div>

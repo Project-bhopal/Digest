@@ -1,16 +1,18 @@
 "use client";
 import { FaRegArrowAltCircleRight, FaSearch } from "react-icons/fa";
-import card1 from "@/assets/card1.webp";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import PostContext from "@/context/postContext";
 import Link from "next/link";
 import LoadingAnimation from "@/components/Loading";
+import { useRouter } from "next/navigation";
 
 function Search() {
   const [recommendedSection, setRecommendedSection] = useState([]);
   const { posts } = useContext(PostContext);
+  
 
+  
   useEffect(() => {
     setRecommendedSection(
       [...posts].sort(() => Math.random() - 0.5).slice(0, 8)
@@ -48,7 +50,7 @@ function Search() {
             </div>
           </div>
         </div>
-        <div className="mt-10 grid lg:grid-cols-4 md:grid-cols-3 justify-between gap-[10px]">
+        <div className="mt-10 flex flex-wrap justify-between gap-[10px]">
           {openMarketingData.cards.map((card, index) => (
             <Link href={`/blog/${card._id}`}>
             <div className="lg:h-96 md:w-[312px]" key={index}>
@@ -60,11 +62,11 @@ function Search() {
                     alt="search image"
                     src={`${card?.image}`} // Fallback to a default image
                     layout="fill" // Ensures the image spans the container
-                    objectFit="cover" // Matches the `object-cover` behavior
+                    objectFit="fill" // Matches the `object-cover` behavior
                     className="object-cover"
                   />
                   }
-                </div>
+                </div>  
               </div>
               <div className="h-[50%] border dark:border-gray-700 pt-4 px-2 space-y-3">
                 <h1 className="p text-2xl text-black dark:text-white dark:hover:text-black font-bold leading-7">
