@@ -142,10 +142,10 @@ function Post({ params }) {
           >
             {postData.category}
           </Link>
-          <h1 className=" font-bold lg:text-[50px] md:text-[38px] text-[30px]">
+          <h1 className=" font-bold lg:text-[50px] md:text-[38px] text-[25px] lg:leading-[60px] md:leading-[40px] leading-8">
             {postData.postHeading}
           </h1>
-          <p className=" md:text-base text-[15px]">{postData.subheading}</p>
+          <p className=" md:text-base text-[14px]">{postData.subheading}</p>
           <div className="h-40 border-t-4 flex flex-col justify-around border-b-4 pb-4">
             <div className="flex md:flex-row flex-col items-center md:gap-5 ">
               <div className="Container w-fit flex items-center gap-5">
@@ -245,7 +245,7 @@ function Post({ params }) {
             <span className="text-8xl font-bold align-text-top mt-[-20px]">
               {}
             </span>
-            <h1 className="text-[17px] leading-7">{postDescription1}</h1>
+            <h1 className="md:text-[17px] text-[14px] ">{postDescription1}</h1>
           </div>
           <Accordion defaultExpanded className="bg-white dark:bg-[#04031D]">
             <AccordionSummary
@@ -277,7 +277,7 @@ function Post({ params }) {
                           {index + 1}
                         </div>
                         {/* Article Text */}
-                        <p className="text-gray-800 dark:text-gray-200 font-bold group-hover:text-[#6DBA16] duration-200">
+                        <p className="text-gray-800 md:text-base text-[14px] dark:text-gray-200 font-bold group-hover:text-[#6DBA16] duration-200">
                           {content.contentHeading}
                         </p>
                       </div>
@@ -287,7 +287,7 @@ function Post({ params }) {
             </AccordionDetails>
           </Accordion>
           <div>
-            <p className="text-[17px] leading-7">{postDescription2}</p>
+            <p className="md:text-[17px] text-[14px] md:leading-7 leading-5">{postDescription2}</p>
           </div>
           {/* <div className="w-full flex flex-col items-center text-center space-y-3 font-bold py-10">
             <div className="w-[88%]">
@@ -304,27 +304,27 @@ function Post({ params }) {
           {Array.isArray(postData.contentSections) &&
             postData.contentSections.map((content, index) => (
               <div
-                className="w-full space-y-6"
+                className="w-full md:space-y-6 space-y-4"
                 key={index}
                 ref={(el) => (sectionRefs.current[index] = el)}
               >
-                <h1 className="text-3xl font-bold">{content.contentHeading}</h1>
-                <p className="text-[17px] leading-7">
+                <h1 className="md:text-3xl text-lg font-bold">{content.contentHeading}</h1>
+                <p className="md:text-[17px] text-[14px] md:leading-7 leading-5">
                   {content.descriptionParts?.[0]}
                 </p>
-                {content.contentType == "image" && (
-                  <div className="relative min-w-[85vw] justify-self-center">
-                    {/* {!content?.imageUpload ? <LoadingAnimation/> :
+                {content.contentType === "image" && (
+                  <div className="relative md:h-[70vh] h-[50vh] sm:min-w-[70vw] w-full justify-self-center">
+                    {!content?.imageUpload ? <LoadingAnimation/> :
                     <Image
-                    onError={(e) => console.error(e.target.id)}
-                      src={`${content?.imageUpload}`} // Fallback to a default image
+                      onError={(e) => console.error(e.target.id)}
+                      src={`${content?.imageUpload}`|| `/${card1}`}
                       alt="Content Image"
-                      layout="fill" // Ensures the image spans the container
-                      objectFit="contain" // Matches the intended behavior for large images
-                      className="object-contain"
-                      
+                      layout="fill"
+                      objectFit="fill"
+                      className="object-contain h-full w-full"
                     />
-                    } */}
+                    
+                    }
                   </div>
                 )}
                 {content.contentType == "list" && (
@@ -351,7 +351,7 @@ function Post({ params }) {
                     </div>
                   </div>
                 )}
-                <p className="text-[17px] leading-7">
+                <p className="md:text-[17px] text-[14px] md:leading-7 leading-5">
                   {content.descriptionParts?.[1]}
                 </p>
               </div>
