@@ -189,7 +189,7 @@ function HomebottomSection() {
             </div>
           ))}
         </div>
-        <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
+        {/* <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
           <h2 className="text-3xl font-bold flex items-center mb-4">
             <span className="lg:text-3xl sm:text-5xl text-2xl ">
               🔔 Sponsored
@@ -206,7 +206,7 @@ function HomebottomSection() {
               />
             </Link>
           ))}
-        </div>
+        </div> */}
         <div className="lg:w-[50%] w-full lg:mt-0 mt-10">
           <div>
             <h2 className="text-3xl font-bold flex items-center ms-6 lg:mb-0 mb-5">

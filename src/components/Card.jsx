@@ -18,7 +18,7 @@ const Card = ({ image, category, title, date }) => {
             src={`${image}` || `/${card1}`} // Dynamic image path
             alt={title} // Alt text
             layout="fill" // Makes the image fill the container
-            objectFit="fill" // Ensures the image covers the area without distortion
+            objectFit="cover" // Ensures the image covers the area without distortion
             className="object-cover"
           />
         )}
