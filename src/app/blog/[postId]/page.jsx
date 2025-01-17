@@ -127,8 +127,8 @@ function Post({ params }) {
             src={`${postData?.imagePost}` || `/${card1}`}
             alt="Post Image"
             layout="fill"
-            objectFit="fill"
-            className="h-full w-full"
+            objectFit="contain"
+            className="h-full w-full "
           />
           }
         </div>
@@ -357,9 +357,8 @@ function Post({ params }) {
               </div>
             ))}
 
-          <div className="border-t border-gray-300 py-6">
-            {/* Tags, Sources, Via Section */}
-            <div className="space-y-2">
+          <div className="border-t border-gray-900 py-6">
+            {/* <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <span className="flex items-center gap-1">
                   {" "}
@@ -394,9 +393,8 @@ function Post({ params }) {
                   ThemeRuby, MarsNews
                 </Link>
               </div>
-            </div>
+            </div> */}
 
-            {/* Share Section */}
             <div className="mt-6 flex items-center justify-between">
               <div className="flex items-center gap-1">
                 <span>
@@ -407,7 +405,6 @@ function Post({ params }) {
                 </h3>
               </div>
               <div className="Container flex items-center md:space-x-4 space-x-2 mt-4">
-                {/* Facebook Button */}
                 <a href="" target="blank" className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
                     <span className="md:text-xl text-lg">
@@ -422,7 +419,6 @@ function Post({ params }) {
                   </div>
                 </a>
 
-                {/* Twitter Button */}
                 <a
                   href="https://www.instagram.com/startupdigest.in/profilecard/?igsh=MTd0eWdlNHZyN2I5"
                   target="blank"
@@ -468,8 +464,7 @@ function Post({ params }) {
               </div>
             </div>
           </div>
-          <div className=" mx-auto p-4">
-            {/* Header */}
+          {/* <div className=" mx-auto p-4">
             <h2 className="text-2xl font-bold flex items-center">
               <span className="mr-2">
                 <TfiThought />
@@ -481,9 +476,7 @@ function Post({ params }) {
               marked <span className="text-red-500">*</span>
             </p>
 
-            {/* Form */}
             <form className="mt-4 space-y-4">
-              {/* Comment Textarea */}
               <div>
                 <textarea
                   className="w-full border border-black text-black p-3 h-52 outline-none"
@@ -492,7 +485,6 @@ function Post({ params }) {
                 ></textarea>
               </div>
 
-              {/* Input Fields */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <input
                   type="text"
@@ -513,7 +505,6 @@ function Post({ params }) {
                 />
               </div>
 
-              {/* Checkbox */}
               <div className="flex items-center space-x-2">
                 <input
                   type="checkbox"
@@ -525,7 +516,6 @@ function Post({ params }) {
                 </label>
               </div>
 
-              {/* Submit Button */}
               <div>
                 <button
                   type="submit"
@@ -535,7 +525,7 @@ function Post({ params }) {
                 </button>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
         <Recommendation
           label="You Might Also like"
