@@ -52,8 +52,8 @@ function Search() {
         </div>
         <div className="mt-10 flex flex-wrap justify-between gap-[10px]">
           {openMarketingData.cards.map((card, index) => (
-            <Link href={`/blog/${card._id}`}>
-            <div className="lg:h-96 md:w-[312px]" key={index}>
+            <Link href={`/blog/${card._id}`} key={index}>
+            <div className="lg:h-96 md:w-[312px]" >
               <div className="h-[50%]">
                 <div className="relative h-full w-full">
                   {!card?.image ? <LoadingAnimation/> : 
