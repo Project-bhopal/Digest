@@ -67,26 +67,28 @@ function StartupSection({ postHeading, date, image }) {
   return (
     <>
       <div
-        className={`  h-[350px]  lg:py-4 py-1 dark:border-white mx-5 relative `}
+        className={`  h-[380px]  lg:py-4 py-1 dark:border-white mx-5 relative `}
       >
         <section className="space-y-5 h-full">
           <div className="relative h-full w-full -z-10">
-            {!image? <LoadingAnimation/> : 
-            <Image
-              onError={(e) => console.error(e.target.id)}
-              src={`${image}`} // Fallback to a default image if `image` is undefined
-              alt={postHeading}
-              layout="fill" // Ensures the image spans the entire container
-              objectFit="cover" // Matches `object-cover` for background-like behavior
-              priority // Ensures the image is loaded quickly if it's above the fold
-            />
-             }
+            {!image ? (
+              <LoadingAnimation />
+            ) : (
+              <Image
+                onError={(e) => console.error(e.target.id)}
+                src={`${image}`} // Fallback to a default image if `image` is undefined
+                alt={postHeading}
+                layout="fill" // Ensures the image spans the entire container
+                objectFit="cover" // Matches `object-cover` for background-like behavior
+                priority // Ensures the image is loaded quickly if it's above the fold
+              />
+            )}
           </div>
 
-          <div className="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4">
+          <div className="h-full w-full absolute bottom-0 inset-0 bg-gradient-to-t from-black via-transparent to-transparent flex flex-col justify-end p-4 pb-8">
             <div className="h-full flex flex-col justify-end">
               <div className="flex items-center">
-                <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8 ">
+                <p className="p text-white hover:text-black dark:hover:text-black duration-200 lg:text-[26px] md:text-[28px] text-[24px] font-[700] cursor-pointer leading-8">
                   <span>{postHeading}</span>
                 </p>
               </div>
@@ -106,16 +108,18 @@ function SponsoredSection({ category, text, image, by }) {
     <>
       <div className="bg-[#04031D] lg:min-h-[580px]">
         <div className="relative lg:h-[360px] h-[300px] w-full">
-          {!image ? <LoadingAnimation/> : 
-          <Image
-          onError={(e) => console.error(e.target.id)}
-            src={`${image}`} // Fallback to a default image
-            alt="Responsive Image"
-            layout="fill" // Ensures the image spans the container
-            objectFit="cover" // Matches `object-cover` for fitting behavior
-            className="object-cover"
-          />
-          }
+          {!image ? (
+            <LoadingAnimation />
+          ) : (
+            <Image
+              onError={(e) => console.error(e.target.id)}
+              src={`${image}`} // Fallback to a default image
+              alt="Responsive Image"
+              layout="fill" // Ensures the image spans the container
+              objectFit="cover" // Matches `object-cover` for fitting behavior
+              className="object-cover"
+            />
+          )}
         </div>
         <div className="text-white lg:ps-[5%] ps-[2%] relative">
           <Link
@@ -177,7 +181,7 @@ function HomebottomSection() {
             <HiArrowLongRight className="sm:text-5xl text-2xl" /> &nbsp;
             <span className="lg:text-3xl sm:text-5xl text-2xl"> Today</span>
           </h2>
-          {posts.map((item, index) => (
+          {posts.slice(0, 13).map((item, index) => (
             <div className="" key={index}>
               <Link href={`/blog/${item._id}`} className="h-auto w-full">
                 <TodayandTrendingSection
@@ -189,24 +193,26 @@ function HomebottomSection() {
             </div>
           ))}
         </div>
-        {/* <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
-          <h2 className="text-3xl font-bold flex items-center mb-4">
-            <span className="lg:text-3xl sm:text-5xl text-2xl ">
-              🔔 Sponsored
-            </span>
-          </h2>
-          {sponsored.map((item, index) => (
-            <Link href={`blog/${item._id}`} key={index}>
-              <SponsoredSection
-                label={item.category}
-                text={item.postHeading}
-                image={item.imagePost}
-                by={item.companyLogo}
-                category={item.category}
-              />
-            </Link>
-          ))}
-        </div> */}
+        {!sponsored && (
+          <div className="lg:mx-0 mx-5 lg:mt-0 mt-10">
+            <h2 className="text-3xl font-bold flex items-center mb-4">
+              <span className="lg:text-3xl sm:text-5xl text-2xl ">
+                🔔 Sponsored
+              </span>
+            </h2>
+            {sponsored.map((item, index) => (
+              <Link href={`blog/${item._id}`} key={index}>
+                <SponsoredSection
+                  label={item.category}
+                  text={item.postHeading}
+                  image={item.imagePost}
+                  by={item.companyLogo}
+                  category={item.category} 
+                />
+              </Link>
+            ))}
+          </div>
+        )}
         <div className="lg:w-[50%] w-full lg:mt-0 mt-10">
           <div>
             <h2 className="text-3xl font-bold flex items-center ms-6 lg:mb-0 mb-5">
