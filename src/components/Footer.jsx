@@ -88,7 +88,7 @@ function Footer() {
           </div>
           <div className="lg:w-fit w-full container flex flex-wrap gap-1 py-5 ">
             <a
-              href="https://www.facebook.com/"
+              href="https://www.linkedin.com/in/startup-digest-61169633b/"
               target="blank"
               className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center sm:p-3 p-1 space-x-2 sm:w-60 w-52  hover:shadow-lg transition-transform duration-300"
             >

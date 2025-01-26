@@ -65,13 +65,13 @@ function Navbar() {
       [...posts]
         .filter((item) => item?.category === "marketing")
         .sort(() => Math.random() - 0.5)
-        .slice(0, 5)
+        .slice(-5)
     );
     setStartups(
       [...posts]
         .filter((item) => item?.category === "startups")
         .sort(() => Math.random() - 0.5)
-        .slice(0, 5)
+        .slice(-5)
     );
   }, [posts]);
 
@@ -414,7 +414,7 @@ function Navbar() {
               </Link>
             </div>
             <div className="w-[270px] lg:flex hidden items-center justify-between">
-              <a href="/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/startup-digest-61169633b/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin className="text-black dark:text-white text-[20px] hover:text-[23px] duration-200" />
               </a>
               <a

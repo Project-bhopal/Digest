@@ -128,7 +128,7 @@ function ContactUs() {
           <div className="lg:w-auto w-full flex justify-center items-center ">
             <div className="w-fit container flex flex-col space-y-1.5 pt-5 h-fit">
               <a
-                href="/"
+                href="https://www.linkedin.com/in/startup-digest-61169633b/"
                 target="blank"
                 className="social-box bg-blue-400 hover:bg-blue-600 text-white flex items-center justify-between px-3 py-2 space-x-2 sm:w-[360px] w-[270px] hover:shadow-lg transition-transform duration-300"
               >

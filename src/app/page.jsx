@@ -130,7 +130,7 @@ export default function Home() {
             withImage={true}
             imageFirst={true}
           />
-          <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:h-[105vh]  lg:w-[55%] w-full">
+          <div className="bg-[#DEFFB5] dark:bg-[#04031D] lg:min-h-[105vh]  lg:w-[55%] w-full">
             <Link href={`/blog/${spotlightPost._id}`} className="w-full">
               <div className="relative lg:h-[50%] md:h-[80vh] sm:h-[70vh] h-[50vh] w-full">
               {!spotlightPost?.imagePost ? (<LoadingAnimation/>) : 
