@@ -414,7 +414,7 @@ function Navbar() {
               </Link>
             </div>
             <div className="w-[270px] lg:flex hidden items-center justify-between">
-              <a href="https://www.linkedin.com/in/startup-digest-61169633b/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/105723566/admin/dashboard/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin className="text-black dark:text-white text-[20px] hover:text-[23px] duration-200" />
               </a>
               <a

@@ -1,14 +1,10 @@
 "use client";
+import Login from "@/components/login";
 import axios from "axios";
 import { useState } from "react";
 
 const CreatePost = () => {
-  const [isAdmin, setIsAdmin] = useState(true)
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
-  const [mobile, setMobile] = useState('');
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const [isSponsored, setIsSponsored] = useState(false);
   const [postData, setPostData] = useState({});
@@ -18,13 +14,11 @@ const CreatePost = () => {
   const [formErrors, setFormErrors] = useState({});
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-
   const inputHandler = (event) => {
     const name = event.target.name;
     const value = event.target.value;
     if (name == "imagePost") {
       const file = event.target.files[0];
-      console.log(file)
       setPostData((values) => ({ ...values, [name]: file }));
       return;
     }
@@ -86,9 +80,10 @@ const CreatePost = () => {
 
         if (name === "imageUpload[]") {
           const file = files[0];
+          console.log(file);
           return {
             ...section,
-            items: [...section.items, { type: "image", file }],
+            imageUpload: file,
           };
         }
 
@@ -177,7 +172,7 @@ const CreatePost = () => {
   //     console.log(response);
   //     if (response.status == 201) {
   //       alert("Post created successfully!");
-        
+
   //     } else {
   //       alert("Error creating post.");
   //     }
@@ -186,64 +181,131 @@ const CreatePost = () => {
   //   }
   // };
 
-  // const handleLoginSubmit = async (e) => {
+
+
+  // const handleSubmit = async (e) => {
   //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(`${API_URL}/api/users/login`, {
-  //       mobile,
-  //       password,
-  //     });
-  //     if( response.status === 200 ){
-  //       setIsAdmin(response.status === 200)
+
+  //   // Validate input fields
+  //   const errors = validate();
+  //   setFormErrors(errors);
+  //   if (Object.keys(errors).length > 0) return;
+
+  //   // Prepare FormData
+  //   const formData = new FormData();
+  //   console.log("postData" , postData)
+  //   console.log("contentSection", contentSections)
+  //   // Append other fields
+  //   for (const key in postData) {
+  //     if (postData[key] instanceof File || postData[key] instanceof Blob) {
+  //       formData.append(key, postData[key]); // File or Blob
+  //     } else {
+  //       formData.append(key, postData[key]); // Other data
   //     }
-  //     setSuccessMessage(response.data.message);
-  //     setErrorMessage("");
+  //   }
+
+  //   // // Serialize and append contentSections
+  //   contentSections.forEach((section, index) => {
+  //     formData.append(`contentDescription`, section.contentDescription);
+  //     formData.append(`contentHeading`, section.contentHeading);
+  //     formData.append(`type`, section.type);
+
+  //     // Append files properly
+  //       formData.append(`imageUpload`, section.imageUpload || null);
+  //   });
+
+  //   // Debugging FormData contents
+  //   // for (let pair of formData.entries()) {
+  //   //   console.log(pair[0] + ": ", pair[1]);
+  //   // }
+
+  //   try {
+  //     const response = await axios.post(`${API_URL}/api/posts/create`, formData, {
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+
+  //     if (response.status === 201) {
+  //       alert("Post created successfully!");
+  //     } else {
+  //       alert("Error creating post.");
+  //     }
   //   } catch (error) {
-  //     setErrorMessage(error.response?.data?.error || "An error occurred.");
-  //     setSuccessMessage("");
+  //     console.error("Error:", error);
+  //     alert("An error occurred while submitting the form.");
   //   }
   // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Validate input fields
     const errors = validate();
     setFormErrors(errors);
     if (Object.keys(errors).length > 0) return;
-  
+
     // Prepare FormData
     const formData = new FormData();
-    console.log("postData" , postData)
-    console.log("contentSection", contentSections)
-    // Append other fields
+
+    console.log("postData", postData);
+    console.log("contentSection", contentSections);
+    // Append basic post fields
     for (const key in postData) {
       if (postData[key] instanceof File || postData[key] instanceof Blob) {
-        formData.append(key, postData[key]); // File or Blob
+        formData.append(key, postData[key]); // Append file
       } else {
-        formData.append(key, postData[key]); // Other data
+        formData.append(key, postData[key]); // Append other fields
       }
     }
-    
-    // Serialize and append contentSections
-    formData.append("contentSections", JSON.stringify(contentSections));
 
+    // Append each contentSection separately
+    // formData.append("contentSections", JSON.stringify(contentSections.map((section, index) => ({
+    //   contentHeading: section.contentHeading,
+    //   contentDescription: section.contentDescription,
+    //   type: section.type,
+    //   items: section.items,
+    //   quoteText: section.quoteText,
+    //   quoteAuthor: section.quoteAuthor,
+    //   imageUpload: section.imageUpload,
+    // }))));
 
-
-    for (let pair of formData.entries()) {
-  console.log(pair[0] + ": " + pair[1]);
-}
+    contentSections.forEach((section, index) => {
+      formData.append(`contentSections[${index}][contentHeading]`, section.contentHeading);
+      formData.append(`contentSections[${index}][contentDescription]`, section.contentDescription || '');
+      formData.append(`contentSections[${index}][type]`, section.type || '');
+      formData.append(`contentSections[${index}][quoteText]`, section.quoteText || '');
+      formData.append(`contentSections[${index}][quoteAuthor]`, section.quoteAuthor || '');
+      formData.append(`contentSections[${index}][items]`, JSON.stringify(section.items || []));
   
+      // If an image is included in contentSection, append it separately
+      if (section.imageUpload && section.imageUpload instanceof File) {
+          formData.append(`contentSections[${index}][imageUpload]`, section.imageUpload);
+      }
+  });
+
+
+    // Debugging FormData contents
+    const formDataObject = {};
+    for (let [key, value] of formData.entries()) {
+      formDataObject[key] = value;
+    }
+    console.log(formDataObject);
+
     try {
-      const response = await axios.post(`${API_URL}/api/posts/create`, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-  
+      const response = await axios.post(
+        `${API_URL}/api/posts/create`,
+        formDataObject,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
       if (response.status === 201) {
         alert("Post created successfully!");
-      } else {  
+      } else {
         alert("Error creating post.");
       }
     } catch (error) {
@@ -251,64 +313,11 @@ const CreatePost = () => {
       alert("An error occurred while submitting the form.");
     }
   };
-  
 
   return (
     <>
       {!isAdmin ? (
-        <div className="h-[80vh] flex items-center justify-center bg-gray-50">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-          <h2 className="text-2xl font-bold text-center mb-4">Login</h2>
-          <form onSubmit={handleLoginSubmit} className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Mobile number</label>
-              <input
-                type="number"
-                name='mobileNumber'
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                required
-                maxLength={10}
-                className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                placeholder="Enter your Mobile Number"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">Password</label>
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  name='password'
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className="mt-1 block w-full p-2 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                  placeholder="Enter your password"
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-0 px-3 text-gray-500 text-sm focus:outline-none hover:text-gray-700"
-                >
-                  {showPassword ? 'Hide' : 'Show'}
-                </button>
-              </div>
-            </div>
-            {errorMessage && (
-              <p className="text-red-500 text-sm">{errorMessage}</p>
-            )}
-            {successMessage && (
-              <p className="text-green-500 text-sm">{successMessage}</p>
-            )}
-            <button
-              type="submit"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:ring-2 focus:ring-blue-400"
-            >
-              Login
-            </button>
-          </form>
-        </div>
-      </div>
+        <Login/>
       ) : (
         <div className="w-full md:p-8 p-4 border-t-4 border-lime">
           <h1 className="text-center font-semibold text-3xl text-gray-700 dark:text-white mb-8">
@@ -628,9 +637,10 @@ const CreatePost = () => {
                         <input
                           type="file"
                           id={`imageUpload${section.id}`}
-                          name="imageUpload[]"
+                          name={`imageUpload[]`}
                           className="mt-1 block w-full text-sm text-gray-500"
                           onChange={(e) => contentHandler(e, section.id)}
+                          accept="image/*"
                         />
                       </div>
                     )}

@@ -150,7 +150,7 @@ function Post({ params }) {
             <div className="flex md:flex-row flex-col items-center md:gap-5 ">
               <div className="Container w-fit flex items-center gap-5">
                 {/* Facebook Icon */}
-                <a href="https://www.linkedin.com/in/startup-digest-61169633b/" target="blank" className="relative group">
+                <a href="https://www.linkedin.com/company/105723566/admin/dashboard/" target="blank" className="relative group">
                   <FaLinkedin className="social text-black dark:text-white text-[20px] duration-200 cursor-pointer" />
                   <div className="absolute bottom-full mb-2 hidden group-hover:block bg-black dark:bg-white dark:text-black text-white text-xs px-2 py-1 shadow-lg">
                     LinkedIn
@@ -405,7 +405,7 @@ function Post({ params }) {
                 </h3>
               </div>
               <div className="Container flex items-center md:space-x-4 space-x-2 mt-4">
-                <a href="https://www.linkedin.com/in/startup-digest-61169633b/" target="blank" className="relative group">
+                <a href="https://www.linkedin.com/company/105723566/admin/dashboard/" target="blank" className="relative group">
                   <button className="social flex items-center space-x-2 md:px-4 px-2 py-2 bg-gray-100  hover:bg-gray-200">
                     <span className="md:text-xl text-lg">
                       <FaLinkedin className="text-black" />
