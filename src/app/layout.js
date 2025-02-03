@@ -69,7 +69,7 @@ export default function RootLayout({ children }) {
     }
     setTrendingSection(posts.slice(0, 5).map((item) => item));
     setRecommendedSection(
-      [...posts].sort(() => Math.random() - 0.5).slice(0, 4)
+      [...posts].sort(() => Math.random() - 0.5).slice(-4)
     );
     setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
     setSpotlightSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
