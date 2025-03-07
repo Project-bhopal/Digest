@@ -16,6 +16,37 @@ function TodayandTrendingSection({
   image,
   label,
 }) {
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${monthName} ${day}, ${year}`;
+  }
   return (
     <>
       <div className={` lg:py-4 py-1 dark:border-white mx-5`}>
@@ -52,7 +83,7 @@ function TodayandTrendingSection({
                 <div
                   className={`text-gray-500 dark:text-white text-xs flex gap-2 mt-3`}
                 >
-                  <h6 className="font-medium">{date}</h6>
+                  <h6 className="font-medium">{formatDate(date)}</h6>
                 </div>
               </div>
             </li>
@@ -64,6 +95,37 @@ function TodayandTrendingSection({
 }
 
 function StartupSection({ postHeading, date, image }) {
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${monthName} ${day}, ${year}`;
+  }
   return (
     <>
       <div
@@ -93,7 +155,7 @@ function StartupSection({ postHeading, date, image }) {
                 </p>
               </div>
               <div className={`text-white text-xs flex gap-2 mt-3 ms-2`}>
-                <h6 className="font-medium">{date}</h6>
+                <h6 className="font-medium">{formatDate(date)}</h6>
               </div>
             </div>
           </div>
@@ -153,20 +215,24 @@ function HomebottomSection() {
   const { posts } = useContext(PostContext);
 
   useEffect(() => {
+    const latestPosts = [...posts]
+      .sort((a, b) => new Date(b.date) - new Date(a.date))
+      .slice(0, 50);
+      
     setTechMoves(
-      [...posts]
+      [...latestPosts]
         .filter((item) => item?.category === "tech moves")
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
     );
     setStartups(
-      [...posts]
+      [...latestPosts]
         .filter((item) => item?.category === "startups")
         .sort(() => Math.random() - 0.5)
         .slice(0, 3)
     );
     setSponsored(
-      [...posts]
+      [...latestPosts]
         .filter((item) => item?.isSponsored === true)
         .sort(() => Math.random() - 0.5)
         .slice(0, 4)
@@ -187,7 +253,7 @@ function HomebottomSection() {
                 <TodayandTrendingSection
                   category={item?.category}
                   postHeading={item?.postHeading}
-                  date={item?.date}
+                  date={item?.createdAt}
                 />
               </Link>
             </div>
@@ -207,7 +273,7 @@ function HomebottomSection() {
                   text={item.postHeading}
                   image={item.imagePost}
                   by={item.companyLogo}
-                  category={item.category} 
+                  category={item.category}
                 />
               </Link>
             ))}
@@ -230,7 +296,7 @@ function HomebottomSection() {
                     <TodayandTrendingSection
                       category={item.category}
                       postHeading={item.postHeading}
-                      date={item.date}
+                      date={item.createdAt}
                       image={item.imagePost}
                     />
                   </Link>
@@ -250,7 +316,7 @@ function HomebottomSection() {
                   <Link href={`blog/${item._id}`}>
                     <StartupSection
                       postHeading={item.postHeading}
-                      date={item.date}
+                      date={item.createdAt}
                       image={item.imagePost}
                     />
                   </Link>

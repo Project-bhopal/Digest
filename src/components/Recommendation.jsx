@@ -23,7 +23,7 @@ function Recommendation({label, icon, heading, cardsData}) {
               image={item.imagePost}
               category={item.category}
               title={item.postHeading}
-              date={item.date}
+              date={item.createdAt}
             />
             </Link>
           ))}

@@ -6,6 +6,22 @@ import card1 from "@/assets/card1.webp";
 import LoadingAnimation from "./Loading";
 
 const Card = ({ image, category, title, date }) => {
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    const months = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${monthName} ${day}, ${year}`;
+}
   return (
     <div className="bg-[#04031D] text-white overflow-hidden shadow-md h-full w-full cursor-pointer">
       {/* Image Section */}
@@ -40,7 +56,7 @@ const Card = ({ image, category, title, date }) => {
         </h2>
 
         {/* Date */}
-        <p className="text-[13px] mt-2">{date}</p>
+        <p className="text-[13px] mt-2">{formatDate(date)}</p>
       </div>
     </div>
   );

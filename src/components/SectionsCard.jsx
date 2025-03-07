@@ -16,6 +16,22 @@ const SectionsCard = ({
   drawer,
   toggleDrawer
 }) => {
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    const months = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${monthName} ${day}, ${year}`;
+}
   return (
     <div
       className={`px-6 md:py-8 py-4 ${
@@ -92,7 +108,7 @@ const SectionsCard = ({
                     >
                       {item?.createdBy}
                     </span>{" "}
-                    |<h6 className="font-medium">{item.date}</h6>
+                    |<h6 className="font-medium">{formatDate(item?.createdAt)}</h6>
                   </div>
                 </div>
               </li>
