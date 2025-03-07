@@ -24,7 +24,21 @@ export default function Home() {
   const {trendingPost, trendingSection, recommendedSection, spotlightPost, spotlightSection, popularSection, mustReadSection,} = useContext(PostContext);
 
 
-  
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const days = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    const months = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    return `${monthName} ${day}, ${year}`;
+}
 
   return (
     <>
@@ -65,7 +79,7 @@ export default function Home() {
                   <div className=" text-xs flex gap-2">
                     By{" "}
                     <span className="font-bold">{trendingPost?.createdBy}</span>{" "}
-                    |<h6 className="font-medium">January 31, 2024</h6>|
+                    |<h6 className="font-medium">{formatDate(trendingPost.createdAt)}</h6>|
                     <h6 className="font-medium">6 min Read</h6>
                   </div>
                 </div>
@@ -165,7 +179,7 @@ export default function Home() {
                     <span className="font-bold">
                       {spotlightPost?.createdBy}
                     </span>{" "}
-                    |<h6 className="font-medium">January 31, 2024</h6>|
+                    |<h6 className="font-medium">{formatDate(spotlightPost.createdAt)}</h6>|
                     <h6 className="font-medium">6 min Read</h6>
                   </div>
                 </div>

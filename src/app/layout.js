@@ -62,17 +62,25 @@ export default function RootLayout({ children }) {
     fetchData();
   }, []);
 
+
+
+
   useEffect(() => {
     if (posts.length > 0) {
-      setTrendingPost(posts[Math.floor(Math.random() * 5) + 1]);
-      setSpotlightPost(posts[Math.floor(Math.random() * 5) + 1]);
-    }
+
+       const latestPosts = [...posts]
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 50);
+
+      setTrendingPost(posts[Math.floor(Math.random() * 5)]);
+      setSpotlightPost(latestPosts[Math.floor(Math.random() * 10) ]);
+    
     setTrendingSection(posts.slice(0, 5).map((item) => item));
     setRecommendedSection(
-      [...posts].sort(() => Math.random() - 0.5).slice(-4)
+      [...latestPosts].sort(() => Math.random() - 0.5).slice(-4)
     );
-    setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
-    setSpotlightSection([...posts].sort(() => Math.random() - 0.5).slice(0, 4));
+    setMustReadSection([...posts].sort(() => Math.random() - 0.5).slice(-4));
+    setSpotlightSection([...latestPosts].sort(() => Math.random() - 0.5).slice(-4));
     setPopularSection([...posts].sort(() => Math.random() - 0.5).slice(0, 3));
 
     //Advertising page
@@ -87,6 +95,7 @@ export default function RootLayout({ children }) {
     setTechMovesPosts(posts.filter((item) => item?.category == "tech moves").slice(0, showMore));
     // Latest posts for blogs page
     setLatestSection([...posts].sort(() => Math.random() - 0.5).slice(0, showMore));
+  };
   }, [posts, showMore]);
 
   const darkTheme = () => {

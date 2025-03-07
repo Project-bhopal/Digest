@@ -6,24 +6,26 @@ import PostContext from "@/context/postContext";
 import Link from "next/link";
 import LoadingAnimation from "@/components/Loading";
 import { useRouter } from "next/navigation";
+import card1 from "@/assets/card1.webp";
+import Recommendation from "@/components/Recommendation";
 
 function Search() {
-  const [recommendedSection, setRecommendedSection] = useState([]);
-  const { posts } = useContext(PostContext);
-  
+  const {
+    advertisingPosts,
+    marketingPosts,
+    marketTrendsPosts,
+    startupsPosts,
+    techMovesPosts,
+    handleShowMore,
+  } = useContext(PostContext);
 
-  
-  useEffect(() => {
-    setRecommendedSection(
-      [...posts].sort(() => Math.random() - 0.5).slice(0, 8)
-    );
-  }, [posts]);
-
-  const openMarketingData = {
-    category: "Marketing",
-    route: "/category/marketing",
-    cards: recommendedSection,
-  };
+  const Suggestions = [
+    ...advertisingPosts,
+    ...marketingPosts,
+    ...marketTrendsPosts,
+    ...startupsPosts,
+    ...techMovesPosts,
+  ];
 
   return (
     <>
@@ -50,7 +52,7 @@ function Search() {
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-wrap justify-between gap-[10px]">
+        {/* <div className="mt-10 flex flex-wrap justify-between gap-[10px]">
           {openMarketingData.cards.map((card, index) => (
             <Link href={`/blog/${card._id}`} key={index}>
             <div className="lg:h-96 md:w-[312px]" >
@@ -60,7 +62,7 @@ function Search() {
                   <Image
                   onError={(e) => console.error(e.target.id)}
                     alt="search image"
-                    src={`${card?.image}`} // Fallback to a default image
+                    src={`${card?.image}` || `/${card1}`} // Fallback to a default image
                     layout="fill" // Ensures the image spans the container
                     objectFit="fill" // Matches the `object-cover` behavior
                     className="object-cover"
@@ -79,9 +81,15 @@ function Search() {
             </div>
             </Link>
           ))}
-        </div>
+        </div> */}
+        <Recommendation
+          cardsData={Suggestions}
+        />
         <div className="mt-5 w-full flex items-center justify-center">
-          <button className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6">
+          <button
+            className="text-black hover:text-white text-xs font-bold bg-lime hover:bg-[#6DBA16] duration-200 py-2 lg:px-9 md:px-7 px-6"
+            onClick={() => handleShowMore()}
+          >
             Show More
           </button>
         </div>

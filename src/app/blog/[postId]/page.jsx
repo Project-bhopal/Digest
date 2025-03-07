@@ -117,6 +117,30 @@ function Post({ params }) {
     });
   };
 
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const days = [
+        "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    ];
+    const months = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const monthName = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    
+    let hours = date.getHours();
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    const ampm = hours >= 12 ? "pm" : "am";
+
+    hours = hours % 12 || 12; // Convert 24-hour time to 12-hour format
+
+    return `${monthName} ${day}, ${year} ${hours}:${minutes} ${ampm}`;
+}
+
   return (
     <>
       <div className="w-full flex flex-col items-center">
@@ -233,10 +257,10 @@ function Post({ params }) {
                   <span className="font-semibold text-black dark:text-white">
                     {postData.createdBy}
                   </span>{" "}
-                  - {postData.designation}
+                  {/* - {postData.designation} */}
                 </p>
                 <p className="text-sm font-normal">
-                  Last updated: February 1, 2024 3:03 am
+                  Last updated: {formatDate(postData.updatedAt)}
                 </p>
               </div>
             </div>

@@ -64,16 +64,18 @@ function Navbar() {
     setMarketing(
       [...posts]
         .filter((item) => item?.category === "marketing")
-        .sort(() => Math.random() - 0.5)
-        .slice(-5)
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by latest first
+        .slice(0, 5) // Take the latest 5
     );
+    
     setStartups(
       [...posts]
         .filter((item) => item?.category === "startups")
-        .sort(() => Math.random() - 0.5)
-        .slice(-5)
+        .sort((a, b) => new Date(b.date) - new Date(a.date)) // Sort by latest first
+        .slice(0, 5) // Take the latest 5
     );
-  }, [posts]);
+}, [posts]);
+
 
   const pathname = usePathname();
   const { themeMode, darkTheme, lightTheme } = useTheme();
